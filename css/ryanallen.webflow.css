@@ -380,6 +380,7 @@ body {
 }
 
 .rcavhs2 {
+  position: relative;
   width: 100vw;
   height: 40vh;
   background-image: url('../images/RCAT120.svg');
@@ -439,6 +440,8 @@ body {
   max-height: 100%;
   padding-right: 0px;
   padding-left: 0px;
+  float: none;
+  clear: none;
   text-align: center;
   -o-object-fit: contain;
   object-fit: contain;
@@ -564,7 +567,7 @@ body {
   text-decoration: underline;
 }
 
-.bgfade {
+.sonyvhsbg {
   width: 100vw;
   height: 100vh;
   background-color: transparent;
@@ -704,6 +707,25 @@ body {
   background-color: #f73931;
 }
 
+.fadein {
+  width: 100vw;
+  height: 100vh;
+}
+
+.lineart {
+  position: fixed;
+  left: 35vw;
+  top: 18vh;
+  z-index: 1;
+  height: 40vh;
+  max-height: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+  text-align: center;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
 @media screen and (max-width: 991px) {
   .rcavhs1 {
     -ms-grid-rows: 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 2fr;
@@ -779,11 +801,16 @@ body {
     background-attachment: scroll;
   }
 
+  .rcavhs2 {
+    position: static;
+  }
+
   .p {
     line-height: 5vh;
   }
 
   .profile {
+    position: static;
     padding-right: 24px;
     padding-left: 24px;
     text-align: center;
@@ -879,6 +906,14 @@ body {
   .r5h {
     width: 100vw;
     height: 5.5vh;
+  }
+
+  .lineart {
+    padding-right: 24px;
+    padding-left: 24px;
+    text-align: center;
+    -o-object-fit: contain;
+    object-fit: contain;
   }
 }
 

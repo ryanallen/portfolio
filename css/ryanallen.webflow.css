@@ -461,7 +461,7 @@ body {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
-  background-color: rgba(234, 237, 238, 0.3);
+  background-color: transparent;
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.25vw;
@@ -661,7 +661,7 @@ body {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
-  background-color: rgba(255, 176, 48, 0.3);
+  background-color: transparent;
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
@@ -679,7 +679,7 @@ body {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
-  background-color: rgba(254, 105, 41, 0.3);
+  background-color: transparent;
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
@@ -697,7 +697,7 @@ body {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
-  background-color: rgba(247, 57, 49, 0.3);
+  background-color: transparent;
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
@@ -772,6 +772,7 @@ body {
   }
 
   .linkgodaddy {
+    background-color: rgba(234, 237, 238, 0.8);
     font-size: 5vw;
   }
 
@@ -793,14 +794,17 @@ body {
   }
 
   .linklexus {
+    background-color: rgba(255, 176, 48, 0.8);
     font-size: 5vw;
   }
 
   .linkmicrosoft {
+    background-color: rgba(254, 105, 41, 0.8);
     font-size: 5vw;
   }
 
   .linkea {
+    background-color: rgba(247, 57, 49, 0.8);
     font-size: 5vw;
   }
 
@@ -855,7 +859,7 @@ body {
   .linkgodaddy {
     height: 10vh;
     padding-left: 0px;
-    background-color: #eaedee;
+    background-color: rgba(234, 237, 238, 0.8);
     line-height: 10vh;
     text-align: center;
   }
@@ -917,7 +921,7 @@ body {
   .linklexus {
     height: 10vh;
     padding-left: 0px;
-    background-color: #ffb030;
+    background-color: rgba(255, 176, 48, 0.8);
     line-height: 10vh;
     text-align: center;
   }
@@ -925,7 +929,7 @@ body {
   .linkmicrosoft {
     height: 10vh;
     padding-left: 0px;
-    background-color: #fe6929;
+    background-color: rgba(254, 105, 41, 0.8);
     line-height: 10vh;
     text-align: center;
   }
@@ -933,7 +937,7 @@ body {
   .linkea {
     height: 10vh;
     padding-left: 0px;
-    background-color: #f73931;
+    background-color: rgba(247, 57, 49, 0.8);
     line-height: 10vh;
     text-align: center;
   }
@@ -954,7 +958,7 @@ body {
   .linkme {
     height: 10vh;
     padding-left: 0px;
-    background-color: #eaedee;
+    background-color: transparent;
     line-height: 10vh;
     text-align: center;
   }

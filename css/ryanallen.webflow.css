@@ -457,10 +457,11 @@ body {
   text-align: left;
 }
 
-.linksocial {
+.linkgodaddy {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
+  background-color: rgba(234, 237, 238, 0.3);
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.25vw;
@@ -470,7 +471,7 @@ body {
   text-decoration: underline;
 }
 
-.linksocial:hover {
+.linkgodaddy:hover {
   background-color: #eaedee;
 }
 
@@ -660,6 +661,7 @@ body {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
+  background-color: rgba(255, 176, 48, 0.3);
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
@@ -677,6 +679,7 @@ body {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
+  background-color: rgba(254, 105, 41, 0.3);
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
@@ -694,6 +697,7 @@ body {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
+  background-color: rgba(247, 57, 49, 0.3);
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
@@ -726,6 +730,24 @@ body {
   object-fit: contain;
 }
 
+.linkme {
+  width: 100vw;
+  height: 15vh;
+  padding-left: 48px;
+  background-color: transparent;
+  font-family: Trirong, sans-serif;
+  color: #0d0718;
+  font-size: 3.25vw;
+  line-height: 15vh;
+  font-weight: 400;
+  text-align: left;
+  text-decoration: underline;
+}
+
+.linkme:hover {
+  background-color: #eaedee;
+}
+
 @media screen and (max-width: 991px) {
   .rcavhs1 {
     -ms-grid-rows: 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 2fr;
@@ -749,7 +771,7 @@ body {
     font-size: 5vw;
   }
 
-  .linksocial {
+  .linkgodaddy {
     font-size: 5vw;
   }
 
@@ -779,6 +801,10 @@ body {
   }
 
   .linkea {
+    font-size: 5vw;
+  }
+
+  .linkme {
     font-size: 5vw;
   }
 }
@@ -826,9 +852,10 @@ body {
     text-align: center;
   }
 
-  .linksocial {
+  .linkgodaddy {
     height: 10vh;
     padding-left: 0px;
+    background-color: #eaedee;
     line-height: 10vh;
     text-align: center;
   }
@@ -885,6 +912,7 @@ body {
   .linklexus {
     height: 10vh;
     padding-left: 0px;
+    background-color: #ffb030;
     line-height: 10vh;
     text-align: center;
   }
@@ -892,6 +920,7 @@ body {
   .linkmicrosoft {
     height: 10vh;
     padding-left: 0px;
+    background-color: #fe6929;
     line-height: 10vh;
     text-align: center;
   }
@@ -899,6 +928,7 @@ body {
   .linkea {
     height: 10vh;
     padding-left: 0px;
+    background-color: #f73931;
     line-height: 10vh;
     text-align: center;
   }
@@ -914,6 +944,14 @@ body {
     text-align: center;
     -o-object-fit: contain;
     object-fit: contain;
+  }
+
+  .linkme {
+    height: 10vh;
+    padding-left: 0px;
+    background-color: #eaedee;
+    line-height: 10vh;
+    text-align: center;
   }
 }
 

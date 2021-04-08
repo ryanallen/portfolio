@@ -148,7 +148,7 @@ body {
 }
 
 .r {
-  font-family: Cormorant, sans-serif;
+  font-family: 'Abril Fatface', sans-serif;
   color: #999;
   font-size: 40px;
   line-height: 40px;
@@ -305,7 +305,7 @@ body {
 .text-block-4 {
   padding-top: 8px;
   padding-left: 48px;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Noto Sans';
   color: #4b5961;
   font-size: 14vw;
   line-height: 16vw;
@@ -407,7 +407,7 @@ body {
 }
 
 .text20 {
-  font-family: Cormorant, sans-serif;
+  font-family: Cormorant;
   color: #dfdfdf;
   font-size: 8vw;
   line-height: 20vh;
@@ -415,7 +415,7 @@ body {
 }
 
 .p {
-  font-family: Overpass, sans-serif;
+  font-family: Trirong, sans-serif;
   color: #ddd;
   font-size: 3vw;
   line-height: 10vh;
@@ -449,7 +449,7 @@ body {
 
 .textboldleft30 {
   padding-left: 48px;
-  font-family: Cormorant, sans-serif;
+  font-family: Cormorant;
   color: #0d0718;
   font-size: 4vw;
   line-height: 30vh;
@@ -461,7 +461,7 @@ body {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
-  font-family: Overpass, sans-serif;
+  font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.25vw;
   line-height: 15vh;
@@ -558,7 +558,7 @@ body {
   width: 100vw;
   height: 12.5vh;
   padding-left: 48px;
-  font-family: Overpass, sans-serif;
+  font-family: Overpass;
   color: #0d0718;
   font-size: 2.5vw;
   line-height: 12.5vh;
@@ -628,7 +628,7 @@ body {
   margin-bottom: 0px;
   padding-top: 8px;
   padding-left: 48px;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Abril Fatface', sans-serif;
   color: #4b5961;
   font-size: 14vw;
   line-height: 16vw;
@@ -638,7 +638,7 @@ body {
   margin-top: 0px;
   margin-bottom: 0px;
   padding-left: 48px;
-  font-family: Cormorant, sans-serif;
+  font-family: 'Abril Fatface', sans-serif;
   color: #0d0718;
   font-size: 4vw;
   line-height: 30vh;
@@ -649,7 +649,7 @@ body {
   margin-top: 0px;
   margin-bottom: 0px;
   padding-left: 0px;
-  font-family: Cormorant, sans-serif;
+  font-family: 'Abril Fatface', sans-serif;
   color: #dfdfdf;
   font-size: 8vw;
   line-height: 20vh;
@@ -660,7 +660,7 @@ body {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
-  font-family: Overpass, sans-serif;
+  font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
   line-height: 15vh;
@@ -677,7 +677,7 @@ body {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
-  font-family: Overpass, sans-serif;
+  font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
   line-height: 15vh;
@@ -694,7 +694,7 @@ body {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
-  font-family: Overpass, sans-serif;
+  font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
   line-height: 15vh;

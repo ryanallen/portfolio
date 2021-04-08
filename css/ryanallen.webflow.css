@@ -897,6 +897,11 @@ body {
     height: 20vh;
   }
 
+  .h1 {
+    padding-left: 0px;
+    text-align: center;
+  }
+
   .h2 {
     padding-left: 0px;
     font-size: 8vw;

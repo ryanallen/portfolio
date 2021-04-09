@@ -467,7 +467,7 @@ body {
   font-size: 3.25vw;
   line-height: 15vh;
   font-weight: 400;
-  text-align: left;
+  text-align: center;
   text-decoration: underline;
 }
 
@@ -621,7 +621,7 @@ body {
 
 .h2fade {
   width: 100vw;
-  height: 30vh;
+  height: 15vh;
 }
 
 .h1 {
@@ -633,6 +633,7 @@ body {
   color: #4b5961;
   font-size: 14vw;
   line-height: 16vw;
+  text-align: left;
 }
 
 .h2 {
@@ -642,8 +643,9 @@ body {
   font-family: 'Abril Fatface', sans-serif;
   color: #0d0718;
   font-size: 4vw;
-  line-height: 30vh;
+  line-height: 15vh;
   font-weight: 600;
+  text-align: center;
 }
 
 .h2center {
@@ -667,7 +669,7 @@ body {
   font-size: 3.5vw;
   line-height: 15vh;
   font-weight: 400;
-  text-align: left;
+  text-align: center;
   text-decoration: underline;
 }
 
@@ -685,7 +687,7 @@ body {
   font-size: 3.5vw;
   line-height: 15vh;
   font-weight: 400;
-  text-align: left;
+  text-align: center;
   text-decoration: underline;
 }
 
@@ -703,7 +705,7 @@ body {
   font-size: 3.5vw;
   line-height: 15vh;
   font-weight: 400;
-  text-align: left;
+  text-align: center;
   text-decoration: underline;
 }
 
@@ -740,12 +742,42 @@ body {
   font-size: 3.25vw;
   line-height: 15vh;
   font-weight: 400;
-  text-align: left;
+  text-align: center;
   text-decoration: underline;
 }
 
 .linkme:hover {
   background-color: #eaedee;
+}
+
+.h2clients {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 48px;
+  font-family: 'Abril Fatface', sans-serif;
+  color: #0d0718;
+  font-size: 4vw;
+  line-height: 15vh;
+  font-weight: 600;
+  text-align: center;
+}
+
+.linkmcgrawhill {
+  width: 100vw;
+  height: 15vh;
+  padding-left: 48px;
+  background-color: transparent;
+  font-family: Trirong, sans-serif;
+  color: #0d0718;
+  font-size: 3.5vw;
+  line-height: 15vh;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.linkmcgrawhill:hover {
+  background-color: #ac3f46;
 }
 
 @media screen and (max-width: 991px) {
@@ -809,6 +841,15 @@ body {
   }
 
   .linkme {
+    font-size: 5vw;
+  }
+
+  .h2clients {
+    font-size: 5vw;
+  }
+
+  .linkmcgrawhill {
+    background-color: rgba(247, 57, 49, 0.8);
     font-size: 5vw;
   }
 }
@@ -959,6 +1000,20 @@ body {
     height: 10vh;
     padding-left: 0px;
     background-color: transparent;
+    line-height: 10vh;
+    text-align: center;
+  }
+
+  .h2clients {
+    padding-left: 0px;
+    font-size: 7vw;
+    text-align: center;
+  }
+
+  .linkmcgrawhill {
+    height: 10vh;
+    padding-left: 0px;
+    background-color: rgba(172, 63, 70, 0.7);
     line-height: 10vh;
     text-align: center;
   }

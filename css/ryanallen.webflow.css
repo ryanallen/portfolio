@@ -457,21 +457,21 @@ body {
   text-align: left;
 }
 
-.linkgodaddy {
+.godaddy {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
-  background-color: transparent;
+  background-color: #eaedee;
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.25vw;
   line-height: 15vh;
   font-weight: 400;
   text-align: center;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-.linkgodaddy:hover {
+.godaddy:hover {
   background-color: #eaedee;
 }
 
@@ -479,6 +479,7 @@ body {
   display: block;
   width: 100vw;
   height: 15vh;
+  background-color: #eaedee;
   text-align: center;
   cursor: auto;
   -o-object-fit: fill;
@@ -535,7 +536,7 @@ body {
 .socialinks {
   width: 100vw;
   height: 60vh;
-  background-color: #a23936;
+  background-color: transparent;
   background-clip: border-box;
 }
 
@@ -659,57 +660,57 @@ body {
   font-weight: 600;
 }
 
-.linklexus {
+.lexus {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
-  background-color: transparent;
+  background-color: #ffb030;
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
   line-height: 15vh;
   font-weight: 400;
   text-align: center;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-.linklexus:hover {
+.lexus:hover {
   background-color: #ffb030;
 }
 
-.linkmicrosoft {
+.microsoft {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
-  background-color: transparent;
+  background-color: #fe6929;
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
   line-height: 15vh;
   font-weight: 400;
   text-align: center;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-.linkmicrosoft:hover {
+.microsoft:hover {
   background-color: #fe6929;
 }
 
-.linkea {
+.mcgrawhill {
   width: 100vw;
   height: 15vh;
   padding-left: 48px;
-  background-color: transparent;
+  background-color: #f73931;
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
   line-height: 15vh;
   font-weight: 400;
   text-align: center;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-.linkea:hover {
+.mcgrawhill:hover {
   background-color: #f73931;
 }
 
@@ -780,6 +781,44 @@ body {
   background-color: #ac3f46;
 }
 
+.linkmemain {
+  width: 100vw;
+  height: 15vh;
+  padding-left: 48px;
+  background-color: rgba(162, 57, 54, 0.6);
+  font-family: Trirong, sans-serif;
+  color: #0d0718;
+  font-size: 3.25vw;
+  line-height: 15vh;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.linkmemain:hover {
+  background-color: #0d0718;
+  color: #eaedee;
+}
+
+.linkmemaincta {
+  width: 100vw;
+  height: 15vh;
+  padding-left: 48px;
+  background-color: #a23936;
+  font-family: Trirong, sans-serif;
+  color: #0d0718;
+  font-size: 3.25vw;
+  line-height: 15vh;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.linkmemaincta:hover {
+  background-color: #0d0718;
+  color: #eaedee;
+}
+
 @media screen and (max-width: 991px) {
   .rcavhs1 {
     -ms-grid-rows: 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 2fr;
@@ -803,7 +842,7 @@ body {
     font-size: 5vw;
   }
 
-  .linkgodaddy {
+  .godaddy {
     background-color: rgba(234, 237, 238, 0.8);
     font-size: 5vw;
   }
@@ -825,17 +864,17 @@ body {
     font-size: 14vw;
   }
 
-  .linklexus {
+  .lexus {
     background-color: rgba(255, 176, 48, 0.8);
     font-size: 5vw;
   }
 
-  .linkmicrosoft {
+  .microsoft {
     background-color: rgba(254, 105, 41, 0.8);
     font-size: 5vw;
   }
 
-  .linkea {
+  .mcgrawhill {
     background-color: rgba(247, 57, 49, 0.8);
     font-size: 5vw;
   }
@@ -850,6 +889,14 @@ body {
 
   .linkmcgrawhill {
     background-color: rgba(247, 57, 49, 0.8);
+    font-size: 5vw;
+  }
+
+  .linkmemain {
+    font-size: 5vw;
+  }
+
+  .linkmemaincta {
     font-size: 5vw;
   }
 }
@@ -897,7 +944,7 @@ body {
     text-align: center;
   }
 
-  .linkgodaddy {
+  .godaddy {
     height: 10vh;
     padding-left: 0px;
     background-color: rgba(234, 237, 238, 0.8);
@@ -959,7 +1006,7 @@ body {
     text-align: center;
   }
 
-  .linklexus {
+  .lexus {
     height: 10vh;
     padding-left: 0px;
     background-color: rgba(255, 176, 48, 0.8);
@@ -967,7 +1014,7 @@ body {
     text-align: center;
   }
 
-  .linkmicrosoft {
+  .microsoft {
     height: 10vh;
     padding-left: 0px;
     background-color: rgba(254, 105, 41, 0.8);
@@ -975,7 +1022,7 @@ body {
     text-align: center;
   }
 
-  .linkea {
+  .mcgrawhill {
     height: 10vh;
     padding-left: 0px;
     background-color: rgba(247, 57, 49, 0.8);
@@ -1014,6 +1061,22 @@ body {
     height: 10vh;
     padding-left: 0px;
     background-color: rgba(172, 63, 70, 0.7);
+    line-height: 10vh;
+    text-align: center;
+  }
+
+  .linkmemain {
+    height: 10vh;
+    padding-left: 0px;
+    background-color: rgba(162, 57, 54, 0.7);
+    line-height: 10vh;
+    text-align: center;
+  }
+
+  .linkmemaincta {
+    height: 10vh;
+    padding-left: 0px;
+    background-color: #a23936;
     line-height: 10vh;
     text-align: center;
   }

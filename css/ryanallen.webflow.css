@@ -415,6 +415,8 @@ body {
 }
 
 .p {
+  padding-right: 24px;
+  padding-left: 24px;
   font-family: Trirong, sans-serif;
   color: #ddd;
   font-size: 3vw;
@@ -931,6 +933,8 @@ body {
   }
 
   .p {
+    padding-right: 24px;
+    padding-left: 24px;
     line-height: 5vh;
   }
 

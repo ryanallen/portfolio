@@ -925,6 +925,11 @@ body {
     position: static;
   }
 
+  .h2centerfade {
+    height: 10vh;
+    line-height: 10px;
+  }
+
   .p {
     line-height: 5vh;
   }
@@ -988,7 +993,7 @@ body {
   }
 
   .pfade {
-    height: 20vh;
+    height: 15vh;
   }
 
   .h1 {
@@ -1005,6 +1010,7 @@ body {
   .h2center {
     padding-left: 0px;
     font-size: 14vw;
+    line-height: 10vh;
     text-align: center;
   }
 

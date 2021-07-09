@@ -518,11 +518,19 @@ a {
   .modalawards {
     display: none;
   }
+
+  .h3clientlistitems {
+    font-size: 4vw;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .rcavhs2 {
     width: auto;
+  }
+
+  .h3clientlistitems {
+    font-size: 4vw;
   }
 }
 
@@ -648,6 +656,11 @@ a {
 
   .modalawardside {
     width: 10vw;
+  }
+
+  .h3clientlistitems {
+    font-size: 6vw;
+    line-height: 10vh;
   }
 }
 

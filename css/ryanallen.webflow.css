@@ -166,7 +166,7 @@ a {
 .clientlistitemfadeanimation {
   display: block;
   width: 100vw;
-  height: 15vh;
+  height: 6vh;
   background-color: transparent;
   text-align: center;
   cursor: auto;
@@ -463,13 +463,138 @@ a {
   text-decoration: underline;
 }
 
-.h3clientlistitems {
+.h3clientli {
   font-family: Trirong, sans-serif;
   color: #0d0718;
   font-size: 3.5vw;
-  line-height: 15vh;
+  line-height: 6vh;
   font-weight: 400;
   text-align: center;
+}
+
+.h3clientli2 {
+  font-family: Trirong, sans-serif;
+  color: #0d0718;
+  font-size: 3vw;
+  line-height: 5.5vh;
+  font-weight: 400;
+  text-align: center;
+}
+
+.h3clientli3 {
+  font-family: Trirong, sans-serif;
+  color: #0d0718;
+  font-size: 2.5vw;
+  line-height: 5vh;
+  font-weight: 400;
+  text-align: center;
+}
+
+.h3clientli4 {
+  font-family: Trirong, sans-serif;
+  color: #0d0718;
+  font-size: 2vw;
+  line-height: 4.5vh;
+  font-weight: 400;
+  text-align: center;
+}
+
+.h3clientli5 {
+  font-family: Trirong, sans-serif;
+  color: #0d0718;
+  font-size: 1.5vw;
+  line-height: 4vh;
+  font-weight: 400;
+  text-align: center;
+}
+
+.h3clientli6 {
+  font-family: Trirong, sans-serif;
+  color: #0d0718;
+  font-size: 1vw;
+  line-height: 3vh;
+  font-weight: 400;
+  text-align: center;
+}
+
+.r42 {
+  width: 100vw;
+  height: 42vh;
+}
+
+.clientlistitemfadeanimation2 {
+  display: block;
+  width: 100vw;
+  height: 5.5vh;
+  background-color: transparent;
+  text-align: center;
+  cursor: auto;
+  -o-object-fit: fill;
+  object-fit: fill;
+}
+
+.clientlistitemfadeanimation2:hover {
+  background-color: transparent;
+}
+
+.clientlistitemfadeanimation3 {
+  display: block;
+  width: 100vw;
+  height: 5vh;
+  background-color: transparent;
+  text-align: center;
+  cursor: auto;
+  -o-object-fit: fill;
+  object-fit: fill;
+}
+
+.clientlistitemfadeanimation3:hover {
+  background-color: transparent;
+}
+
+.clientlistitemfadeanimation4 {
+  display: block;
+  width: 100vw;
+  height: 4.5vh;
+  background-color: transparent;
+  text-align: center;
+  cursor: auto;
+  -o-object-fit: fill;
+  object-fit: fill;
+}
+
+.clientlistitemfadeanimation4:hover {
+  background-color: transparent;
+}
+
+.clientlistitemfadeanimation5 {
+  display: block;
+  width: 100vw;
+  height: 4vh;
+  background-color: transparent;
+  text-align: center;
+  cursor: auto;
+  -o-object-fit: fill;
+  object-fit: fill;
+}
+
+.clientlistitemfadeanimation5:hover {
+  background-color: transparent;
+}
+
+.clientlistitemfadeanimation6 {
+  display: block;
+  width: 100vw;
+  height: 3vh;
+  background-color: transparent;
+  text-align: center;
+  cursor: auto;
+  -o-object-fit: fill;
+  object-fit: fill;
+}
+
+.clientlistitemfadeanimation6:hover {
+  background-color: transparent;
 }
 
 @media screen and (max-width: 991px) {
@@ -519,8 +644,28 @@ a {
     display: none;
   }
 
-  .h3clientlistitems {
+  .h3clientli {
     font-size: 4vw;
+  }
+
+  .h3clientli2 {
+    font-size: 3.7vw;
+  }
+
+  .h3clientli3 {
+    font-size: 3.4vw;
+  }
+
+  .h3clientli4 {
+    font-size: 3.1vw;
+  }
+
+  .h3clientli5 {
+    font-size: 2.8vw;
+  }
+
+  .h3clientli6 {
+    font-size: 2.8vw;
   }
 }
 
@@ -529,8 +674,28 @@ a {
     width: auto;
   }
 
-  .h3clientlistitems {
+  .h3clientli {
     font-size: 4vw;
+  }
+
+  .h3clientli2 {
+    font-size: 3.7vw;
+  }
+
+  .h3clientli3 {
+    font-size: 3.4vw;
+  }
+
+  .h3clientli4 {
+    font-size: 3.1vw;
+  }
+
+  .h3clientli5 {
+    font-size: 2.8vw;
+  }
+
+  .h3clientli6 {
+    font-size: 2.8vw;
   }
 }
 
@@ -564,7 +729,7 @@ a {
   }
 
   .clientlistitemfadeanimation {
-    height: 10vh;
+    height: 6vh;
   }
 
   .link {
@@ -577,6 +742,10 @@ a {
 
   .pfade {
     height: 15vh;
+  }
+
+  .h2fade {
+    height: 10vh;
   }
 
   .h1hello {
@@ -605,6 +774,7 @@ a {
   .h2clients {
     padding-left: 0px;
     font-size: 7vw;
+    line-height: 10vh;
     text-align: center;
   }
 
@@ -658,9 +828,54 @@ a {
     width: 10vw;
   }
 
-  .h3clientlistitems {
+  .h3clientli {
     font-size: 6vw;
-    line-height: 10vh;
+    line-height: 6vh;
+  }
+
+  .h3clientli2 {
+    font-size: 5.6vw;
+    line-height: 5.5vh;
+  }
+
+  .h3clientli3 {
+    font-size: 5.2vw;
+    line-height: 5vh;
+  }
+
+  .h3clientli4 {
+    font-size: 4.8vw;
+    line-height: 4.5vh;
+  }
+
+  .h3clientli5 {
+    font-size: 4.4vw;
+    line-height: 4vh;
+  }
+
+  .h3clientli6 {
+    font-size: 4.4vw;
+    line-height: 3vh;
+  }
+
+  .clientlistitemfadeanimation2 {
+    height: 5.5vh;
+  }
+
+  .clientlistitemfadeanimation3 {
+    height: 5vh;
+  }
+
+  .clientlistitemfadeanimation4 {
+    height: 4.5vh;
+  }
+
+  .clientlistitemfadeanimation5 {
+    height: 4vh;
+  }
+
+  .clientlistitemfadeanimation6 {
+    height: 3vh;
   }
 }
 

@@ -474,7 +474,7 @@ a {
 
 .h3clientli2 {
   font-family: Trirong, sans-serif;
-  color: #0d0718;
+  color: rgba(13, 7, 24, 0.95);
   font-size: 3vw;
   line-height: 5.5vh;
   font-weight: 400;
@@ -483,7 +483,7 @@ a {
 
 .h3clientli3 {
   font-family: Trirong, sans-serif;
-  color: #0d0718;
+  color: rgba(13, 7, 24, 0.9);
   font-size: 2.5vw;
   line-height: 5vh;
   font-weight: 400;
@@ -492,7 +492,7 @@ a {
 
 .h3clientli4 {
   font-family: Trirong, sans-serif;
-  color: #0d0718;
+  color: rgba(13, 7, 24, 0.8);
   font-size: 2vw;
   line-height: 4.5vh;
   font-weight: 400;
@@ -501,7 +501,7 @@ a {
 
 .h3clientli5 {
   font-family: Trirong, sans-serif;
-  color: #0d0718;
+  color: rgba(13, 7, 24, 0.7);
   font-size: 1.5vw;
   line-height: 4vh;
   font-weight: 400;
@@ -510,7 +510,7 @@ a {
 
 .h3clientli6 {
   font-family: Trirong, sans-serif;
-  color: #0d0718;
+  color: rgba(13, 7, 24, 0.6);
   font-size: 1vw;
   line-height: 3vh;
   font-weight: 400;

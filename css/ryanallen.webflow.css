@@ -597,6 +597,11 @@ a {
   background-color: transparent;
 }
 
+.h2fadeclients {
+  width: 100vw;
+  height: 15vh;
+}
+
 @media screen and (max-width: 991px) {
   .rcavhs1 {
     -ms-grid-rows: 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 2fr;
@@ -745,7 +750,7 @@ a {
   }
 
   .h2fade {
-    height: 10vh;
+    height: 15vh;
   }
 
   .h1hello {
@@ -876,6 +881,10 @@ a {
 
   .clientlistitemfadeanimation6 {
     height: 3vh;
+  }
+
+  .h2fadeclients {
+    height: 10vh;
   }
 }
 

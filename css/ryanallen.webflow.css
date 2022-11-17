@@ -145,7 +145,7 @@ a {
   font-family: Trirong, sans-serif;
   color: #ddd;
   font-size: 3vw;
-  line-height: 10vh;
+  line-height: 50px;
   font-weight: 400;
   text-align: center;
 }
@@ -767,7 +767,7 @@ a {
   .h2imryan {
     padding-left: 0px;
     font-size: 14vw;
-    line-height: 10vh;
+    line-height: 50px;
     text-align: center;
   }
 
@@ -779,7 +779,7 @@ a {
   .h2clients {
     padding-left: 0px;
     font-size: 7vw;
-    line-height: 10vh;
+    line-height: 50px;
     text-align: center;
   }
 
@@ -787,7 +787,7 @@ a {
     height: 10vh;
     padding-left: 0px;
     background-color: rgba(162, 57, 54, 0.7);
-    line-height: 10vh;
+    line-height: 50px;
     text-align: center;
   }
 
@@ -795,7 +795,7 @@ a {
     height: 10vh;
     padding-left: 0px;
     background-color: #a23936;
-    line-height: 10vh;
+    line-height: 50px;
     text-align: center;
   }
 
@@ -805,7 +805,7 @@ a {
 
   .awardsheading {
     font-size: 32px;
-    line-height: 10vh;
+    line-height: 50px;
   }
 
   .button {

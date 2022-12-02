@@ -4,7 +4,6 @@ let parts = [];
 
 let images = [
   "images/bg1.jpg",
-  "images/bg2.jpg"
 ];
 let current = 0;
 let playing = false;

@@ -1,168 +1,147 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
-
-html,
-body {
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  font-family: "Space Mono", sans-serif;
-  background-color: rgb(16, 3, 24);
-}
-
 *{
-  box-sizing: border-box;
-  outline: none;
-  -webkit-tab-highlight-color: transparent;
-  cursor: none;
-  user-select: none;
-  -webkit-user-drag: none;
+    box-sizing: border-box;
+}
+html{
+    flex-direction: column;
+    font-family: "Space Mono", sans-serif; 
+    background-color: rgb(252, 248, 254); 
+    margin: 0 auto;
+    display: flex;
+    
+}
+body{
+    flex-direction: column;
+    height: 300vh;
+    margin: 0 auto;
+    display: flex;
+}
+#one{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    align-items: center;
+    background-color: rgb(179, 186, 186);
 }
 
-#main {
-  display: flex;
+#two{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    align-items: center;
+    background-color: rgb(118, 113, 90v);
 }
+
+#three{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    align-items: center;
+    background-color: rgb(218, 181, 117);
+}
+
+    
+h1{
+    margin: 0 auto;
+    display: flex;
+    font-family: "Abril Fatface", sans-serif;
+    font-weight: normal;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    text-shadow: 0px 2px rgba(31, 24, 33, 0.953);
+}
+h2{
+    margin: 0 auto;
+    margin-top: 5vh;
+    display: flex;
+    font-family: "Abril Fatface", sans-serif;
+    font-weight: normal;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    text-shadow: 0px 2px rgba(31, 24, 33, 0.953);
+}
+.content{
+    margin: 0 auto;
+    width: 90%;
+    color: #FFF;
+    left: 0;
+    right: 0;
+    margin-bottom: 5vh;
+    text-shadow: 0px 2px rgba(31, 24, 33, 0.953);
+      }
+  
+  .content p{
+    background-color: rgba(13, 2, 22, 0.411);
+    padding-top: 16px;
+    padding-bottom: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 12px;
+    padding: 40px;
+  }
+  
+  
+  .content a {
+        color: rgba(0, 255, 217, 0.78);
+
+  }
+  
+  .content a:hover {
+        color: rgb(185, 249, 249);
+  }
 
   @media (orientation: landscape) {
     h1 {
-      font-size: 10vw;
+        font-size: 10vw;
+    }
+    h2 {
+        font-size: 6vw;
     }
     body {
-      font-size: 2vw;
+        font-size: 2vw;
     }
-  }
-  
-  @media (orientation: portrait) {
+
+    #one{
+    background-image: url("images/img1.jpg");
+    }
+    #two{
+        background-image: url("images/img2.jpg");
+        }
+    #three{
+    background-image: url("images/img3.jpg");
+    }
+}
+    
+    @media (orientation: portrait) {
     h1 {
-      font-size: 8vh;
+        font-size: 8vh;
+    }
+    h2 {
+        font-size: 5vh;
     }
     body{
-      font-size: 2vh;
+        font-size: 2vh;
     }
-  }
-
-h1{
-  font-family: "Abril Fatface", sans-serif;
-  font-weight: normal;
-  position: absolute;
-  top: 10%;
-  transform: translateY(-50%);
-  left: 0;
-  right: 0;
-  margin: auto;
-  z-index: 99;
-  color: rgb(255, 255, 255);
-  text-align: center;
-  pointer-events: none;
-  text-shadow: 0px 2px rgba(31, 24, 33, 0.953);
-}
-
-.content{
-  width: 90%;
-  color: #FFF;
-  position: absolute;
-  bottom: 20px;
-  text-align: center;
-  left: 0;
-  right: 0;
-  margin: auto;
-  z-index: 99;
-  text-shadow: 0px 2px rgba(31, 24, 33, 0.953);
-}
-
-.content p{
-  margin: 0.5em auto;
-  background-color: rgba(13, 2, 22, 0.411);
-  padding-top: 16px;
-  padding-bottom: 24px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-radius: 12px;
-}
-
-
-.content a {
-  color: rgba(0, 255, 217, 0.78);
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-}
-
-.content a:hover {
-  padding-bottom: 1px;
-}
-
-.buttons{
-  position: absolute;
-  right: 25px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 99;
-}
-
-.buttons button {
-  border: none;
-  background-size: contain;
-  background: url(images/down-arrow.svg) no-repeat;
-  background-position: center;
-  width: 10px;
-  height: 30px;
-  display: block;
-  margin: 20px 0;
-  padding: 0 15px;
-  transition-duration: 0.6s;
-}
-
-.buttons button.next {
-  transform: scaleY(-1);
-}
-
-.buttons button.next:active{
-  transform: scaleY(-1) translateY(8px);
-}
-.buttons button.prev:active{
-  transform: translateY(8px);
-}
-
-#main .part {
-  flex: 1;
-}
-
-#main .part .section {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-#main .part .section img {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  position: absolute;
-  left: var(--x);
-  pointer-events: none;
-}
-
-.cursor{
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  background-color: #fff;
-  position: absolute;
-  z-index: 999;
-  pointer-events: none;
-  mix-blend-mode: difference;
-}
-
-.cursor-f {
-  width: var(--size);
-  height: var(--size);
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-image: url("images/cursor_round.png");
-  background-size: cover;
-  mix-blend-mode: difference;
-  pointer-events: none;
-  opacity: 0.5;
+    #one{
+        background-image: url("images/img1v.jpg");
+        }
+    #two{
+    background-image: url("images/img2v.jpg");
+    }
+    #three{
+        background-image: url("images/img3v.jpg");
+        }
 }

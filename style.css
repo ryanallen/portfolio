@@ -27,6 +27,7 @@ body{
     background-size: cover;
     align-items: center;
     background-color: rgb(179, 186, 186);
+    box-shadow: inset 0 0 20vw rgb(20, 4, 43);
 }
 
 #two{
@@ -39,6 +40,7 @@ body{
     background-size: cover;
     align-items: center;
     background-color: rgb(118, 113, 90v);
+    box-shadow: inset 0 0 20vw rgb(20, 4, 43);
 }
 
 #three{
@@ -51,17 +53,19 @@ body{
     background-size: cover;
     align-items: center;
     background-color: rgb(218, 181, 117);
+    box-shadow: inset 0 0 20vw rgb(20, 4, 43);
 }
 
     
 h1{
     margin: 0 auto;
     display: flex;
+    margin-top: 3vh;
     font-family: "Abril Fatface", sans-serif;
     font-weight: normal;
-    color: rgb(255, 255, 255);
+    color: rgba(13, 2, 22, 0.82);
     text-align: center;
-    text-shadow: 0px 2px rgba(31, 24, 33, 0.953);
+    text-shadow: 0px 1px #fff;
 }
 h2{
     margin: 0 auto;
@@ -79,16 +83,12 @@ h2{
     color: #FFF;
     left: 0;
     right: 0;
-    margin-bottom: 5vh;
-    text-shadow: 0px 2px rgba(31, 24, 33, 0.953);
+    margin-bottom: 7vh;
+    text-shadow: 0px 2px #140f15;
       }
   
   .content p{
-    background-color: rgba(13, 2, 22, 0.411);
-    padding-top: 16px;
-    padding-bottom: 24px;
-    padding-left: 16px;
-    padding-right: 16px;
+    background-color: rgba(13, 2, 22, 0.82);
     border-radius: 12px;
     padding: 40px;
   }
@@ -105,10 +105,10 @@ h2{
 
   @media (orientation: landscape) {
     h1 {
-        font-size: 10vw;
+        font-size: 11vw;
     }
     h2 {
-        font-size: 6vw;
+        font-size: 8vw;
     }
     body {
         font-size: 2vw;
@@ -130,7 +130,7 @@ h2{
         font-size: 8vh;
     }
     h2 {
-        font-size: 5vh;
+        font-size: 7vh;
     }
     body{
         font-size: 2vh;

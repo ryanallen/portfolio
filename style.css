@@ -83,7 +83,6 @@ h2{
     color: #FFF;
     left: 0;
     right: 0;
-    margin-bottom: 7vh;
     text-shadow: 0px 2px #140f15;
       }
   
@@ -104,6 +103,9 @@ h2{
   }
 
   @media (orientation: landscape) {
+    .content{
+        margin-bottom: 6vh;
+    }
     h1 {
         font-size: 11vw;
     }
@@ -126,7 +128,10 @@ h2{
 }
     
     @media (orientation: portrait) {
-    h1 {
+        .content{
+            margin-bottom: 10vh;
+        }    
+        h1 {
         font-size: 8vh;
     }
     h2 {

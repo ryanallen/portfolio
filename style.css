@@ -65,6 +65,7 @@ h1.location {
 .colophon {
     font-weight: 400;
 }
+/* hides the extra e for the spinning e */
 .hidden {
     visibility: hidden;
   }
@@ -76,6 +77,7 @@ h1.location {
 /* *** MOTION *** */
 /* ************** */
 
+/*for the gradient background color transitions */
 #one:has(.designing:hover) {
     background: 
     linear-gradient(#FFF0F0 0%, #FFF9F0 10%, #FCFDF2 20%, #F3FDF2 30%, #F2FDFC 40%,
@@ -86,11 +88,12 @@ h1.location {
     @keyframes a {
         to {background-position:0 -200%}
 }
+/* for spining letter e */
 @keyframes rotate {
     100% {
       transform: rotate(-360deg);
     }
-  }
+}
 #one:has(.building:hover) {
     background-color: #FFF0F0;
 }
@@ -193,7 +196,7 @@ h1.location {
 .spin {
     position: absolute;
     animation: rotate 15s linear infinite;
-    transform-origin: 48% 56%;
+    transform-origin: 52% 57%;
   }
 
 /* ************************* */

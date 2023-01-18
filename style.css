@@ -48,7 +48,7 @@ h1.location {
     text-align: right;
 }
 .arrow {
-    font-family: "Helvetica", sans-serif; 
+    font-family: 'Zapf Dingbats'; 
 }
 .button {
     display: flex;

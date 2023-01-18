@@ -65,6 +65,9 @@ h1.location {
 .colophon {
     font-weight: 400;
 }
+.hidden {
+    visibility: hidden;
+  }
 .name {
     cursor:url("images/cursor_ryan.png"), auto;
 }
@@ -80,10 +83,14 @@ h1.location {
     0 0/1800% 1800%;
     animation: a 18s ease infinite;
 }
-    
     @keyframes a {
         to {background-position:0 -200%}
 }
+@keyframes rotate {
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
 #one:has(.building:hover) {
     background-color: #FFF0F0;
 }
@@ -183,6 +190,11 @@ h1.location {
 .linkedin:hover {
     background-color:#0077b5;
 }
+.spin {
+    position: absolute;
+    animation: rotate 15s linear infinite;
+    transform-origin: 48% 56%;
+  }
 
 /* ************************* */
 /* *** MOBILE OR DESKTOP *** */
@@ -220,6 +232,13 @@ h1.location {
     @media (orientation: portrait) {
         #one, #two, #three, #four {
             padding: 8vw;
+        }
+        #three {
+            background: 
+            linear-gradient(#FFF0F0 0%, #FFF9F0 10%, #FCFDF2 20%, #F3FDF2 30%, #F2FDFC 40%,
+            #F2FCFD 50%, #F1F7FE 60%, #F5F1FE 70%, #FBF0FF 80%, #FFF0FD 90%, #FFF0F0 100%) 
+            0 0/1800% 1800%;
+            animation: a 18s ease infinite;
         } 
         h1 {
             font-size: 7.5vw;

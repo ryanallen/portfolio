@@ -17,21 +17,21 @@ body{
     display: flex;
 }
 
-#one, #two, #three {
+#one, #two, #three, #four {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
     align-items: center;
+    transition: background-color 0.1s ease-in;
 }
 
 #one {
-
     min-height: 70vh;
     align-items: center;
     background-color: #F6F6F6;
-    transition: background-color 0.1s ease-in;
+    cursor:url("images/cursor_ryan.png"), auto;
 }
 
 #three {
@@ -61,92 +61,122 @@ h1.location {
     justify-content: start;
 }
 
-.casestudies, .linkedin {
-    color:#000;
-    background-color:#b12a31;
+.casestudies, .linkedin, .medium, .imrsn {
+    color:#fff;
+    background-color:#000;
+    transition: background-color 0.1s ease-in;
     margin-right: 4vw;
+    padding: 2vw;
 }
+
+.casestudies:hover, .linkedin:hover {
+    background-color:#4D4D4D;
+}
+
+.colophon {
+    font-weight: 400;
+}
+
+/* ANIMATIONS */
 
 
 #one:has(.designing:hover) {
-    background-color: #e6e6e6;
+    background: 
+    linear-gradient(#FFF0F0 0%, #FFF9F0 10%, #FCFDF2 20%, #F3FDF2 30%, #F2FDFC 40%,
+    #F2FCFD 50%, #F1F7FE 60%, #F5F1FE 70%, #FBF0FF 80%, #FFF0FD 90%, #FFF0F0 100%) 
+    0 0/1800% 1800%;
+    animation: a 18s ease infinite;
 }
+    
+    @keyframes a {
+        to {background-position:0 -200%}
+}
+
+
 #one:has(.building:hover) {
-    background-color: #ffd5d5;
+    background-color: #FFF0F0;
 }
 #one:has(.learning:hover) {
-    background-color: #ffe9d5;
+    background-color: #FFF9F0;
 }
 #one:has(.mentoring:hover) {
-    background-color: #fffed5;
+    background-color: #FCFDF2;
 }
 #one:has(.awardwinning:hover) {
-    background-color: #e9ffd5;
+    background-color: #F3FDF2;
 }
 #one:has(.drawing:hover) {
-    background-color: #d5ffd5;
+    background-color: #F2FDFC;
 }
 #one:has(.painting:hover) {
-    background-color: #d5ffea;
+    background-color: #F2FCFD;
 }
 #one:has(.imagining:hover) {
-    background-color: #d5fff8;
+    background-color: #F1F7FE;
 }
 #one:has(.researching:hover) {
-    background-color: #d5f2ff;
+    background-color: #F5F1FE;
 }
 #one:has(.innovating:hover) {
-    background-color: #d5e1ff;
+    background-color: #FBF0FF;
 }
 #one:has(.disrupting:hover) {
-    background-color: #dbd5ff;
+    background-color: #FFF0FD;
 }
 #one:has(.experimenting:hover) {
-    background-color: #e9d5ff;
+    background-color: #FFF0F0;
 }
 #one:has(.leading:hover) {
-    background-color: #fed5ff;
+    background-color: #FFF9F0;
 }
 #one:has(.systematizing:hover) {
     background-color: #ffffff;
 }
 
-.microsoft:hover {
-    color: #7cbb00;
+.microsoft:hover, .lexus:hover, 
+.godaddy:hover, .charterspectrum:hover, 
+.mcgrawhill:hover, .ea:hover, 
+.probeauty:hover, .homesandland:hover, 
+.clickipo:hover, .jeffgordon:hover {
+    color: #000;
 }
-.lexus:hover {
-    color: #b12a31;
+#two:has(.microsoft:hover) {
+    background-color: #EEFFCC;
 }
-.godaddy:hover {
-    color: #1BDBDB;
+#two:has(.lexus:hover) {
+    background-color: #EBEBEA;
 }
-.charterspectrum:hover {
-    color: #003057;
+#two:has(.godaddy:hover) {
+    background-color: #D2F9F9;
 }
-.mcgrawhill:hover {
-    color: #e53037;
+#two:has(.charterspectrum:hover) {
+    background-color: #DBF0FF;
 }
-.ea:hover {
-    color: #f05556;
+#two:has(.ea:hover) {
+    background-color: #F9E7E7;
 }
-.ea:hover {
-    color: #f05556;
+#two:has(.mcgrawhill:hover) {
+    background-color: #FAE5E5;
 }
-.clickipo:hover {
-    color: #8bc53f ;
+#two:has(.probeauty:hover) {
+    background-color: #EBEBEB;
 }
-.probeauty:hover {
-    color: #000 ;
+#two:has(.homesandland:hover) {
+    background-color: #CFEFFC;
 }
-.homesandland:hover {
-    color: #036f9b ;
+#two:has(.clickipo:hover) {
+    background-color: #E0F0CC;
 }
-.jeffgordon:hover {
-    color: #556293 ;
+#two:has(.jeffgordon:hover) {
+    background-color: #E7EAF3;
+}
+#two:has(.casestudies:hover), #two:has(.linkedin:hover) {
+    background-color: #EBEBEB;
 }
 
+
   @media (orientation: landscape) {
-    #one, #two, #three {
+    #one, #two, #three, #four {
         padding: 4vw;
     } 
     h1 {
@@ -166,6 +196,12 @@ h1.location {
         font-size: 4vw;
         padding-bottom: 4vw;
     }
+    .colophon{
+        font-size: 1vw;
+        padding: 2vw 0 4vw 0;
+    }
+
+
 
 }
     

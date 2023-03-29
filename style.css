@@ -185,7 +185,7 @@ h1.location {
     animation: a 18s ease infinite;
 }
 .casestudies:hover, .medium:hover, .imrsn:hover {
-    background-color:#000;
+    background-color:#4D4D4D;
 }
 .colophon:hover {
     color:#000;

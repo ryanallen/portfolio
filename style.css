@@ -6,7 +6,7 @@
 html{
     flex-direction: column;
     font-family: "adelle-sans", sans-serif; 
-    color: #4D4D4D;
+    color: #000;
     background-color: rgb(255, 255, 255); 
     margin: 0 auto;
     display: flex;
@@ -34,7 +34,7 @@ body{
     background-color: #F6F6F6;
 }
 a {
-    color: #4D4D4D;
+    color: #000;
     transition: color 0.1s ease-in;
 }
 h1, h2, h3{
@@ -185,7 +185,7 @@ h1.location {
     animation: a 18s ease infinite;
 }
 .casestudies:hover, .medium:hover, .imrsn:hover {
-    background-color:#4D4D4D;
+    background-color:#000;
 }
 .colophon:hover {
     color:#000;

@@ -172,7 +172,7 @@ h1.location {
 }
 #two:has(.casestudies:hover), #four:has(.medium:hover),
 #four:has(.imrsn:hover), #four:has(.colophon:hover) {
-    background-color: #EBEBEB;
+    background-color: #f4f4f4;
 }
 #two:has(.linkedin:hover) {
     background-color: #D1EFFF;

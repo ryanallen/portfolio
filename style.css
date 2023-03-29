@@ -61,6 +61,7 @@ h1.location {
     transition: background-color 0.1s ease-in;
     margin-right: 4vw;
     text-decoration: none;
+    box-shadow: 10px 10px #dedede;
 }
 .colophon {
     font-weight: 400;
@@ -172,7 +173,7 @@ h1.location {
 }
 #two:has(.casestudies:hover), #four:has(.medium:hover),
 #four:has(.imrsn:hover), #four:has(.colophon:hover) {
-    background-color: #f4f4f4;
+    background-color: #f7f7f7;
 }
 #two:has(.linkedin:hover) {
     background-color: #D1EFFF;
@@ -185,13 +186,18 @@ h1.location {
     animation: a 18s ease infinite;
 }
 .casestudies:hover, .medium:hover, .imrsn:hover {
-    background-color:#4D4D4D;
+    background-color:#e3e3e3;
+    color:#000;
+    transform: translate(10px, 10px);
+    box-shadow: 0 0;
 }
 .colophon:hover {
     color:#000;
 }
 .linkedin:hover {
     background-color:#0077b5;
+    transform: translate(10px, 10px);
+    box-shadow: 0 0;
 }
 .spin {
     position: absolute;

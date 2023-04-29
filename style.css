@@ -137,7 +137,7 @@ h1.location {
 .godaddy:hover, .charterspectrum:hover, 
 .mcgrawhill:hover, .ea:hover, 
 .probeauty:hover, .homesandland:hover, 
-.clickipo:hover, .jeffgordon:hover {
+.transamerica:hover, .jeffgordon:hover {
     color: #000;
 }
 #two:has(.microsoft:hover) {
@@ -164,8 +164,8 @@ h1.location {
 #two:has(.homesandland:hover) {
     background-color: #CFEFFC;
 }
-#two:has(.clickipo:hover) {
-    background-color: #E0F0CC;
+#two:has(.transamerica:hover) {
+    background-color: #bebebe;
 }
 #two:has(.jeffgordon:hover) {
     background-color: #E7EAF3;

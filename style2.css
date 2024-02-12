@@ -1,6 +1,5 @@
-
+@import url("https://use.typekit.net/wnh5tey.css");
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap');
-@import url('href="https://use.typekit.net/wnh5tey.css');
 
 * {
     box-sizing: border-box;
@@ -22,6 +21,7 @@ body, p {
     line-height: 24px;
     text-transform: uppercase;
     padding-bottom: 40px;
+    
 }
 
 #hero {

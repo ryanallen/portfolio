@@ -1,0 +1,73 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap');
+@import url('href="https://use.typekit.net/wnh5tey.css');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+
+}
+
+body, p {
+    margin: 0 auto;
+}
+
+#title {
+    font-family: proxima-nova-condensed, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+    padding-bottom: 40px;
+}
+
+#hero {
+    position:absolute;
+    background-image: url('images/ryanallen-bg.jpg');
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+ }
+
+#hero__content {
+    width: auto;
+    color: #FAFDFE;
+}
+
+
+@media (min-width: 0) {
+    #hero__content {margin: 60px 24px;}
+}
+
+#hero__headline {
+    font-family: adelle-sans, sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 44px;
+    padding-bottom: 10px;
+}
+
+#hero__subheadline {
+    font-family: proxima-nova-condensed, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 40px;
+}
+
+a {
+    color:#050809;
+    background-color:#55D8EA;
+    padding: 14px 28px;
+    border-radius:80px;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+}
+
+a:hover {
+    background-color:#73E4F5;
+}

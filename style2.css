@@ -10,36 +10,43 @@ html {
 }
 
 body, p {
-    margin: 0 auto;
+    margin: 0;
 }
 
 #title {
     font-family: proxima-nova-condensed, sans-serif;
     font-weight: 500;
-    font-style: condensed;
+    font-style: normal;
     font-size: 16px;
     line-height: 24px;
     text-transform: uppercase;
-    padding-bottom: 40px;
     
 }
 
 #hero {
-    position:absolute;
+    display:flex;
     background-image: url('images/ryanallen-bg.jpg');
     background-size: cover;
     background-position: center center;
     width: 100%;
  }
 
+ #skrim {
+    width:100%;
+    background: linear-gradient(to bottom, rgba(1, 8, 12, 1), rgba(1, 8, 12, 0));
+ }
+
 #hero__content {
-    width: auto;
+    display: flex;
+    flex-direction: column;
     color: #FAFDFE;
 }
 
-
-@media (min-width: 0) {
-    #hero__content {margin: 60px 24px;}
+#hero__headline-section {
+    display:flex;
+    align-self: flex-start;
+    flex-direction: column;
+    max-width: 500px;
 }
 
 #hero__headline {
@@ -47,7 +54,6 @@ body, p {
     font-weight: 700;
     font-size: 32px;
     line-height: 44px;
-    padding-bottom: 10px;
 }
 
 #hero__subheadline {
@@ -56,10 +62,10 @@ body, p {
     font-style: normal;
     font-size: 16px;
     line-height: 24px;
-    padding-bottom: 40px;
 }
 
-a {
+#hero__button {
+    align-self: flex-start;
     color:#050809;
     background-color:#55D8EA;
     padding: 14px 28px;
@@ -70,4 +76,60 @@ a {
 
 a:hover {
     background-color:#73E4F5;
+}
+
+@media (min-width: 0px) {
+    #hero__content {
+        margin: 60px 24px;
+        gap: 40px;
+    }
+    #hero__headline-section {
+        gap: 10px;
+    }
+}
+
+@media (min-width: 360px) {
+    #hero__content {
+        margin: 60px 40px;
+    }
+}
+
+@media (min-width: 480px) {
+    #hero__content {
+        margin: 60px 60px;
+    }
+}
+
+@media (min-width: 640px) {
+    #hero__content {
+        margin: 60px 80px;
+    }
+}
+
+@media (min-width: 1024px) {
+    #hero__content {
+        margin: 100px 100px;
+        gap: 60px;
+    }
+    #hero__headline-section {
+        gap: 20px;
+    }
+}
+
+@media (min-width: 1280px) {
+    #hero__content {
+        margin: 100px 120px;
+    }
+}
+
+@media (min-width: 1440px) {
+    #hero__content {
+        margin: 120px 160px;
+    }
+}
+
+@media (min-width: 1920px) {
+    #hero__content {
+        margin: 140px 320px;
+    }
 }

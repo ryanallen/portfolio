@@ -6,7 +6,7 @@
 /*BLOCKS*/
 
 * {
-    box-sizing: border-box;
+    box-sizing:border-box;
 }
 
 html {
@@ -18,96 +18,147 @@ body, p {
 }
 
 #title {
-    font-family: proxima-nova-condensed, sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    text-transform: uppercase;
+    font-family:proxima-nova-condensed, sans-serif;
+    font-weight:500;
+    font-style:normal;
+    text-transform:uppercase;
     
 }
 
 #hero {
     display:flex;
-    background-image: url('images/ryanallen-bg.jpg');
-    background-size: cover;
-    background-position: center center;
-    width: 100%;
+    background-image:url('images/ryanallen-bg.jpg');
+    background-size:cover;
+    background-position:center center;
+    width:100%;
  }
 
  #skrim {
     width:100%;
  }
 
+ #brands {
+    background-color:#ECF2F3;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+    color:#050809;
+    display:flex;
+    flex-direction:column;
+ }
+
 /*ELEMENTS*/
 
 #hero__content {
-    display: flex;
-    flex-direction: column;
-    color: #FAFDFE;
+    display:flex;
+    flex-direction:column;
+    color:#FAFDFE;
 }
 
 #hero__headline-section {
     display:flex;
-    align-self: flex-start;
-    flex-direction: column;
+    align-self:flex-start;
+    flex-direction:column;
 }
 
 #hero__headline {
-    font-family: adelle-sans, sans-serif;
-    font-weight: 700;
+    font-family:adelle-sans, sans-serif;
+    font-weight:700;
 }
 
 #hero__subheadline {
-    font-family: proxima-nova-condensed, sans-serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family:proxima-nova-condensed, sans-serif;
+    font-weight:500;
+    font-style:normal;
 }
 
 #hero__button {
-    align-self: flex-start;
+    align-self:flex-start;
     color:#050809;
     background-color:#55D8EA;
-    padding: 14px 28px;
+    padding:14px 28px;
     border-radius:80px;
-    text-decoration: none;
-    font-family: 'Outfit', sans-serif;
+    text-decoration:none;
+    font-family:'Outfit', sans-serif;
 }
 
-a:hover {
+#hero__button:hover {
     background-color:#73E4F5;
+}
+
+#brands__headline {
+    font-family:adelle-sans, sans-serif;
+    font-weight:700;
+}
+
+#brands__link-microsoft,
+#brands__link-ea,
+#brands__link-lexus,
+#brands__link-transamerica,
+#brands__link-mcgraw-hill,
+#brands__link-godaddy,
+#brands__link-charter-spectrum,
+#brands__link-jeff-gordon-childrens-foundation {
+    color:#050809;   
+}
+
+#brands__link-microsoft:hover, 
+#brands__link-ea:hover,
+#brands__link-lexus:hover,
+#brands__link-transamerica:hover,
+#brands__link-mcgraw-hill:hover,
+#brands__link-godaddy:hover,
+#brands__link-charter-spectrum:hover,
+#brands__link-jeff-gordon-childrens-foundation:hover {
+    color:#000;
+}
+
+#brands:has(#brands__link-microsoft:hover) {
+    background-color: #84e567;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+}
+#brands:has(#brands__link-ea:hover) {
+    background-color: #FE6C71   ;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
 }
 
 /*MEDIA QUERIES*/
 
-@media (min-width: 0px) {
+@media (min-width:0px) {
     #title {
-        font-size: 20px;
-        line-height: 28px;
+        font-size:20px;
+        line-height:28px;
     }
 
     #skrim {
-        background: linear-gradient(to bottom, rgba(1, 8, 12, 1), rgba(1, 8, 12, 0));
+        background:linear-gradient(to bottom, rgba(1, 8, 12, 1), rgba(1, 8, 12, 0));
     }
 
     #hero__content {
-        margin: 60px 24px;
-        gap: 40px;
+        margin:60px 24px;
+        gap:40px;
     }
 
     #hero__headline-section {
-        gap: 10px;
-        max-width: 400px;
+        gap:10px;
+        max-width:400px;
     }
 
     #hero__headline {
-        font-size: 32px;
-        line-height: 44px;
+        font-size:32px;
+        line-height:44px;
     }
 
     #hero__subheadline {
-        font-size: 16px;
-        line-height: 24px;
+        font-size:16px;
+        line-height:24px;
     }
 
+    #brands__headline {
+        font-size:24px;
+        line-height:32px;
+    }
 }
 
 @media (min-width: 360px) {

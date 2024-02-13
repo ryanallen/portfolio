@@ -17,8 +17,6 @@ body, p {
     font-family: proxima-nova-condensed, sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 16px;
-    line-height: 24px;
     text-transform: uppercase;
     
 }
@@ -79,6 +77,10 @@ a:hover {
 }
 
 @media (min-width: 0px) {
+    #title {
+        font-size: 16px;
+        line-height: 24px;
+    }
     #hero__content {
         margin: 60px 24px;
         gap: 40px;

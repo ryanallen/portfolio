@@ -44,22 +44,17 @@ body, p {
     display:flex;
     align-self: flex-start;
     flex-direction: column;
-    max-width: 500px;
 }
 
 #hero__headline {
     font-family: adelle-sans, sans-serif;
     font-weight: 700;
-    font-size: 32px;
-    line-height: 44px;
 }
 
 #hero__subheadline {
     font-family: proxima-nova-condensed, sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 16px;
-    line-height: 24px;
 }
 
 #hero__button {
@@ -76,6 +71,8 @@ a:hover {
     background-color:#73E4F5;
 }
 
+/* MEDIA QUERIES */
+
 @media (min-width: 0px) {
     #title {
         font-size: 20px;
@@ -89,7 +86,19 @@ a:hover {
 
     #hero__headline-section {
         gap: 10px;
+        max-width: 400px;
     }
+
+    #hero__headline {
+        font-size: 32px;
+        line-height: 44px;
+    }
+
+    #hero__subheadline {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
 }
 
 @media (min-width: 360px) {
@@ -123,6 +132,17 @@ a:hover {
 
     #hero__headline-section {
         gap: 20px;
+        max-width: 500px;
+    }
+
+    #hero__headline {
+        font-size: 52px;
+        line-height: 68px;
+    }
+
+    #hero__subheadline {
+        font-size: 20px;
+        line-height: 28px;
     }
 }
 

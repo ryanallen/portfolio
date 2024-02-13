@@ -133,3 +133,9 @@ a:hover {
         margin: 140px 320px;
     }
 }
+
+@media (min-width: 2560px) {
+    #hero__content {
+        margin: 140px 640px;
+    }
+}

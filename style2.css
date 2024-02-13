@@ -1,5 +1,9 @@
+/*FONTS*/
+
 @import url("https://use.typekit.net/wnh5tey.css");
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap');
+
+/*BLOCKS*/
 
 * {
     box-sizing: border-box;
@@ -32,6 +36,8 @@ body, p {
  #skrim {
     width:100%;
  }
+
+/*ELEMENTS*/
 
 #hero__content {
     display: flex;
@@ -70,7 +76,7 @@ a:hover {
     background-color:#73E4F5;
 }
 
-/* MEDIA QUERIES */
+/*MEDIA QUERIES*/
 
 @media (min-width: 0px) {
     #title {

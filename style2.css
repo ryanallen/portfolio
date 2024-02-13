@@ -31,7 +31,6 @@ body, p {
 
  #skrim {
     width:100%;
-    background: linear-gradient(to bottom, rgba(1, 8, 12, 1), rgba(1, 8, 12, 0));
  }
 
 #hero__content {
@@ -77,6 +76,10 @@ a:hover {
     #title {
         font-size: 20px;
         line-height: 28px;
+    }
+
+    #skrim {
+        background: linear-gradient(to bottom, rgba(1, 8, 12, 1), rgba(1, 8, 12, 0));
     }
 
     #hero__content {
@@ -147,6 +150,10 @@ a:hover {
 }
 
 @media (min-width: 1280px) {
+    #skrim {
+        background: none;
+    }
+
     #hero__content {
         margin: 100px 120px;
     }

@@ -172,6 +172,7 @@ body, p {
 
 .work__case-studies {
     display: grid;
+    gap:20px;
 }
 
 .work__case-study-img {

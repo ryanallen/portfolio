@@ -318,6 +318,10 @@ body, p {
     .work__content {
         margin:60px 80px;
     }
+
+    .work__case-studies {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /*M1024*/
@@ -354,6 +358,16 @@ body, p {
         font-size:32px;
         line-height:44px;
     }
+
+    .card__headline {
+        font-size:22px;
+        line-height:30px;
+    }
+
+    .card__subheadline {
+        font-size:20px;
+        line-height:28px;
+    }
 }
 
 /*M1280*/
@@ -367,6 +381,10 @@ body, p {
     .brands__content,
     .work__content {
         margin:100px 120px;
+    }
+
+    .work__case-studies {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 

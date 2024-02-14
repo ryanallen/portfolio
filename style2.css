@@ -187,7 +187,6 @@ body, p {
     justify-content: center;
     object-fit: cover;
     width:100%;
-    height:250px;
     border-radius: 24px 24px 0 0;
     border-bottom: 4px solid #253034;
 }
@@ -248,7 +247,8 @@ body, p {
     }
 
     .hero__content,
-    .brands__content {
+    .brands__content,
+    .work__content {
         margin:60px 24px;
         gap:40px;
     }
@@ -293,7 +293,8 @@ body, p {
 
 @media (min-width:360px) {
     .hero__content,
-    .brands__content {
+    .brands__content,
+    .work__content {
         margin:60px 40px;
     }
 }
@@ -302,7 +303,8 @@ body, p {
 
 @media (min-width:480px) {
     .hero__content,
-    .brands__content {
+    .brands__content,
+    .work__content {
         margin:60px 60px;
     }
 }
@@ -311,7 +313,8 @@ body, p {
 
 @media (min-width:640px) {
     .hero__content,
-    .brands__content {
+    .brands__content,
+    .work__content {
         margin:60px 80px;
     }
 }
@@ -325,7 +328,8 @@ body, p {
     }
 
     .hero__content,
-    .brands__content {
+    .brands__content,
+    .work__content {
         margin:100px 100px;
         gap:60px;
     }
@@ -359,7 +363,8 @@ body, p {
     }
 
     .hero__content,
-    .brands__content {
+    .brands__content,
+    .work__content {
         margin:100px 120px;
     }
 }
@@ -368,7 +373,8 @@ body, p {
 
 @media (min-width:1440px) {
     .hero__content,
-    .brands__content {
+    .brands__content,
+    .work__content {
         margin:120px 160px;
     }
 }
@@ -377,7 +383,8 @@ body, p {
 
 @media (min-width:1920px) {
     .hero__content,
-    .brands__content {
+    .brands__content,
+    .work__content {
         margin:140px 320px;
     }
 }
@@ -386,7 +393,8 @@ body, p {
 
 @media (min-width:2560px) {
     .hero__content,
-    .brands__content {
+    .brands__content,
+    .work__content {
         margin:140px 640px;
     }
 }

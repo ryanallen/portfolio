@@ -91,7 +91,7 @@ body, p {
 }
 
 .brands__link-microsoft,
-.brands__link-ea,
+.brands__link-electronic-arts,
 .brands__link-lexus,
 .brands__link-transamerica,
 .brands__link-mcgraw-hill,
@@ -102,7 +102,7 @@ body, p {
 }
 
 .brands__link-microsoft:hover, 
-.brands__link-ea:hover,
+.brands__link-electronic-arts:hover,
 .brands__link-lexus:hover,
 .brands__link-transamerica:hover,
 .brands__link-mcgraw-hill:hover,
@@ -117,11 +117,30 @@ body, p {
     transition-duration: .2s;
     transition-timing-function: ease-out;
 }
-.brands:has(.brands__link-ea:hover) {
-    background-color: #FE6C71   ;
+.brands:has(.brands__link-electronic-arts:hover),
+.brands:has(.brands__link-transamerica:hover),
+.brands:has(.brands__link-mcgraw-hill:hover) {
+    background-color: #FE676C;
     transition-duration: .2s;
     transition-timing-function: ease-out;
 }
+.brands:has(.brands__link-lexus:hover) {
+    background-color: #999999;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+}
+.brands:has(.brands__link-godaddy:hover) {
+    background-color:#00FAE5;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+}
+.brands:has(.brands__link-charter-spectrum:hover),
+.brands:has(.brands__link-jeff-gordon-childrens-foundation:hover) {
+    background-color:#749BF1;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+}
+
 
 /*MEDIA QUERIES*/
 

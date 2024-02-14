@@ -47,6 +47,14 @@ body, p {
     width:100%
  }
 
+ .work {
+    display:flex;
+    flex-direction:column;
+    background-color:#0A0F11;
+    color:#FAFDFE;
+    width:100%;
+ }
+
 /*ELEMENTS*/
 
 .hero__content {
@@ -147,6 +155,22 @@ body, p {
     transition-timing-function: ease-out;
 }
 
+.work__content {
+    display:flex;
+    flex-direction:column;
+}
+
+.work__case-studies {
+    display: grid;
+}
+
+.work__case-study-img {
+    display:flex;
+    background-image:url('images/ryanallen-bg.jpg');
+    background-size:cover;
+    background-position:center center;
+}
+
 
 /*MEDIA QUERIES*/
 
@@ -185,6 +209,20 @@ body, p {
         font-size:24px;
         line-height:32px;
         max-width:1040px;
+    }
+
+    .work__case-studies {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .work__godaddy-img {
+        display:flex;
+            background-image:url('images/ryanallen-bg.jpg');
+            background-size:cover;
+            background-position:center center;
+            width:100%;
+            height:250px;
+            border-radius:28px;
     }
 }
 

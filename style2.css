@@ -56,11 +56,19 @@ body, p, h1, h2, h3 {
  }
 
  .card {
-    background-color:#080C0E;
-    border-radius:28px;
-    border: 4px solid #253034;
     display:flex;
     flex-direction:column;
+    border-radius:28px;
+    background-color:#080C0E;
+    border: 4px solid #253034;
+ }
+
+ .card--light-mode {
+    display:flex;
+    flex-direction:column;
+    border-radius:28px;
+    background-color:#F7FAFB;
+    border:4px solid #B9C6C9;
  }
 
  .awards {
@@ -71,6 +79,13 @@ body, p, h1, h2, h3 {
     width:100%;
  }
 
+ .reviews {
+    display:flex;
+    flex-direction:column;
+    background-color:#DAE1E3;
+    background-image:url('images/bg-social-proof.jpg');
+    background-repeat: repeat; 
+ }
 
 /*ELEMENTS*/
 
@@ -175,13 +190,15 @@ body, p, h1, h2, h3 {
 }
 
 .work__content,
-.awards__content {
+.awards__content,
+.reviews__content {
     display:flex;
     flex-direction:column;
 }
 
 .work__cards,
-.awards__cards {
+.awards__cards,
+.reviews__cards {
     display: grid;
     gap:20px;
 }
@@ -256,7 +273,8 @@ body, p, h1, h2, h3 {
     .hero__content,
     .brands__content,
     .work__content,
-    .awards__content {
+    .awards__content,
+    .reviews__content {
         margin:60px 24px;
         gap:40px;
     }
@@ -283,7 +301,8 @@ body, p, h1, h2, h3 {
     }
 
     .work__cards,
-    .awards__cards {
+    .awards__cards,
+    .reviews__cards {
         grid-template-columns: repeat(1, 1fr);
     }
 
@@ -304,7 +323,8 @@ body, p, h1, h2, h3 {
     .hero__content,
     .brands__content,
     .work__content,
-    .awards__content {
+    .awards__content,
+    .reviews__content {
         margin:60px 40px;
     }
 }
@@ -315,7 +335,8 @@ body, p, h1, h2, h3 {
     .hero__content,
     .brands__content,
     .work__content,
-    .awards__content {
+    .awards__content,
+    .reviews__content {
         margin:60px 60px;
     }
 }
@@ -326,12 +347,14 @@ body, p, h1, h2, h3 {
     .hero__content,
     .brands__content,
     .work__content,
-    .awards__content {
+    .awards__content,
+    .reviews__content {
         margin:60px 80px;
     }
 
     .work__cards,
-    .awards__cards {
+    .awards__cards,
+    .reviews__cards {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -347,7 +370,8 @@ body, p, h1, h2, h3 {
     .hero__content,
     .brands__content,
     .work__content,
-    .awards__content {
+    .awards__content,
+    .reviews__content {
         margin:100px 100px;
         gap:60px;
     }
@@ -393,12 +417,14 @@ body, p, h1, h2, h3 {
     .hero__content,
     .brands__content,
     .work__content,
-    .awards__content {
+    .awards__content,
+    .reviews__content {
         margin:100px 120px;
     }
 
     .work__cards,
-    .awards__cards {
+    .awards__cards,
+    .reviews__cards {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -409,7 +435,8 @@ body, p, h1, h2, h3 {
     .hero__content,
     .brands__content,
     .work__content,
-    .awards__content {
+    .awards__content,
+    .reviews__content {
         margin:120px 160px;
     }
 }
@@ -420,7 +447,8 @@ body, p, h1, h2, h3 {
     .hero__content,
     .brands__content,
     .work__content,
-    .awards__content {
+    .awards__content,
+    .reviews__content {
         margin:140px 320px;
     }
 }
@@ -431,7 +459,8 @@ body, p, h1, h2, h3 {
     .hero__content,
     .brands__content,
     .work__content,
-    .awards__content {
+    .awards__content,
+    .reviews__content {
         margin:140px 640px;
     }
 }

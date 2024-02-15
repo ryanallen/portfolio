@@ -63,6 +63,14 @@ body, p, h1, h2, h3 {
     flex-direction:column;
  }
 
+ .awards {
+    display:flex;
+    flex-direction:column;
+    background-color:#171D20;
+    color:#FAFDFE;
+    width:100%;
+ }
+
 
 /*ELEMENTS*/
 
@@ -166,17 +174,19 @@ body, p, h1, h2, h3 {
     transition-timing-function: ease-out;
 }
 
-.work__content {
+.work__content,
+.awards__content {
     display:flex;
     flex-direction:column;
 }
 
-.work__cards {
+.work__cards,
+.awards__cards {
     display: grid;
     gap:20px;
 }
 
-.card__video {
+.card__media {
     display:flex;
     align-items: center;
     justify-content: center;
@@ -231,7 +241,6 @@ body, p, h1, h2, h3 {
     background-color:#021F28;
 }
 
-
 /*MEDIA QUERIES*/
 
 @media (min-width:0px) {
@@ -246,7 +255,8 @@ body, p, h1, h2, h3 {
 
     .hero__content,
     .brands__content,
-    .work__content {
+    .work__content,
+    .awards__content {
         margin:60px 24px;
         gap:40px;
     }
@@ -272,7 +282,8 @@ body, p, h1, h2, h3 {
         max-width:1040px;
     }
 
-    .work__cards {
+    .work__cards,
+    .awards__cards {
         grid-template-columns: repeat(1, 1fr);
     }
 
@@ -292,7 +303,8 @@ body, p, h1, h2, h3 {
 @media (min-width:360px) {
     .hero__content,
     .brands__content,
-    .work__content {
+    .work__content,
+    .awards__content {
         margin:60px 40px;
     }
 }
@@ -302,7 +314,8 @@ body, p, h1, h2, h3 {
 @media (min-width:480px) {
     .hero__content,
     .brands__content,
-    .work__content {
+    .work__content,
+    .awards__content {
         margin:60px 60px;
     }
 }
@@ -312,11 +325,13 @@ body, p, h1, h2, h3 {
 @media (min-width:640px) {
     .hero__content,
     .brands__content,
-    .work__content {
+    .work__content,
+    .awards__content {
         margin:60px 80px;
     }
 
-    .work__cards {
+    .work__cards,
+    .awards__cards {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -331,7 +346,8 @@ body, p, h1, h2, h3 {
 
     .hero__content,
     .brands__content,
-    .work__content {
+    .work__content,
+    .awards__content {
         margin:100px 100px;
         gap:60px;
     }
@@ -376,11 +392,13 @@ body, p, h1, h2, h3 {
 
     .hero__content,
     .brands__content,
-    .work__content {
+    .work__content,
+    .awards__content {
         margin:100px 120px;
     }
 
-    .work__cards {
+    .work__cards,
+    .awards__cards {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -390,7 +408,8 @@ body, p, h1, h2, h3 {
 @media (min-width:1440px) {
     .hero__content,
     .brands__content,
-    .work__content {
+    .work__content,
+    .awards__content {
         margin:120px 160px;
     }
 }
@@ -400,7 +419,8 @@ body, p, h1, h2, h3 {
 @media (min-width:1920px) {
     .hero__content,
     .brands__content,
-    .work__content {
+    .work__content,
+    .awards__content {
         margin:140px 320px;
     }
 }
@@ -410,7 +430,8 @@ body, p, h1, h2, h3 {
 @media (min-width:2560px) {
     .hero__content,
     .brands__content,
-    .work__content {
+    .work__content,
+    .awards__content {
         margin:140px 640px;
     }
 }

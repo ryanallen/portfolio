@@ -171,16 +171,9 @@ body, p, h1, h2, h3 {
     flex-direction:column;
 }
 
-.work__case-studies {
+.work__cards {
     display: grid;
     gap:20px;
-}
-
-.work__case-study-img {
-    display:flex;
-    background-image:url('images/ryanallen-bg.jpg');
-    background-size:cover;
-    background-position:center center;
 }
 
 .card__video {
@@ -279,7 +272,7 @@ body, p, h1, h2, h3 {
         max-width:1040px;
     }
 
-    .work__case-studies {
+    .work__cards {
         grid-template-columns: repeat(1, 1fr);
     }
 
@@ -323,7 +316,7 @@ body, p, h1, h2, h3 {
         margin:60px 80px;
     }
 
-    .work__case-studies {
+    .work__cards {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -387,7 +380,7 @@ body, p, h1, h2, h3 {
         margin:100px 120px;
     }
 
-    .work__case-studies {
+    .work__cards {
         grid-template-columns: repeat(3, 1fr);
     }
 }

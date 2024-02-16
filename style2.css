@@ -198,44 +198,44 @@ body, p, h1, h2, h3 {
 .work__cards,
 .awards__cards,
 .reviews__cards {
-    display: grid;
+    display:grid;
     gap:20px;
 }
 
 .card__media {
     display:flex;
-    align-items: center;
-    justify-content: center;
-    object-fit: cover;
+    align-items:center;
+    justify-content:center;
+    object-fit:cover;
     width:100%;
     height:250px;
-    border-radius: 24px 24px 0 0;
-    border-bottom: 4px solid #253034;
+    border-radius:24px 24px 0 0;
+    border-bottom:4px solid #253034;
 }
 
 .card__headline-section {
     display:flex;
     flex-direction:column;
-    margin: 24px 24px 32px 24px;
+    margin:24px 24px 32px 24px;
     gap:16px;
 }
 
 .card__headline {
-    font-family: adelle-sans, sans-serif;
-    font-weight: 700;
-    font-style: normal;
+    font-family:adelle-sans, sans-serif;
+    font-weight:700;
+    font-style:normal;
 }
 
 .card__subheadline {
-    font-family: proxima-nova-condensed, sans-serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family:proxima-nova-condensed, sans-serif;
+    font-weight:500;
+    font-style:normal;
 }
 
 .card__actions{
     display:flex;
     flex-grow:1;
-    justify-content: flex-end;
+    justify-content:flex-end;
     margin: 0 16px 16px;
 
 }
@@ -257,34 +257,54 @@ body, p, h1, h2, h3 {
     background-color:#021F28;
 }
 
+.card-light__content {
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    margin: 24px 24px 24px 24px;
+ }
+
 .card-light__quote-section {
     display:flex;
-    font-family: proxima-nova-condensed, sans-serif;
-    font-style: normal;
-    
+    font-family:proxima-nova-condensed, sans-serif;
+    font-style:normal;
+    gap: 9px;
 }
 
 .card-light__quote-mark {
-    font-weight: 700;
+    font-weight:700;
 }
 
 .card-light__quote {
-    font-weight: 500;
+    font-weight:500;
 }
 
 .card-light__divider {
-    width: 80px;
-    height: 1px;
-    background-image: linear-gradient(to right, #F7FAFB, #DAE1E3, #F7FAFB);
+    width:80px;
+    height:1px;
+   background-color:#DAE1E3;
+   margin: 12px 0px;
+
 }
 
 .card-light__reviewer {
     display:flex;
-    font-family: proxima-nova-condensed, sans-serif;
-    font-style: normal;
+    height:100%;
+    font-family:proxima-nova-condensed, sans-serif;
+    font-style:normal;
+    align-items:flex-end;
+}
+
+.card-light__reviewer-section {
+    display:flex;
+    gap:24px;
 }
 
 .card-light__reviewer-img {
+    display:flex;
+    align-items:flex-start;
+    background-size:cover;
+    background-position:center center;
     width:100%;
     max-width:40px;
     height:40px;
@@ -303,10 +323,16 @@ body, p, h1, h2, h3 {
 
 /*MODIFIERS*/
 
+.card-light__reviewer-img--brett {
+    background-image:url('images/reviewer-img__brett.jpg');
+}
+
+.card-light__reviewer-img--steven {
+    background-image:url('images/reviewer-img__steven.jpg');
+}
+
 .card-light__reviewer-img--summer {
     background-image:url('images/reviewer-img__summer.jpg');
-    background-size:cover;
-    background-position:center center;
 }
 
 /*MEDIA QUERIES*/

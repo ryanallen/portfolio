@@ -260,14 +260,14 @@ body, p, h1, h2, h3 {
 .card-light__content {
     display:flex;
     flex-direction:column;
+    font-family:proxima-nova-condensed, sans-serif;
+    font-style:normal;
     height:100%;
     margin: 24px 24px 24px 24px;
  }
 
 .card-light__quote-section {
     display:flex;
-    font-family:proxima-nova-condensed, sans-serif;
-    font-style:normal;
     gap: 9px;
 }
 
@@ -290,8 +290,6 @@ body, p, h1, h2, h3 {
 .card-light__reviewer {
     display:flex;
     height:100%;
-    font-family:proxima-nova-condensed, sans-serif;
-    font-style:normal;
     align-items:flex-end;
 }
 
@@ -393,7 +391,7 @@ body, p, h1, h2, h3 {
         line-height:24px;
     }
 
-    .card-light__quote-mark {
+    .card-light__content {
         font-size:14px;
         line-height:18px;
     }
@@ -468,7 +466,9 @@ body, p, h1, h2, h3 {
         line-height:68px;
     }
 
-    .hero__subheadline {
+    .hero__subheadline,
+    .card__subheadline,
+    .card-light__quote-section {
         font-size:20px;
         line-height:28px;
     }
@@ -481,11 +481,6 @@ body, p, h1, h2, h3 {
     .card__headline {
         font-size:22px;
         line-height:30px;
-    }
-
-    .card__subheadline {
-        font-size:20px;
-        line-height:28px;
     }
 }
 

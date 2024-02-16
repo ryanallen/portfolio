@@ -21,8 +21,7 @@ body, p, h1, h2, h3 {
     font-family:proxima-nova-condensed, sans-serif;
     font-weight:500;
     font-style:normal;
-    text-transform:uppercase;
-    
+    text-transform:uppercase;  
 }
 
 .hero {
@@ -63,7 +62,7 @@ body, p, h1, h2, h3 {
     border: 4px solid #253034;
  }
 
- .card--light-mode {
+ .card-light {
     display:flex;
     flex-direction:column;
     border-radius:28px;
@@ -258,6 +257,58 @@ body, p, h1, h2, h3 {
     background-color:#021F28;
 }
 
+.card-light__quote-section {
+    display:flex;
+    font-family: proxima-nova-condensed, sans-serif;
+    font-style: normal;
+    
+}
+
+.card-light__quote-mark {
+    font-weight: 700;
+}
+
+.card-light__quote {
+    font-weight: 500;
+}
+
+.card-light__divider {
+    width: 80px;
+    height: 1px;
+    background-image: linear-gradient(to right, #F7FAFB, #DAE1E3, #F7FAFB);
+}
+
+.card-light__reviewer {
+    display:flex;
+    font-family: proxima-nova-condensed, sans-serif;
+    font-style: normal;
+}
+
+.card-light__reviewer-img {
+    width:100%;
+    max-width:40px;
+    height:40px;
+    border-radius:80px;
+}
+
+.card-light__reviewer-content {}
+
+.card-light__reviewer-name {
+    font-weight: 700;
+}
+
+.card-light__reviewer-info {
+    color:#41484B;
+}
+
+/*MODIFIERS*/
+
+.card-light__reviewer-img--summer {
+    background-image:url('images/reviewer-img__summer.jpg');
+    background-size:cover;
+    background-position:center center;
+}
+
 /*MEDIA QUERIES*/
 
 @media (min-width:0px) {
@@ -314,6 +365,11 @@ body, p, h1, h2, h3 {
     .card__subheadline {
         font-size:16px;
         line-height:24px;
+    }
+
+    .card-light__quote-mark {
+        font-size:14px;
+        line-height:18px;
     }
 }
 

@@ -202,6 +202,22 @@ body, p, h1, h2, h3 {
     gap:20px;
 }
 
+.reviews__button {
+    align-self:flex-start;
+    color:#ECF2F3;
+    background-color:#15667E;
+    padding:14px 28px;
+    border-radius:80px;
+    text-decoration:none;
+    font-family:'Outfit', sans-serif;
+    font-size:16px;
+    line-height:20px;
+}
+
+.reviews__button:hover {
+    background-color:#15738C;
+}
+
 .card__media {
     display:flex;
     align-items:center;
@@ -283,7 +299,8 @@ body, p, h1, h2, h3 {
     width:80px;
     height:1px;
    background-color:#DAE1E3;
-   margin: 12px 0px;
+   margin:12px 0;
+   padding:1px 0;
 
 }
 
@@ -481,6 +498,11 @@ body, p, h1, h2, h3 {
     .card__headline {
         font-size:22px;
         line-height:30px;
+    }
+
+    .card-light__reviewer-content {
+        font-size:18px;
+        line-height:24px;
     }
 }
 

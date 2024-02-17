@@ -93,6 +93,17 @@ body, p, h1, h2, h3 {
     color:#FAFDFE;
  }
 
+ /*ANIMATIONS*/
+
+.hide {
+    transition: all .3s;
+    opacity: 0;
+}
+
+.show {
+    opacity: 1;
+}
+
 /*ELEMENTS*/
 
 .hero__content {

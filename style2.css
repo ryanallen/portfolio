@@ -623,8 +623,3 @@ body, p, h1, h2, h3 {
         margin:140px 640px;
     }
 }
-
-/*ANIMATIONS*/
-.fade {
-    transition: opacity 4s ease; /* Smooth transition when opacity changes */
-}

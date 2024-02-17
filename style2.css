@@ -623,3 +623,10 @@ body, p, h1, h2, h3 {
         margin:140px 640px;
     }
 }
+
+/*ANIMATIONS*/
+.fade-in-section {
+  visibility: hidden;
+  opacity: 0; /* Start with opacity 0 */
+  transition: opacity 1s ease; /* Add a smooth transition */
+}

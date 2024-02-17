@@ -36,7 +36,8 @@ body, p, h1, h2, h3 {
     width:100%;
  }
 
- .brands {
+ .brands,
+ .colophon {
     display:flex;
     flex-direction:column;
     background-color:#ECF2F3;
@@ -86,6 +87,12 @@ body, p, h1, h2, h3 {
     background-repeat: repeat; 
  }
 
+ .links {
+    display:flex;
+    background-color:#171D20;
+    color:#FAFDFE;
+ }
+
 /*ELEMENTS*/
 
 .hero__content {
@@ -121,13 +128,22 @@ body, p, h1, h2, h3 {
     font-family:'Outfit', sans-serif;
     font-size:16px;
     line-height:20px;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
 }
 
 .hero__button:hover {
     background-color:#73E4F5;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
 }
 
-.brands__content {
+.brands__content,
+.work__content,
+.awards__content,
+.reviews__content,
+.links__content,
+.colophon__content {
     display:flex;
     flex-direction:column;
 }
@@ -145,7 +161,8 @@ body, p, h1, h2, h3 {
 .brands__link-godaddy,
 .brands__link-charter-spectrum,
 .brands__link-jeff-gordon-childrens-foundation {
-    color:#050809;   
+    color:#050809;
+    text-decoration:underline 2px #050809; 
 }
 
 .brands__link-microsoft:hover, 
@@ -156,7 +173,7 @@ body, p, h1, h2, h3 {
 .brands__link-godaddy:hover,
 .brands__link-charter-spectrum:hover,
 .brands__link-jeff-gordon-childrens-foundation:hover {
-    color:#000;
+    color:#050809;
 }
 
 .brands:has(.brands__link-microsoft:hover) {
@@ -188,16 +205,10 @@ body, p, h1, h2, h3 {
     transition-timing-function: ease-out;
 }
 
-.work__content,
-.awards__content,
-.reviews__content {
-    display:flex;
-    flex-direction:column;
-}
-
 .work__cards,
 .awards__cards,
-.reviews__cards {
+.reviews__cards,
+.links__cards {
     display:grid;
     gap:20px;
 }
@@ -212,10 +223,14 @@ body, p, h1, h2, h3 {
     font-family:'Outfit', sans-serif;
     font-size:16px;
     line-height:20px;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
 }
 
 .reviews__button:hover {
     background-color:#15738C;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
 }
 
 .card__media {
@@ -266,11 +281,15 @@ body, p, h1, h2, h3 {
     font-family:'Outfit', sans-serif;
     font-size:14px;
     line-height:20px;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
 }
 
 .card__button:hover {
     border: 4px solid #73E4F5;
     background-color:#021F28;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
 }
 
 .card-light__content {
@@ -288,7 +307,7 @@ body, p, h1, h2, h3 {
 }
 
 .card-light__quote-mark {
-    font-weight:700;
+    font-weight:800;
 }
 
 .card-light__quote {
@@ -336,6 +355,24 @@ body, p, h1, h2, h3 {
     color:#41484B;
 }
 
+.colophon__link {
+    font-weight:800;
+    color:#050809;
+    text-decoration:underline 2px #AEEDF7;
+    font-family:proxima-nova-condensed, sans-serif;
+    font-weight:800;
+    font-style:normal;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
+}
+
+.colophon__link:hover {
+    color:#15667E;
+    text-decoration:underline 2px #15667E;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
+}
+
 /*MODIFIERS*/
 
 .card-light__reviewer-img--brett {
@@ -366,7 +403,9 @@ body, p, h1, h2, h3 {
     .brands__content,
     .work__content,
     .awards__content,
-    .reviews__content {
+    .reviews__content,
+    .links__content,
+    .colophon__content {
         margin:60px 24px;
         gap:40px;
     }
@@ -381,7 +420,8 @@ body, p, h1, h2, h3 {
         line-height:44px;
     }
 
-    .hero__subheadline {
+    .hero__subheadline,
+    .colophon__link {
         font-size:16px;
         line-height:24px;
     }
@@ -394,7 +434,8 @@ body, p, h1, h2, h3 {
 
     .work__cards,
     .awards__cards,
-    .reviews__cards {
+    .reviews__cards,
+    .links__cards {
         grid-template-columns: repeat(1, 1fr);
     }
 
@@ -421,7 +462,9 @@ body, p, h1, h2, h3 {
     .brands__content,
     .work__content,
     .awards__content,
-    .reviews__content {
+    .reviews__content,
+    .links__content,
+    .colophon__content {
         margin:60px 40px;
     }
 }
@@ -433,7 +476,9 @@ body, p, h1, h2, h3 {
     .brands__content,
     .work__content,
     .awards__content,
-    .reviews__content {
+    .reviews__content,
+    .links__content,
+    .colophon__content {
         margin:60px 60px;
     }
 }
@@ -445,13 +490,16 @@ body, p, h1, h2, h3 {
     .brands__content,
     .work__content,
     .awards__content,
-    .reviews__content {
+    .reviews__content,
+    .links__content,
+    .colophon__content {
         margin:60px 80px;
     }
 
     .work__cards,
     .awards__cards,
-    .reviews__cards {
+    .reviews__cards,
+    .links__cards {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -468,7 +516,9 @@ body, p, h1, h2, h3 {
     .brands__content,
     .work__content,
     .awards__content,
-    .reviews__content {
+    .reviews__content,
+    .links__content,
+    .colophon__content {
         margin:100px 100px;
         gap:60px;
     }
@@ -485,7 +535,8 @@ body, p, h1, h2, h3 {
 
     .hero__subheadline,
     .card__subheadline,
-    .card-light__quote-section {
+    .card-light__quote-section,
+    .colophon__link {
         font-size:20px;
         line-height:28px;
     }
@@ -517,13 +568,16 @@ body, p, h1, h2, h3 {
     .brands__content,
     .work__content,
     .awards__content,
-    .reviews__content {
+    .reviews__content,
+    .links__content,
+    .colophon__content {
         margin:100px 120px;
     }
 
     .work__cards,
     .awards__cards,
-    .reviews__cards {
+    .reviews__cards,
+    .links__cards {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -535,7 +589,9 @@ body, p, h1, h2, h3 {
     .brands__content,
     .work__content,
     .awards__content,
-    .reviews__content {
+    .reviews__content,
+    .links__content,
+    .colophon__content {
         margin:120px 160px;
     }
 }
@@ -547,7 +603,9 @@ body, p, h1, h2, h3 {
     .brands__content,
     .work__content,
     .awards__content,
-    .reviews__content {
+    .reviews__content,
+    .links__content,
+    .colophon__content {
         margin:140px 320px;
     }
 }
@@ -559,7 +617,9 @@ body, p, h1, h2, h3 {
     .brands__content,
     .work__content,
     .awards__content,
-    .reviews__content {
+    .reviews__content,
+    .links__content,
+    .colophon__content {
         margin:140px 640px;
     }
 }

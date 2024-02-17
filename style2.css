@@ -625,8 +625,6 @@ body, p, h1, h2, h3 {
 }
 
 /*ANIMATIONS*/
-.fade-in-section {
-  visibility: hidden;
-  opacity: 0; /* Start with opacity 0 */
-  transition: opacity 1s ease; /* Add a smooth transition */
+.fade {
+    transition: opacity 4s ease; /* Smooth transition when opacity changes */
 }

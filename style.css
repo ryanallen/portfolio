@@ -1,274 +1,636 @@
-@import url("https://use.typekit.net/lfw8isq.css");
-*{
-    box-sizing: border-box;
+/*FONTS*/
+
+@import url("https://use.typekit.net/wnh5tey.css");
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&display=swap');
+
+/*BLOCKS*/
+
+* {
+    box-sizing:border-box;
 }
-html{
-    flex-direction: column;
-    font-family: "adelle-sans", sans-serif; 
-    color: #000;
-    background-color: rgb(255, 255, 255); 
-    margin: 0 auto;
-    display: flex;
+
+html {
+    background-color:rgba(1, 8, 12, 1);
 }
-body{
-    flex-direction: column;
-    margin: 0 auto;
-    display: flex;
+
+body, p, h1, h2, h3 {
+    margin: 0;
 }
-#one, #two, #three, #four {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    align-items: center;
-    transition: background-color 0.1s ease-in;
+
+.title {
+    font-family:proxima-nova-condensed, sans-serif;
+    font-weight:500;
+    font-style:normal;
+    text-transform:uppercase;  
 }
-#one {
-    min-height: 80vh;
-    align-items: center;
-    background-color: #F6F6F6;
+
+.hero {
+    display:flex;
+    background-image:url('images/ryanallen-bg.jpg');
+    background-size:cover;
+    background-position:center center;
+    width:100%;
+ }
+
+ .skrim {
+    width:100%;
+ }
+
+ .brands,
+ .colophon {
+    display:flex;
+    flex-direction:column;
+    background-color:#ECF2F3;
+    transition-duration:.2s;
+    transition-timing-function: ease-out;
+    color:#050809;
+    width:100%
+ }
+
+ .work {
+    display:flex;
+    flex-direction:column;
+    background-color:#0A0F11;
+    color:#FAFDFE;
+    width:100%;
+ }
+
+ .card {
+    display:flex;
+    flex-direction:column;
+    border-radius:28px;
+    background-color:#080C0E;
+    border: 4px solid #253034;
+ }
+
+ .card-light {
+    display:flex;
+    flex-direction:column;
+    border-radius:28px;
+    background-color:#F7FAFB;
+    border:4px solid #B9C6C9;
+ }
+
+ .awards {
+    display:flex;
+    flex-direction:column;
+    background-color:#171D20;
+    color:#FAFDFE;
+    width:100%;
+ }
+
+ .reviews {
+    display:flex;
+    flex-direction:column;
+    background-color:#DAE1E3;
+    background-image:url('images/bg-social-proof.jpg');
+    background-repeat: repeat; 
+ }
+
+ .links {
+    display:flex;
+    background-color:#171D20;
+    color:#FAFDFE;
+ }
+
+ /*ANIMATIONS*/
+
+.hide {
+    transition: all .3s;
+    opacity: 0;
 }
-#three {
-    background-color: #F6F6F6;
+
+.show {
+    opacity: 1;
 }
-a {
-    color: #000;
-    transition: color 0.1s ease-in;
+
+/*ELEMENTS*/
+
+.hero__content {
+    display:flex;
+    flex-direction:column;
+    color:#FAFDFE;
 }
-h1, h2, h3{
-    margin: 0 auto;
-    width: 100%;
-    font-weight: 600;
-    font-style: normal;
-    text-align: left;
+
+.hero__headline-section {
+    display:flex;
+    align-self:flex-start;
+    flex-direction:column;
 }
-h1.location {
-    text-align: right;
+
+.hero__headline {
+    font-family:adelle-sans, sans-serif;
+    font-weight:700;
 }
-.arrow {
-    font-family: 'Zapf Dingbats'; 
+
+.hero__subheadline {
+    font-family:proxima-nova-condensed, sans-serif;
+    font-weight:500;
+    font-style:normal;
 }
-.button {
-    display: flex;
+
+.hero__button {
+    align-self:flex-start;
+    color:#050809;
+    background-color:#55D8EA;
+    padding:14px 28px;
+    border-radius:80px;
+    text-decoration:none;
+    font-family:'Outfit', sans-serif;
+    font-size:16px;
+    line-height:20px;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
+}
+
+.hero__button:hover {
+    background-color:#73E4F5;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
+}
+
+.brands__content,
+.work__content,
+.awards__content,
+.reviews__content,
+.links__content,
+.colophon__content {
+    display:flex;
+    flex-direction:column;
+}
+
+.brands__headline {
+    font-family:adelle-sans, sans-serif;
+    font-weight:700;
+}
+
+.brands__link-microsoft,
+.brands__link-electronic-arts,
+.brands__link-lexus,
+.brands__link-transamerica,
+.brands__link-mcgraw-hill,
+.brands__link-godaddy,
+.brands__link-charter-spectrum,
+.brands__link-jeff-gordon-childrens-foundation {
+    color:#050809;
+    text-decoration:underline 2px #050809; 
+}
+
+.brands__link-microsoft:hover, 
+.brands__link-electronic-arts:hover,
+.brands__link-lexus:hover,
+.brands__link-transamerica:hover,
+.brands__link-mcgraw-hill:hover,
+.brands__link-godaddy:hover,
+.brands__link-charter-spectrum:hover,
+.brands__link-jeff-gordon-childrens-foundation:hover {
+    color:#050809;
+}
+
+.brands:has(.brands__link-microsoft:hover) {
+    background-color: #84e567;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+}
+.brands:has(.brands__link-electronic-arts:hover),
+.brands:has(.brands__link-transamerica:hover),
+.brands:has(.brands__link-mcgraw-hill:hover) {
+    background-color: #FE676C;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+}
+.brands:has(.brands__link-lexus:hover) {
+    background-color: #999999;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+}
+.brands:has(.brands__link-godaddy:hover) {
+    background-color:#00FAE5;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+}
+.brands:has(.brands__link-charter-spectrum:hover),
+.brands:has(.brands__link-jeff-gordon-childrens-foundation:hover) {
+    background-color:#749BF1;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+}
+
+.work__cards,
+.awards__cards,
+.reviews__cards,
+.links__cards {
+    display:grid;
+    gap:20px;
+}
+
+.reviews__button {
+    align-self:flex-start;
+    color:#ECF2F3;
+    background-color:#15667E;
+    padding:14px 28px;
+    border-radius:80px;
+    text-decoration:none;
+    font-family:'Outfit', sans-serif;
+    font-size:16px;
+    line-height:20px;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
+}
+
+.reviews__button:hover {
+    background-color:#15738C;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
+}
+
+.card__media {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    object-fit:cover;
+    width:100%;
+    height:250px;
+    border-radius:24px 24px 0 0;
+    border-bottom:4px solid #253034;
+}
+
+.card__headline-section {
+    display:flex;
+    flex-direction:column;
+    margin:24px 24px 32px 24px;
+    gap:16px;
+}
+
+.card__headline {
+    font-family:adelle-sans, sans-serif;
+    font-weight:700;
+    font-style:normal;
+}
+
+.card__subheadline {
+    font-family:proxima-nova-condensed, sans-serif;
+    font-weight:500;
+    font-style:normal;
+}
+
+.card__actions{
+    display:flex;
+    flex-grow:1;
+    justify-content:flex-end;
+    margin: 0 16px 16px;
+
+}
+
+.card__button {
+    align-self:flex-end;
+    color:#55D8EA;
+    border: 4px solid #55d8ea;
+    padding:10px 24px;
+    border-radius:80px;
+    text-decoration:none;
+    font-family:'Outfit', sans-serif;
+    font-size:14px;
+    line-height:20px;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
+}
+
+.card__button:hover {
+    border: 4px solid #73E4F5;
+    background-color:#021F28;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
+}
+
+.card-light__content {
+    display:flex;
+    flex-direction:column;
+    font-family:proxima-nova-condensed, sans-serif;
+    font-style:normal;
+    height:100%;
+    margin: 24px 24px 24px 24px;
+ }
+
+.card-light__quote-section {
+    display:flex;
+    gap: 9px;
+}
+
+.card-light__quote-mark {
+    font-weight:800;
+}
+
+.card-light__quote {
+    font-weight:500;
+}
+
+.card-light__divider {
+    width:80px;
+    height:1px;
+   background-color:#DAE1E3;
+   margin:12px 0;
+   padding:1px 0;
+
+}
+
+.card-light__reviewer {
+    display:flex;
+    height:100%;
+    align-items:flex-end;
+}
+
+.card-light__reviewer-section {
+    display:flex;
+    gap:24px;
+}
+
+.card-light__reviewer-img {
+    display:flex;
+    align-items:flex-start;
+    background-size:cover;
+    background-position:center center;
+    width:100%;
+    max-width:40px;
+    height:40px;
+    border-radius:80px;
+}
+
+.card-light__reviewer-content {}
+
+.card-light__reviewer-name {
     font-weight: 700;
-    justify-content: start;
-}
-.casestudies, .linkedin, .medium, .imrsn {
-    color:#fff;
-    background-color:#000;
-    transition: background-color 0.1s ease-in;
-    margin-right: 4vw;
-    text-decoration: none;
-    box-shadow: 10px 10px #dedede;
-}
-.colophon {
-    font-weight: 400;
-}
-/* hides the extra e for the spinning e */
-.hidden {
-    visibility: hidden;
-  }
-.name {
-    cursor:url("images/cursor_ryan.png"), auto;
 }
 
-/* ************** */
-/* *** MOTION *** */
-/* ************** */
+.card-light__reviewer-info {
+    color:#41484B;
+}
 
-/*for the gradient background color transitions */
-#one:has(.designing:hover) {
-    background: 
-    linear-gradient(#FFF0F0 0%, #FFF9F0 10%, #FCFDF2 20%, #F3FDF2 30%, #F2FDFC 40%,
-    #F2FCFD 50%, #F1F7FE 60%, #F5F1FE 70%, #FBF0FF 80%, #FFF0FD 90%, #FFF0F0 100%) 
-    0 0/1800% 1800%;
-    animation: a 18s ease infinite;
+.colophon__link {
+    font-weight:800;
+    color:#050809;
+    text-decoration:underline 2px #AEEDF7;
+    font-family:proxima-nova-condensed, sans-serif;
+    font-weight:800;
+    font-style:normal;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
 }
-    @keyframes a {
-        to {background-position:0 -200%}
-}
-/* for spining letter e */
-@keyframes rotate {
-    100% {
-      transform: rotate(-360deg);
-    }
-}
-#one:has(.building:hover) {
-    background-color: #FFF0F0;
-}
-#one:has(.learning:hover) {
-    background-color: #FFF9F0;
-}
-#one:has(.mentoring:hover) {
-    background-color: #FCFDF2;
-}
-#one:has(.awardwinning:hover) {
-    background-color: #F3FDF2;
-}
-#one:has(.drawing:hover) {
-    background-color: #F2FDFC;
-}
-#one:has(.painting:hover) {
-    background-color: #F2FCFD;
-}
-#one:has(.imagining:hover) {
-    background-color: #F1F7FE;
-}
-#one:has(.researching:hover) {
-    background-color: #F5F1FE;
-}
-#one:has(.innovating:hover) {
-    background-color: #FBF0FF;
-}
-#one:has(.disrupting:hover) {
-    background-color: #FFF0FD;
-}
-#one:has(.experimenting:hover) {
-    background-color: #FFF0F0;
-}
-#one:has(.leading:hover) {
-    background-color: #FFF9F0;
-}
-#one:has(.systematizing:hover) {
-    background-color: #ffffff;
-}
-.microsoft:hover, .lexus:hover, 
-.godaddy:hover, .charterspectrum:hover, 
-.mcgrawhill:hover, .ea:hover, 
-.probeauty:hover, .homesandland:hover, 
-.transamerica:hover, .jeffgordon:hover {
-    color: #000;
-}
-#two:has(.microsoft:hover) {
-    background-color: #EEFFCC;
-}
-#two:has(.lexus:hover) {
-    background-color: #EBEBEA;
-}
-#two:has(.godaddy:hover) {
-    background-color: #D2F9F9;
-}
-#two:has(.charterspectrum:hover) {
-    background-color: #DBF0FF;
-}
-#two:has(.ea:hover) {
-    background-color: #F9E7E7;
-}
-#two:has(.mcgrawhill:hover) {
-    background-color: #FAE5E5;
-}
-#two:has(.probeauty:hover) {
-    background-color: #EBEBEB;
-}
-#two:has(.homesandland:hover) {
-    background-color: #CFEFFC;
-}
-#two:has(.transamerica:hover) {
-    background-color: #bebebe;
-}
-#two:has(.jeffgordon:hover) {
-    background-color: #E7EAF3;
-}
-#two:has(.casestudies:hover), #four:has(.medium:hover),
-#four:has(.imrsn:hover), #four:has(.colophon:hover) {
-    background-color: #f7f7f7;
-}
-#two:has(.linkedin:hover) {
-    background-color: #D1EFFF;
-}
-#three:hover {
-    background: 
-    linear-gradient(#FFF0F0 0%, #FFF9F0 10%, #FCFDF2 20%, #F3FDF2 30%, #F2FDFC 40%,
-    #F2FCFD 50%, #F1F7FE 60%, #F5F1FE 70%, #FBF0FF 80%, #FFF0FD 90%, #FFF0F0 100%) 
-    0 0/1800% 1800%;
-    animation: a 18s ease infinite;
-}
-.casestudies:hover, .medium:hover, .imrsn:hover {
-    background-color:#e3e3e3;
-    color:#000;
-    transform: translate(10px, 10px);
-    box-shadow: 0 0;
-}
-.colophon:hover {
-    color:#000;
-}
-.linkedin:hover {
-    background-color:#0077b5;
-    transform: translate(10px, 10px);
-    box-shadow: 0 0;
-}
-.spin {
-    position: absolute;
-    animation: rotate 15s linear infinite;
-    transform-origin: 52% 57%;
-  }
 
-/* ************************* */
-/* *** MOBILE OR DESKTOP *** */
-/* ************************* */
+.colophon__link:hover {
+    color:#15667E;
+    text-decoration:underline 2px #15667E;
+    transition-duration:.1s;
+    transition-timing-function: ease-out;
+}
 
-  @media (orientation: landscape) {
-    #one, #two, #three, #four {
-        padding: 4vw;
-    } 
-    h1 {
-        font-size: 7vw;
-    }
-    h1.actions, h3 {
-        font-size: 2vw;
-        margin-top: 1.5vw;
-        margin-bottom: 1.5vw;
-    }
-    h2 {
-        font-size: 1.5vw;
-        margin-top: 4vw;
-        margin-bottom: 4vw;
-    }  
-    .casestudies, .linkedin, .medium, .imrsn {
-        padding: 2vw;
-    }
-    .chiev {
-        font-size: 4vw;
-        padding-bottom: 4vw;
-    }
-    .colophon{
-        font-size: 1vw;
+/*MODIFIERS*/
 
+.card-light__reviewer-img--brett {
+    background-image:url('images/reviewer-img__brett.jpg');
+}
+
+.card-light__reviewer-img--steven {
+    background-image:url('images/reviewer-img__steven.jpg');
+}
+
+.card-light__reviewer-img--summer {
+    background-image:url('images/reviewer-img__summer.jpg');
+}
+
+/*MEDIA QUERIES*/
+
+@media (min-width:0px) {
+    .title {
+        font-size:20px;
+        line-height:28px;
+    }
+
+    .skrim {
+        background:linear-gradient(to bottom, rgba(1, 8, 12, 1), rgba(1, 8, 12, 0));
+    }
+
+    .hero__content,
+    .brands__content,
+    .work__content,
+    .awards__content,
+    .reviews__content,
+    .links__content,
+    .colophon__content {
+        margin:60px 24px;
+        gap:40px;
+    }
+
+    .hero__headline-section {
+        gap:10px;
+        max-width:400px;
+    }
+
+    .hero__headline {
+        font-size:32px;
+        line-height:44px;
+    }
+
+    .hero__subheadline,
+    .colophon__link {
+        font-size:16px;
+        line-height:24px;
+    }
+
+    .brands__headline {
+        font-size:24px;
+        line-height:32px;
+        max-width:1040px;
+    }
+
+    .work__cards,
+    .awards__cards,
+    .reviews__cards,
+    .links__cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .card__headline {
+        font-size:18px;
+        line-height:24px;
+    }
+
+    .card__subheadline {
+        font-size:16px;
+        line-height:24px;
+    }
+
+    .card-light__content {
+        font-size:14px;
+        line-height:18px;
     }
 }
-    @media (orientation: portrait) {
-        #one, #two, #three, #four {
-            padding: 8vw;
-        }
-        #three {
-            background: 
-            linear-gradient(#FFF0F0 0%, #FFF9F0 10%, #FCFDF2 20%, #F3FDF2 30%, #F2FDFC 40%,
-            #F2FCFD 50%, #F1F7FE 60%, #F5F1FE 70%, #FBF0FF 80%, #FFF0FD 90%, #FFF0F0 100%) 
-            0 0/1800% 1800%;
-            animation: a 18s ease infinite;
-        } 
-        h1 {
-            font-size: 7.5vw;
-        }
-        h1.actions, h3 {
-            font-size: 4vw;
-            margin-top: 3vw;
-            margin-bottom: 3vw;
-        }
-        h2 {
-            font-size: 3vw;
-            margin-top: 4vw;
-            margin-bottom: 4vw;
-        } 
-        .casestudies, .linkedin, .medium, .imrsn {
-            padding: 4vw;
-        }         
-        .chiev {
-            font-size: 5.5vw;
-            padding-bottom: 4vw;
-        }
-        .colophon{
-            font-size: 2.5vw;
-        }
-} 
+
+/*M360*/
+
+@media (min-width:360px) {
+    .hero__content,
+    .brands__content,
+    .work__content,
+    .awards__content,
+    .reviews__content,
+    .links__content,
+    .colophon__content {
+        margin:60px 40px;
+    }
+}
+
+/*M480*/
+
+@media (min-width:480px) {
+    .hero__content,
+    .brands__content,
+    .work__content,
+    .awards__content,
+    .reviews__content,
+    .links__content,
+    .colophon__content {
+        margin:60px 60px;
+    }
+}
+
+/*M640*/
+
+@media (min-width:640px) {
+    .hero__content,
+    .brands__content,
+    .work__content,
+    .awards__content,
+    .reviews__content,
+    .links__content,
+    .colophon__content {
+        margin:60px 80px;
+    }
+
+    .work__cards,
+    .awards__cards,
+    .reviews__cards,
+    .links__cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/*M1024*/
+
+@media (min-width:1024px) {
+    .title {
+        font-size:24px;
+        line-height:32px;
+    }
+
+    .hero__content,
+    .brands__content,
+    .work__content,
+    .awards__content,
+    .reviews__content,
+    .links__content,
+    .colophon__content {
+        margin:100px 100px;
+        gap:60px;
+    }
+
+    .hero__headline-section {
+        gap:20px;
+        max-width:500px;
+    }
+
+    .hero__headline {
+        font-size:52px;
+        line-height:68px;
+    }
+
+    .hero__subheadline,
+    .card__subheadline,
+    .card-light__quote-section,
+    .colophon__link {
+        font-size:20px;
+        line-height:28px;
+    }
+
+    .brands__headline {
+        font-size:32px;
+        line-height:44px;
+    }
+
+    .card__headline {
+        font-size:22px;
+        line-height:30px;
+    }
+
+    .card-light__reviewer-content {
+        font-size:18px;
+        line-height:24px;
+    }
+}
+
+/*M1280*/
+
+@media (min-width:1280px) {
+    .skrim {
+        background:none;
+    }
+
+    .hero__content,
+    .brands__content,
+    .work__content,
+    .awards__content,
+    .reviews__content,
+    .links__content,
+    .colophon__content {
+        margin:100px 120px;
+    }
+
+    .work__cards,
+    .awards__cards,
+    .reviews__cards,
+    .links__cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/*M1440*/
+
+@media (min-width:1440px) {
+    .hero__content,
+    .brands__content,
+    .work__content,
+    .awards__content,
+    .reviews__content,
+    .links__content,
+    .colophon__content {
+        margin:120px 160px;
+    }
+}
+
+/*M1920*/
+
+@media (min-width:1920px) {
+    .hero__content,
+    .brands__content,
+    .work__content,
+    .awards__content,
+    .reviews__content,
+    .links__content,
+    .colophon__content {
+        margin:140px 320px;
+    }
+}
+
+/*M2560*/
+
+@media (min-width:2560px) {
+    .hero__content,
+    .brands__content,
+    .work__content,
+    .awards__content,
+    .reviews__content,
+    .links__content,
+    .colophon__content {
+        margin:140px 640px;
+    }
+}

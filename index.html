@@ -64,11 +64,13 @@
     transition: transform 900ms var(--ease); transform: perspective(1400px) rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg)); }
   /* Fine lines flowing slowly behind the name, like wind across sand. */
   .nagare { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0; transition: opacity 2400ms ease; }
-  .nagare.on { opacity: 1; animation: map-drift 80s ease-in-out infinite alternate; }
+  .nagare.on { opacity: 1; animation: map-drift 96s ease-in-out infinite; }
   .nagare.off { animation-play-state: paused; }
   @keyframes map-drift {
-    from { transform: translate3d(-1%, 1%, 0) scale(1.04); }
-    to { transform: translate3d(1%, -1%, 0) scale(1.12); }
+    0%, 100% { transform: translate3d(-1%, 1%, 0) scale(1.04); }
+    25% { transform: translate3d(1%, -.7%, 0) scale(1.12); }
+    50% { transform: translate3d(.4%, 1%, 0) scale(1.07); }
+    75% { transform: translate3d(-1%, -.8%, 0) scale(1.10); }
   }
   /* The pointer is a studio key light: the ink is brightest where it points. */
   #logo path[fill="var(--ink)"] { fill: url(#keylight); }

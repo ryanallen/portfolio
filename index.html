@@ -87,6 +87,10 @@
     transition: opacity 900ms ease, letter-spacing 1200ms var(--ease), padding-left 1200ms var(--ease), filter 900ms ease; }
   .on .bar { transform: scaleX(1); opacity: 1; }
   .on .title { opacity: 1; letter-spacing: .55em; padding-left: .55em; filter: blur(0); transition-delay: 250ms; }
+  @media (max-height: 500px) {
+    .hero { padding-top: 72px; padding-bottom: 24px; }
+    #logo { width: min(86vw, 1200px, 135svh); }
+  }
 
   /* A role: the stage, the name, one line, the facts, then its features. */
   .role { padding: clamp(80px, 14vh, 160px) var(--gutter) clamp(40px, 8vh, 90px); }

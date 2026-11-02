@@ -47,6 +47,7 @@
     padding: 22px var(--gutter); font-size: 11px; color: var(--quiet); background: linear-gradient(var(--ground) 65%, transparent);
     opacity: 0; transition: opacity 900ms ease; }
   .nav.on { opacity: 1; }
+  .nav:focus-within { opacity: 1; transition: none; }
   .nav nav { display: flex; gap: clamp(16px, 3vw, 36px); }
   .nav a:hover { color: var(--ink); }
   @media (max-width: 700px) {

@@ -846,19 +846,23 @@ motionToggle.addEventListener('click', () => {
 
 // ---- Frame guard -------------------------------------------------------
 // Two seconds in a row under 55 frames a second steps the page down: first to
-// flat shadows (lite), then to still loops (still). A tab coming back from the
-// background counts one slow second at most, so it never steps down alone.
+// flat shadows (lite), then to still loops (still). Eight smooth seconds
+// restore the shadows. A background tab cannot step down on one slow second.
 {
   const html = document.documentElement, levels = ['lite', 'still'];
-  let level = 0, t0 = 0, frames = 0, bad = 0;
+  let level = 0, t0 = 0, frames = 0, bad = 0, good = 0;
   const step = now => {
     if (!t0) t0 = now;
     frames++;
     if (now - t0 >= 1000) {
-      bad = frames * 1000 / (now - t0) < 55 ? bad + 1 : 0;
+      const slow = frames * 1000 / (now - t0) < 55;
+      bad = slow ? bad + 1 : 0;
+      good = slow ? 0 : good + 1;
       if (bad >= 2) {
-        const next = levels[level++]; html.classList.add(next); bad = 0;
+        const next = levels[level++]; html.classList.add(next); bad = 0; good = 0;
         if (next === 'still') document.dispatchEvent(new Event('portfolio-still'));
+      } else if (level === 1 && good >= 8) {
+        html.classList.remove('lite'); level = 0; good = 0;
       }
       t0 = now; frames = 0;
     }

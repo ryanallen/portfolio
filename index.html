@@ -140,7 +140,7 @@
     transform: var(--from, rotateX(32deg) rotateY(-46deg) rotateZ(6deg) translate3d(0, 60px, -120px));
     transition: transform 1500ms var(--ease), opacity 900ms ease; }
   .in .device { opacity: 1; transform: var(--pose, rotateX(14deg) rotateY(-24deg) rotateZ(3deg)); }
-  .tile:hover .device, .hero-stage:hover .device { transform: var(--lean, rotateX(7deg) rotateY(-12deg) rotateZ(1deg) translateZ(30px)); }
+  .hero-stage:hover .device { transform: var(--lean, rotateX(7deg) rotateY(-12deg) rotateZ(1deg) translateZ(30px)); }
   /* The glass's thickness is a stack of offset edges behind it, lit from the
      top left, so it reads as a solid slab at any angle. */
   .device .glass { position: relative; height: 100%; overflow: hidden; border-radius: var(--r, 14px); background: var(--glass);
@@ -152,6 +152,9 @@
     background-size: 260% 100%; background-position: 140% 0; transition: background-position 2200ms var(--ease) 500ms; }
   .in .device .glass::after { background-position: -60% 0; }
   .device img, .device video { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .theme-cycle { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1b1b1d; }
+  .theme-cycle img { position: absolute; inset: 0; opacity: 0; object-position: 25% center; transition: opacity 850ms ease; }
+  .theme-cycle img.visible { opacity: 1; }
   .device.screen { width: 84%; aspect-ratio: 16 / 10; --r: 12px; }
   .device.wide { width: 90%; aspect-ratio: 3 / 1; --r: 10px; }
   .device.tablet { width: 72%; aspect-ratio: 4 / 3; --r: 22px; }
@@ -185,6 +188,13 @@
   .tile .stage { aspect-ratio: 4 / 3; }
   .tile h3 { position: absolute; left: 22px; right: 22px; top: 20px; margin: 0; z-index: 2;
     font: 300 clamp(15px, 1.35vw, 19px)/1.25 var(--sans); text-transform: uppercase; letter-spacing: .28em; }
+  .tile:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+  .tile-tip { position: absolute; z-index: 4; left: 14px; right: 14px; bottom: 14px; margin: 0; padding: 11px 13px;
+    border: 1px solid #29292b; border-radius: 11px; background: #111113; color: #e5e4df;
+    font: 300 clamp(12px, 1vw, 14px)/1.4 var(--sans); opacity: 0; transform: translateY(8px); pointer-events: none;
+    transition: opacity 240ms ease, transform 320ms var(--ease); }
+  .tile.has-stat .tile-tip { bottom: 42px; }
+  .tile.motion-on .tile-tip, .tile:focus-visible .tile-tip, .tile-link:focus-visible .tile-tip { opacity: 1; transform: none; }
   .tile-logo { position: absolute; top: 20px; right: 22px; z-index: 2; height: 22px; max-width: 92px; object-fit: contain;
     filter: brightness(0) invert(1); opacity: .9; }
   .tile.has-logo h3 { right: 126px; }
@@ -386,9 +396,22 @@
   .hires .device .glass { box-shadow: none; }
   .hires .device { transform: translateY(10px) rotate(3deg); }
   .hires .in .device { transform: rotate(3deg); }
-  .hires .tile:hover .device, .hires .hero-stage:hover .device { transform: rotate(0deg) translateY(-4px); }
+  .hires .hero-stage:hover .device { transform: rotate(0deg) translateY(-4px); }
   .hires :is(.device, .art img, .mark, .backdrop, .number-wrap),
   .hires .device .glass::after { transition-duration: 150ms; transition-delay: 0ms; }
+  /* One work box moves at a time: pointer hover on desktop or the centered box on a phone. */
+  .tile *, .tile *::before, .tile *::after { animation-play-state: paused !important; }
+  html:not(.tab-hidden) .tile.motion-on:not(.off) *,
+  html:not(.tab-hidden) .tile.motion-on:not(.off) *::before,
+  html:not(.tab-hidden) .tile.motion-on:not(.off) *::after { animation-play-state: running !important; }
+  .tile .device .glass > :is(img, video) { transition: transform 650ms var(--ease); }
+  .tile.motion-on .device { transform: var(--lean, rotateX(7deg) rotateY(-12deg) rotateZ(1deg) translateZ(30px)); }
+  .hires .tile.motion-on .device { transform: rotate(0deg) translateY(-4px); }
+  .tile.motion-on .device .glass > :is(img, video) { transform: scale(1.035); }
+  .tile.motion-on .art img { transform: translateY(-7px) scale(1.035) rotate(2deg); }
+  .tile.motion-on .number-wrap { transform: translateY(-5px) scale(1.04); }
+  .tile h3 { transition: transform 450ms var(--ease), color 450ms ease; }
+  .tile.motion-on h3 { transform: translateY(-3px); color: #fff; }
   /* Flat lighting keeps the moving work legible when software rendering is slow. */
   .lite .device .glass { box-shadow: inset 0 0 0 1px rgba(255,255,255,.07), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
   .lite .device.phone .glass { box-shadow: inset 0 0 0 5px #161617, inset 0 0 0 6px rgba(255,255,255,.08), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
@@ -644,6 +667,10 @@ const ANIMS = [
 // A tile shows the real interface where there are screens (img or video),
 // a drawn sketch of the feature where there aren't (ui), or a figure.
 const M = 'media/';
+const LEAFTEXT_COMMIT_COUNT = 2525;
+const LEAFTEXT_THEMES = ['amaranth', 'arabica', 'birch', 'bloodleaf', 'camellia', 'eucalyptus', 'fern',
+  'foxglove', 'ginger', 'github', 'goldenrod', 'halcyon', 'ivy', 'laurel', 'lavender', 'nightshade',
+  'pippin', 'saffron', 'sage', 'sumac', 'woad'];
 const ROLES = [
   { name: 'GoDaddy', logo: ['0 0 24 24', '<path d="M17.8 5.528c-1.662-1.04-3.851-.792-5.8.436-1.95-1.228-4.138-1.475-5.8-.436-2.627 1.641-2.947 5.87-.713 9.444 1.647 2.635 4.221 4.18 6.513 4.15 2.292.03 4.867-1.514 6.513-4.15 2.234-3.574 1.914-7.803-.713-9.444m-11.106 8.69a8.6 8.6 0 0 1-1.03-2.361 6.8 6.8 0 0 1-.224-2.225c.1-1.32.638-2.349 1.514-2.897s2.037-.58 3.267-.09q.277.11.55.253a10 10 0 0 0-1.772 2.129c-1.357 2.172-1.77 4.584-1.297 6.512a9 9 0 0 1-1.008-1.322m11.642-2.361a8.6 8.6 0 0 1-1.03 2.36q-.453.722-1.01 1.323c.424-1.726.137-3.84-.901-5.822a.26.26 0 0 0-.375-.103l-3.235 2.021a.264.264 0 0 0-.084.365l.474.758c.077.124.24.162.364.085l2.097-1.31q.105.301.187.608c.201.767.277 1.515.223 2.225-.1 1.32-.637 2.348-1.513 2.896a2.960 2.960 0 0 1-1.5.434h-.066a2.960 2.960 0 0 1-1.5-.434c-.877-.548-1.414-1.576-1.514-2.897a6.8 6.8 0 0 1 .223-2.224 8.6 8.6 0 0 1 1.031-2.36 8.6 8.6 0 0 1 1.67-1.962c.6-.517 1.24-.913 1.902-1.176 1.23-.49 2.39-.457 3.267.091s1.413 1.577 1.513 2.897a6.7 6.7 0 0 1-.223 2.225"/>'], sub: 'Domain search & AI', line: 'I led design on the domain buy flow, the front door most people walk through to get to GoDaddy, and worked with teams across the site. AI naming started as a hackathon prototype a few volunteer devs and I built.',
     facts: [['Role', 'Lead UX Designer'], ['Areas', 'Search · AI · Buy Flow · Homepage · Navigation & IA · Design System · Research']],
@@ -694,7 +721,7 @@ const ROLES = [
     line: 'I started Leaftext because GitHub cut my README off halfway down. Now it\'s a free desktop app for reading and writing your own files, Office and Google Workspace files included, with your AI agents working inside it and agent harnesses holding them to your checks.',
     facts: [['Role', 'Creator'], ['Areas', 'Reading · Writing · Office & Google Files · Agent Consoles · Agent Harnesses']],
     backdrop: M + 'leaftext/leaf.svg',
-    hero: [{ img: M + 'leaftext/site-mobile-web.webp', d: 'phone single' }],
+    hero: [{ themes: LEAFTEXT_THEMES, d: 'phone single' }],
     tiles: [
       { name: 'Agent Consoles', ui: 'console', d: 'window' },
       { name: 'Agent Harnesses', ui: 'checks', d: 'window' },
@@ -705,7 +732,7 @@ const ROLES = [
       { name: 'Graph', ui: 'graph', d: 'window' },
       { name: 'Relational Tables', ui: 'columns', d: 'window' },
       { name: 'Glossary', ui: 'browser', d: 'window' },
-      { name: '2,500+ Commits', figure: '2,500+', stat: 'Leaftext source' },
+      { name: 'Commits', figure: LEAFTEXT_COMMIT_COUNT.toLocaleString('en-US'), stat: 'Leaftext source' },
     ] },
   { name: 'Transamerica', sub: 'Retirement', line: 'The system financial advisors use to send regulatory mailings. I worked it out with the outside mailing houses, built it on the design system and helped the contractor devs adopt that system.',
     facts: [['Role', 'Lead UX Designer'], ['Areas', 'Mailings · Reports · Design System']],
@@ -765,6 +792,107 @@ const ROLES = [
     ] },
 ];
 
+const TIPS = {
+  GoDaddy: {
+    'AI Domain Search': `I helped turn domain search into a place to explore ideas, not just type a name.`,
+    'GoDaddy in ChatGPT': `I helped shape how GoDaddy works inside ChatGPT.`,
+    'Google UX Initiative': `I worked with Google UX to push the search experience further.`,
+    'Add-to-Cart Confetti': `I made a tiny add-to-cart moment feel like a win.`,
+    'Voice Search': `I worked on another way to search when typing was not enough.`,
+    'Search Results': `I made the results page easier to scan and act on.`,
+    'Company Hackathon': `I built the AI naming prototype with a few volunteer developers.`,
+    Homepage: `I worked on the front door to GoDaddy.`,
+    'Navigation & IA': `I worked across the site to make the paths through it clearer.`,
+    'Search Onboarding': `I made it easier to get started with domain search.`,
+    'Lease to Own': `I shaped another path to a domain someone wanted.`,
+    'Search Pattern Library': `I turned recurring search patterns into shared building blocks.`,
+    'User Research': `I used research to find what was getting in the way of the buy flow.`,
+    'AI Design Tooling': `I built tools to explore and test AI ideas in the product.`,
+    'Shipped to Production': `I shipped GoDaddy work into the live product.`,
+    'Developer Tooling': `I built tools for the developers making the product.`,
+  },
+  Scholar: {
+    'Logo Design': `I designed the mark that carries Scholar.`,
+    Brand: `I built the visual language around the product.`,
+    'Shipped to Production': `I took Scholar from zero to a shipped product.`,
+    Tutoring: `I put help close to the moment a student gets stuck.`,
+    Flashcards: `I turned study material into cards students can work through.`,
+    Quizzes: `I gave students a way to check what they know.`,
+    'Generated Summaries': `I made long course material easier to review.`,
+    'Course Audio': `I gave students another way to take in their course material.`,
+    Planner: `I helped students see the work ahead.`,
+    'Exam Path': `I made the path to an exam easier to follow.`,
+    'Canvas Sidebar': `I brought Scholar into the Canvas workflow.`,
+    'Browser Extension': `I made Scholar available while students browse.`,
+    'School Admin Portal': `I gave schools a place to manage the product.`,
+    'Classmate Sharing': `I made it easier to study with classmates.`,
+    'Focus Sessions': `I made room for uninterrupted study.`,
+    'User Research': `I used what students told us to guide the product.`,
+    'Design System': `I built reusable pieces so Scholar could grow coherently.`,
+    'Product Roadmap': `I helped set the direction for what we built next.`,
+    Hiring: `I helped build the team behind Scholar.`,
+  },
+  Leaftext: {
+    'Agent Consoles': `I put agents beside the document, where the work happens.`,
+    'Agent Harnesses': `I built checks that hold agents to the work they claim to have done.`,
+    Reader: `I built the reader I wanted when GitHub cut my README short.`,
+    'Office Documents': `I brought Office files into the same reading workspace.`,
+    'Google Workspace Files': `I brought Google Workspace files into that workspace too.`,
+    Writing: `I made the file itself the place to write.`,
+    Graph: `I made relationships between files visible.`,
+    'Relational Tables': `I gave structured data a readable view.`,
+    Glossary: `I gave terms a home beside the text.`,
+    Commits: `I keep building Leaftext in public.`,
+  },
+  Transamerica: {
+    'Regulatory Mailings': `I worked out a mailing flow with the outside houses that send the work.`,
+    'Sent History': `I made it easier to see what had already gone out.`,
+    'Data Tables': `I built dense information on the design system.`,
+    'Act on Behalf': `I shaped a way to work for someone else without losing context.`,
+    Reports: `I made reporting easier to find and read.`,
+    'Asset Manager': `I gave teams a clearer place to manage their assets.`,
+  },
+  Charter: {
+    'Caregiver App': `I designed for the people looking after someone else.`,
+    'Heart Rate Alerts': `I made a critical signal easier to notice and act on.`,
+    'Sleep Position': `I made overnight information useful to caregivers.`,
+    'Connected Hardware': `I helped bring the hardware and app into one experience.`,
+    'Older Adult App': `I designed for the person at the center of the care.`,
+    'VPs & Leadership': `I brought the work to the people who could move it forward.`,
+    'Outside Vendors': `I worked across company lines to make the pieces fit.`,
+    'Cross-Team Work': `I connected the teams needed to build the whole experience.`,
+    Discovery: `I got close to the problem before drawing the product.`,
+    'Backend Services': `I worked through the services behind the screen too.`,
+  },
+  Lexus: {
+    'IS iPad App': `I helped turn a secret early look at the IS into an iPad experience.`,
+    'Gold ADDY': `Our studio work earned a Gold ADDY.`,
+    Interior: `I measured, filmed and photographed the car so its details could live in 3D.`,
+  },
+  'Monsters Invade Oz': {
+    'Best in Play': `Our game was named Best in Play at GDC.`,
+    'App Store': `We reached the App Store top ten at launch.`,
+    'Assets Drawn': `I illustrated and animated more than 15,000 assets for the game.`,
+  },
+  'Dapper Gentlemen': {
+    Downloads: `Our own apps reached more than 30 million downloads in 94 countries.`,
+    'The Howard Stern Show': `The work made me a repeat guest on The Howard Stern Show.`,
+    Microsoft: `I worked with Microsoft through the studio I co-founded.`,
+    Disney: `I worked with Disney through the studio I co-founded.`,
+    BMW: `I worked with BMW through the studio I co-founded.`,
+    'Google Ventures': `I worked with Google Ventures through the studio I co-founded.`,
+    'Own Apps': `We made our own apps and put them in millions of hands.`,
+    Sales: `I took client work from the first sales call through launch.`,
+    Hiring: `I helped build the team that made the work.`,
+  },
+  Fun: {
+    'Spacewar Live': `I brought a DOS classic into the browser to play together online.`,
+    'Wallet Wars': `I made a trading game with rent due and a wallet to work with.`,
+    'The Impossible Button': `I made a button that makes bad interaction design the whole joke.`,
+    'System Designer': `I built a tool that grows a design system from one color.`,
+  },
+};
+
 // Drawn interfaces: the shape of a feature, in a few bars and blocks.
 const bars = (n, w = [70, 92, 55, 84, 63]) => Array.from({ length: n }, (_, i) => `<i style="width:${w[i % w.length]}%"></i>`).join('');
 const UI = {
@@ -816,19 +944,23 @@ const UI = {
 
 const work = document.getElementById('work');
 function device(v) {
-  const media = v.img ? `<img src="${v.img}" alt="" loading="lazy" decoding="async">`
+  const media = v.themes ? `<div class="theme-cycle" data-themes="${v.themes.join(',')}"><img class="visible" src="${M}leaftext/themes/${v.themes[0]}.png" alt="" loading="lazy" decoding="async"><img alt="" decoding="async"></div>`
+    : v.img ? `<img src="${v.img}" alt="" loading="lazy" decoding="async">`
     : v.video ? `<video data-src="${v.video}" data-poster="${v.poster || ''}" muted loop playsinline preload="none"></video>`
     : `<div class="ui">${UI[v.ui] || ''}</div>`;
   return `<div class="device ${v.d}"><div class="glass">${media}</div></div>`;
 }
-function tile(t) {
+function tile(t, role) {
   const body = t.art ? t.art + (t.ui || t.img ? device(t) : '')
     : t.mark
     ? `<svg class="mark" viewBox="${t.mark[0]}" fill="currentColor" aria-hidden="true">${t.mark[1]}</svg>`
     : t.figure
     ? `<div class="number-wrap"><div class="number">${t.figure}</div></div>`
     : device(t);
-  return `<article class="tile${t.logo ? ' has-logo' : ''}${t.stat ? ' has-stat' : ''}"><div class="stage">${body}</div><h3>${t.name}</h3>${t.logo ? `<img class="tile-logo" src="media/logos/${t.logo}.svg" alt="${t.logo}" loading="lazy">` : ''}${t.stat ? `<div class="stat caps">${t.stat}</div>` : ''}</article>`;
+  const motion = t.ui || (t.figure ? 'figure' : t.art ? 'art' : t.mark ? 'mark' : t.video ? 'video' : 'image');
+  const tip = TIPS[role]?.[t.name] || `I worked on ${t.name}.`;
+  const tipId = `tip-${role}-${t.name}`.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  return `<article class="tile${t.logo ? ' has-logo' : ''}${t.stat ? ' has-stat' : ''}" data-motion="${motion}" aria-describedby="${tipId}"${role === 'Fun' ? '' : ' tabindex="0"'}><div class="stage">${body}</div><h3>${t.name}</h3>${t.logo ? `<img class="tile-logo" src="media/logos/${t.logo}.svg" alt="${t.logo}" loading="lazy">` : ''}${t.stat ? `<div class="stat caps">${t.stat}</div>` : ''}<p class="tile-tip" id="${tipId}">${tip}</p></article>`;
 }
 const FUN = [
   { name: 'Spacewar Live', href: 'https://spacewarlive.com/', img: 'media/fun/spacewar.webp', d: 'screen', stat: 'A remake of the 1985 DOS Spacewar, online in your browser' },
@@ -836,7 +968,7 @@ const FUN = [
   { name: 'The Impossible Button', href: '/bad-button/', img: 'media/fun/bad-button.webp', d: 'screen', stat: 'How not to design a button. Try to click it' },
   { name: 'System Designer', href: '/system-designer/', img: 'media/fun/system-designer.webp', d: 'screen', stat: 'A whole design system from one color' },
 ];
-document.getElementById('funTiles').innerHTML = FUN.map(f => `<a class="tile-link" href="${f.href}"${f.href.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${tile(f).replace('</h3>', '</h3><span class="go" aria-hidden="true">↗</span>')}</a>`).join('');
+document.getElementById('funTiles').innerHTML = FUN.map(f => `<a class="tile-link" href="${f.href}"${f.href.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${tile(f, 'Fun').replace('</h3>', '</h3><span class="go" aria-hidden="true">↗</span>')}</a>`).join('');
 document.getElementById('work').innerHTML = ROLES.map(r => `
   <section class="role" id="${r.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}" aria-label="${r.name}">
     <div class="role-head">
@@ -851,7 +983,7 @@ document.getElementById('work').innerHTML = ROLES.map(r => `
       <div class="stage hero-stage">${r.backdrop ? `<img class="backdrop" src="${r.backdrop}" alt="" aria-hidden="true">` : ''}${r.heroArt || ''}${r.hero.map(device).join('')}</div>
     </div>
     <p class="highlights-label caps">Big wins</p>
-    <div class="tiles">${r.tiles.map(tile).join('')}</div>
+    <div class="tiles">${r.tiles.map(t => tile(t, r.name)).join('')}</div>
   </section>`).join('');
 
 // ---- Kind words --------------------------------------------------------
@@ -941,6 +1073,10 @@ const loadVideo = v => {
     if (v.dataset.poster && !v.poster) v.poster = v.dataset.poster;
     return;
   }
+  if (v.closest('.tile') && !v.closest('.tile').classList.contains('motion-on')) {
+    if (v.dataset.poster && !v.poster) v.poster = v.dataset.poster;
+    return;
+  }
   if (v.hasAttribute('src')) return;
   v.src = v.dataset.src;
 };
@@ -960,7 +1096,7 @@ const videoOnScreen = new IntersectionObserver(entries => {
     const v = e.target;
     if (document.hidden || !e.isIntersecting || e.intersectionRatio < .5) { v.pause(); continue; }
     loadVideo(v);
-    if (!reducedMotion.matches) v.play().catch(() => {});
+    if (!reducedMotion.matches && (!v.closest('.tile') || v.closest('.tile').classList.contains('motion-on'))) v.play().catch(() => {});
   }
 }, { threshold: .5 });
 document.querySelectorAll('video').forEach(v => { videoNear.observe(v); videoOnScreen.observe(v); });
@@ -980,6 +1116,125 @@ document.addEventListener('visibilitychange', () => {
 const onScreen = new IntersectionObserver(entries => { for (const e of entries) e.target.classList.toggle('off', !e.isIntersecting); },
   { rootMargin: '200px 0px' });
 document.querySelectorAll('.tile, .hero-stage, .lane').forEach(el => onScreen.observe(el));
+
+// Leaftext's phone shows the actual theme gallery with only two decoded frames.
+{
+  const cycle = document.querySelector('.theme-cycle');
+  const themes = cycle.dataset.themes.split(',');
+  const frames = [...cycle.querySelectorAll('img')];
+  let index = 0, shown = 0, timer = 0, visible = false, busy = false;
+  const stop = () => { clearInterval(timer); timer = 0; };
+  const advance = async () => {
+    if (busy || !visible || document.hidden || reducedMotion.matches) return;
+    busy = true;
+    const next = (index + 1) % themes.length, incoming = frames[1 - shown];
+    incoming.src = `${M}leaftext/themes/${themes[next]}.png`;
+    try {
+      await incoming.decode();
+      if (visible && !document.hidden && !reducedMotion.matches) {
+        incoming.classList.add('visible');
+        frames[shown].classList.remove('visible');
+        shown = 1 - shown;
+        index = next;
+      }
+    } catch { /* Keep the last frame if a theme image cannot load. */ }
+    busy = false;
+  };
+  const sync = () => {
+    stop();
+    if (visible && !document.hidden && !reducedMotion.matches) timer = setInterval(advance, 3500);
+  };
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { rootMargin: '100px 0px', threshold: .1 }).observe(cycle);
+  document.addEventListener('visibilitychange', sync);
+  reducedMotion.addEventListener('change', sync);
+}
+
+// Each box runs its own small motion only while it has the pointer or is nearest
+// the center of a touch viewport. At most one box is active across the page.
+{
+  const touch = matchMedia('(max-width: 700px)');
+  const visible = new Set();
+  const presets = {
+    pan: new Set(['image', 'video']),
+    pulse: new Set(['figure', 'meter', 'puck', 'audio', 'brand', 'avatars']),
+    slide: new Set(['gpt', 'gsearch', 'rail', 'sidebar', 'browser', 'chat', 'path', 'steps', 'onboard']),
+    rise: new Set(['cards', 'research', 'notes', 'planner', 'kit', 'table', 'columns', 'hack', 'flashcards', 'quiz', 'release']),
+    trace: new Set(['console', 'devtools', 'doc', 'editor', 'graph', 'checks', 'roadmap']),
+  };
+  const frames = {
+    pan: [{ transform: 'scale(1.015) translateX(-1%)' }, { transform: 'scale(1.055) translateX(1%)' }],
+    pulse: [{ transform: 'scale(1)' }, { transform: 'scale(1.07)' }],
+    slide: [{ transform: 'translateX(-3px)' }, { transform: 'translateX(6px)' }],
+    rise: [{ transform: 'translateY(2px)' }, { transform: 'translateY(-6px)' }],
+    trace: [{ transform: 'translateY(3px)', opacity: .65 }, { transform: 'translateY(-3px)', opacity: 1 }],
+    tilt: [{ transform: 'rotate(-2deg) scale(1)' }, { transform: 'rotate(2deg) scale(1.04)' }],
+  };
+  const selectors = {
+    brand: '.ui > div:first-child > div',
+    graph: '.ui svg',
+    puck: '.ui > div > div',
+    flashcards: '.ui .card',
+    confetti: '.ui .added',
+    appcycle: '.ui .app .card',
+  };
+  let active = null, running = [], queued = false;
+  const setActive = tile => {
+    if (tile === active) return;
+    for (const animation of running) animation.cancel();
+    running = [];
+    if (active) {
+      active.classList.remove('motion-on');
+      active.querySelectorAll('video').forEach(v => v.pause());
+    }
+    active = tile;
+    if (!tile || reducedMotion.matches) return;
+    tile.classList.add('motion-on');
+    const kind = tile.dataset.motion;
+    const preset = Object.keys(presets).find(key => presets[key].has(kind)) || 'tilt';
+    const selector = selectors[kind] || (kind === 'image' || kind === 'video' ? '.glass > img, .glass > video'
+      : kind === 'art' ? '.art img' : kind === 'figure' ? '.number' : kind === 'mark' ? '.mark'
+      : '.ui .card, .ui > i, .ui svg');
+    const targets = [...tile.querySelectorAll(selector)].slice(0, 3);
+    running = targets.map((el, i) => el.animate(frames[preset], {
+      duration: 1700 + i * 180, delay: i * 100, direction: 'alternate', iterations: Infinity, easing: 'ease-in-out',
+    }));
+    tile.querySelectorAll('video').forEach(v => { loadVideo(v); if (v.hasAttribute('src')) v.play().catch(() => {}); });
+  };
+  const chooseTouchTile = () => {
+    queued = false;
+    if (!touch.matches) return;
+    let chosen = null, best = Infinity;
+    for (const tile of visible) {
+      const r = tile.getBoundingClientRect();
+      if (r.bottom <= 0 || r.top >= innerHeight || r.right <= 0 || r.left >= innerWidth) continue;
+      if (Math.min(r.bottom, innerHeight) - Math.max(r.top, 0) < Math.min(r.height, innerHeight) * .5) continue;
+      if (Math.min(r.right, innerWidth) - Math.max(r.left, 0) < r.width * .4) continue;
+      const score = Math.abs((r.top + r.bottom) / 2 - innerHeight / 2) / innerHeight * 2
+        + Math.abs((r.left + r.right) / 2 - innerWidth / 2) / innerWidth;
+      if (score < best) { best = score; chosen = tile; }
+    }
+    setActive(chosen);
+  };
+  const schedule = () => { if (touch.matches && !queued) { queued = true; requestAnimationFrame(chooseTouchTile); } };
+  const tileVisibility = new IntersectionObserver(entries => {
+    for (const e of entries) e.isIntersecting ? visible.add(e.target) : visible.delete(e.target);
+    schedule();
+    if (!touch.matches && active && !visible.has(active)) setActive(null);
+  }, { threshold: 0 });
+  document.querySelectorAll('.tile').forEach(tile => tileVisibility.observe(tile));
+  document.addEventListener('scroll', schedule, { passive: true, capture: true });
+  document.addEventListener('pointerover', e => {
+    if (!touch.matches && e.pointerType !== 'touch') { const tile = e.target.closest('.tile'); if (tile) setActive(tile); }
+  });
+  document.addEventListener('pointerout', e => {
+    if (!touch.matches && active && active.contains(e.target) && (!e.relatedTarget || !active.contains(e.relatedTarget))) setActive(null);
+  });
+  document.addEventListener('focusin', e => { const tile = e.target.closest('.tile') || e.target.closest('.tile-link')?.querySelector('.tile'); if (tile) setActive(tile); });
+  document.addEventListener('focusout', e => { if (active && active.contains(e.target)) setActive(null); });
+  touch.addEventListener('change', () => { setActive(null); schedule(); });
+  reducedMotion.addEventListener('change', () => { setActive(null); schedule(); });
+  schedule();
+}
 
 // ---- Click to advance --------------------------------------------------
 // A click on the opening glides down to the first role.

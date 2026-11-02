@@ -884,7 +884,7 @@ const seen = new IntersectionObserver(entries => {
 }, { threshold: 0.18 });
 document.querySelectorAll('.role, .tile, .contact, .fun').forEach(el => seen.observe(el));
 const loadVideo = v => {
-  if (reducedMotion.matches) {
+  if (reducedMotion.matches || document.documentElement.classList.contains('still')) {
     if (v.dataset.poster && !v.poster) v.poster = v.dataset.poster;
     return;
   }

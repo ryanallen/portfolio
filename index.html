@@ -902,11 +902,11 @@ document.addEventListener('portfolio-still', () => document.querySelectorAll('vi
 const seen = new IntersectionObserver(entries => {
   for (const e of entries) {
     if (!e.isIntersecting) continue;
-    e.target.classList.add('in');
+    (e.target.classList.contains('role-head') ? e.target.closest('.role') : e.target).classList.add('in');
     seen.unobserve(e.target);
   }
 }, { threshold: 0.18 });
-document.querySelectorAll('.role, .tile, .contact, .fun').forEach(el => seen.observe(el));
+document.querySelectorAll('.role-head, .tile, .contact, .fun').forEach(el => seen.observe(el));
 const loadVideo = v => {
   if (document.hidden || reducedMotion.matches || document.documentElement.classList.contains('still')) {
     if (v.dataset.poster && !v.poster) v.poster = v.dataset.poster;

@@ -855,11 +855,18 @@ motionToggle.addEventListener('click', () => {
 // ---- Frame guard -------------------------------------------------------
 // Two seconds in a row under 55 frames a second steps the page down: first to
 // flat shadows (lite), then to still loops (still). Eight smooth seconds
-// restore the shadows. A background tab cannot step down on one slow second.
+// restore the shadows. Hidden time is excluded from the measurement.
 {
   const html = document.documentElement, levels = ['lite', 'still'];
   let level = 0, t0 = 0, frames = 0, bad = 0, good = 0;
+  const reset = () => { t0 = 0; frames = 0; bad = 0; good = 0; };
+  document.addEventListener('visibilitychange', reset);
   const step = now => {
+    if (document.hidden) {
+      reset();
+      if (level < levels.length) requestAnimationFrame(step);
+      return;
+    }
     if (!t0) t0 = now;
     frames++;
     if (now - t0 >= 1000) {
@@ -892,7 +899,7 @@ const seen = new IntersectionObserver(entries => {
 }, { threshold: 0.18 });
 document.querySelectorAll('.role, .tile, .contact, .fun').forEach(el => seen.observe(el));
 const loadVideo = v => {
-  if (reducedMotion.matches || document.documentElement.classList.contains('still')) {
+  if (document.hidden || reducedMotion.matches || document.documentElement.classList.contains('still')) {
     if (v.dataset.poster && !v.poster) v.poster = v.dataset.poster;
     return;
   }
@@ -913,7 +920,7 @@ const videoNear = new IntersectionObserver(entries => {
 const videoOnScreen = new IntersectionObserver(entries => {
   for (const e of entries) {
     const v = e.target;
-    if (!e.isIntersecting || e.intersectionRatio < .5) { v.pause(); continue; }
+    if (document.hidden || !e.isIntersecting || e.intersectionRatio < .5) { v.pause(); continue; }
     loadVideo(v);
     if (!reducedMotion.matches && !document.documentElement.classList.contains('still')) v.play().catch(() => {});
   }
@@ -924,6 +931,12 @@ reducedMotion.addEventListener('change', () => {
     if (reducedMotion.matches) v.pause();
     else if (!v.hasAttribute('src')) videoNear.observe(v);
     videoOnScreen.unobserve(v); videoOnScreen.observe(v);
+  });
+});
+document.addEventListener('visibilitychange', () => {
+  document.querySelectorAll('video').forEach(v => {
+    if (document.hidden) v.pause();
+    else { videoOnScreen.unobserve(v); videoOnScreen.observe(v); }
   });
 });
 const onScreen = new IntersectionObserver(entries => { for (const e of entries) e.target.classList.toggle('off', !e.isIntersecting); },

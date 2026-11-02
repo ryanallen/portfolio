@@ -42,9 +42,17 @@
     .home { margin-top: 22px; }
   }
 </style>
+<noscript><style>
+  #logo, .bar { display: none; }
+  .code, .note, .home { opacity: 1; transform: none; filter: none; transition: none; }
+  .code { letter-spacing: .55em; padding-left: .55em; }
+  .fallback-brand { margin: 0 0 32px; color: var(--quiet); font: 300 11px/1 var(--sans);
+    letter-spacing: .32em; text-transform: uppercase; }
+</style></noscript>
 </head>
 <body>
 <main class="lockup" id="lockup">
+  <noscript><p class="fallback-brand">Ryan Allen</p></noscript>
   <svg id="logo" role="img" aria-label="Ryan"></svg>
   <div class="bar" aria-hidden="true"></div>
   <p class="code">404</p>

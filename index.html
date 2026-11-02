@@ -380,21 +380,24 @@
     .role-head { grid-template-columns: 1fr; }
     .hero-stage { order: -1; }
   }
+  /* Keep entrance motion on large framebuffers while avoiding costly moving filters,
+     shadows and perspective surfaces. Text and the Kind words lane retain their timing. */
+  .hires .art img, .hires .mark { filter: none; }
+  .hires .device .glass { box-shadow: none; }
+  .hires .device { transform: translateY(10px) rotate(3deg); }
+  .hires .in .device { transform: rotate(3deg); }
+  .hires .tile:hover .device, .hires .hero-stage:hover .device { transform: rotate(0deg) translateY(-4px); }
+  .hires :is(.device, .art img, .mark, .backdrop, .number-wrap),
+  .hires .device .glass::after { transition-duration: 150ms; transition-delay: 0ms; }
   /* A browser drawing without the graphics card repaints every blurred shadow and filter near anything
      that moves, every frame. When frames run slow the page swaps them for flat ones (lite), and if they
      still run slow it holds the looping motion still (still). */
-  :is(.lite, .hires) .device .glass { box-shadow: inset 0 0 0 1px rgba(255,255,255,.07), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
-  :is(.lite, .hires) .device.phone .glass { box-shadow: inset 0 0 0 5px #161617, inset 0 0 0 6px rgba(255,255,255,.08), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
-  :is(.lite, .hires) .art img, :is(.lite, .hires) .mark { filter: none; }
-  :is(.lite, .hires) .aip-prompt, :is(.lite, .hires) .aip-card { box-shadow: none; }
-  :is(.lite, .hires) .aip-spark { text-shadow: none; }
+  .lite .device .glass { box-shadow: inset 0 0 0 1px rgba(255,255,255,.07), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
+  .lite .device.phone .glass { box-shadow: inset 0 0 0 5px #161617, inset 0 0 0 6px rgba(255,255,255,.08), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
+  .lite .art img, .lite .mark { filter: none; }
+  .lite .aip-prompt, .lite .aip-card { box-shadow: none; }
+  .lite .aip-spark { text-shadow: none; }
   .lite .aip-cart.first { animation-name: aip-add-flat; }
-  .hires :is(.role, .fun, .honors, .contact) *,
-  .hires :is(.role, .fun, .honors, .contact) *::before,
-  .hires :is(.role, .fun, .honors, .contact) *::after { transition: none !important; animation: none !important; }
-  .hires .aip-type { width: 62%; }
-  .hires .aip-card { opacity: 1; transform: none; }
-  .hires .aip-cart.first { background: #e9e8e2; }
   @keyframes aip-add-flat { 0%, 54% { background: #2a2a2c; } 57%, 88% { background: #e9e8e2; } 100% { background: #2a2a2c; } }
   .still :is(.stage, .tile) :is(*, *::before, *::after) { animation: none !important; }
   .still .aip-type { width: 62%; }

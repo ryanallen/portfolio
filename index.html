@@ -355,6 +355,10 @@
     *, *::before, *::after { transition: none !important; animation: none !important; }
     .device { opacity: 1; transform: var(--pose, rotateX(14deg) rotateY(-24deg) rotateZ(3deg)); }
     .nagare { opacity: 1; }
+    .words .lane { width: min(1100px, 100%); margin-inline: auto; padding: 0 var(--gutter);
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+    .words .quote { width: auto; margin: 0; }
+    .words .quote[aria-hidden="true"] { display: none; }
   }
 </style>
 </head>

@@ -1027,9 +1027,6 @@ function swashLight() {
     cx.setTransform(cv.width / w, 0, 0, cv.height / h, 0, 0); draw(); };
   // Phoenix's contour lines (20 m apart, from elevation tiles: Camelback, Paradise Valley, the Phoenix Mountains, South Mountain).
   let topo = null;
-  // Loaded as a script, not fetched, so it also draws when the page is opened straight from disk.
-  { const sc = document.createElement('script'); sc.src = 'media/phx-topo.js'; sc.async = true;
-    sc.onload = () => { topo = window.PHX_TOPO; draw(); }; document.head.appendChild(sc); }
   function draw() {
     cx.clearRect(0, 0, w, h);
     if (!topo) return;
@@ -1049,8 +1046,18 @@ function swashLight() {
       cx.stroke();
     }
   }
-  new ResizeObserver(size).observe(hero); size();
-  setTimeout(() => cv.classList.add('on'), 600);
+  const watchMap = () => new IntersectionObserver(([e], observer) => {
+    if (!e.isIntersecting) return;
+    observer.disconnect();
+    new ResizeObserver(size).observe(hero);
+    // A script path works for the live site and for a page opened straight from disk.
+    const sc = document.createElement('script'); sc.src = 'media/phx-topo.js'; sc.async = true;
+    sc.onload = () => { topo = window.PHX_TOPO; draw(); }; document.head.appendChild(sc);
+    setTimeout(() => cv.classList.add('on'), 600);
+  }, { rootMargin: '200px 0px' }).observe(hero);
+  if (location.hash && location.hash !== '#top' && document.readyState !== 'complete')
+    addEventListener('load', watchMap, { once: true });
+  else watchMap();
 }
 let timer = 0, stopLight = null;
 // While the opening is scrolled out of view the name waits, drawn, instead of

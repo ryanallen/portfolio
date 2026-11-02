@@ -23,6 +23,19 @@
 <link rel="alternate" type="text/plain" title="LLM summary" href="/llms.txt">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ryan Allen","jobTitle":"Designer","url":"https://ryanallen.com/","email":"mailto:hi@ryanallen.com","description":"I'm Ryan Allen, a designer. I've worked with GoDaddy on domain search and AI, Blackboard on Scholar, Lexus, Spectrum, Transamerica, Microsoft, BMW, Disney and Google Ventures. I made Leaftext, and I'm a repeat guest on The Howard Stern Show.","sameAs":["https://www.linkedin.com/in/ryanallencom/","https://bsky.app/profile/ryanallen.com","https://medium.com/@ryanallen_com"],"knowsAbout":["Product design","UX design","AI products","Design systems","Prototyping in code","User research"],"award":["GDC Best in Play","Gold ADDY","SEMA Most Innovative New Product"]}</script>
 <link rel="preload" href="media/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  (() => {
+    const sync = () => document.documentElement.classList.toggle('hires',
+      innerWidth * innerHeight * (devicePixelRatio || 1) ** 2 >= 6e6);
+    const watchDensity = () => {
+      const ratio = devicePixelRatio || 1;
+      matchMedia(`(resolution: ${ratio}dppx)`).addEventListener('change', () => {
+        sync(); watchDensity();
+      }, { once: true });
+    };
+    sync(); watchDensity(); addEventListener('resize', sync);
+  })();
+</script>
 <style>
   @font-face { font-family: Jost; font-style: normal; font-weight: 300 400; font-display: swap;
     src: url('media/fonts/jost-latin.woff2') format('woff2'); }
@@ -370,12 +383,18 @@
   /* A browser drawing without the graphics card repaints every blurred shadow and filter near anything
      that moves, every frame. When frames run slow the page swaps them for flat ones (lite), and if they
      still run slow it holds the looping motion still (still). */
-  .lite .device .glass { box-shadow: inset 0 0 0 1px rgba(255,255,255,.07), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
-  .lite .device.phone .glass { box-shadow: inset 0 0 0 5px #161617, inset 0 0 0 6px rgba(255,255,255,.08), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
-  .lite .art img, .lite .mark { filter: none; }
-  .lite .aip-prompt, .lite .aip-card { box-shadow: none; }
-  .lite .aip-spark { text-shadow: none; }
+  :is(.lite, .hires) .device .glass { box-shadow: inset 0 0 0 1px rgba(255,255,255,.07), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
+  :is(.lite, .hires) .device.phone .glass { box-shadow: inset 0 0 0 5px #161617, inset 0 0 0 6px rgba(255,255,255,.08), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
+  :is(.lite, .hires) .art img, :is(.lite, .hires) .mark { filter: none; }
+  :is(.lite, .hires) .aip-prompt, :is(.lite, .hires) .aip-card { box-shadow: none; }
+  :is(.lite, .hires) .aip-spark { text-shadow: none; }
   .lite .aip-cart.first { animation-name: aip-add-flat; }
+  .hires :is(.role, .fun, .honors, .contact) *,
+  .hires :is(.role, .fun, .honors, .contact) *::before,
+  .hires :is(.role, .fun, .honors, .contact) *::after { transition: none !important; animation: none !important; }
+  .hires .aip-type { width: 62%; }
+  .hires .aip-card { opacity: 1; transform: none; }
+  .hires .aip-cart.first { background: #e9e8e2; }
   @keyframes aip-add-flat { 0%, 54% { background: #2a2a2c; } 57%, 88% { background: #e9e8e2; } 100% { background: #2a2a2c; } }
   .still :is(.stage, .tile) :is(*, *::before, *::after) { animation: none !important; }
   .still .aip-type { width: 62%; }

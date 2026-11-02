@@ -959,6 +959,7 @@ function land() { lockup.classList.add('on'); nav.classList.add('on'); }
 function settleLogo() {
   cancelAnimationFrame(raf);
   clearTimeout(timer);
+  onSeen = null;
   if (stopLight) { stopLight(); stopLight = null; }
   const anim = ANIMS[nextAnimation()].make(svg);
   anim.render(anim.end);
@@ -1088,6 +1089,11 @@ function cycle() {
 // ?all shows every section at rest. Both are for checking.
 const q = new URLSearchParams(location.search);
 if (q.get('t') === null) document.addEventListener('portfolio-still', settleLogo);
+reducedMotion.addEventListener('change', () => {
+  if (q.get('t') !== null) return;
+  if (reducedMotion.matches) settleLogo();
+  else if (!document.documentElement.classList.contains('still') && (!location.hash || location.hash === '#top')) whenSeen(cycle);
+});
 if (q.has('all')) {
   document.querySelectorAll('.role, .tile, .contact').forEach(el => el.classList.add('in'));
   document.querySelectorAll('.hero, .contact').forEach(el => el.style.minHeight = '900px');

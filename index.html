@@ -153,7 +153,7 @@
   .in .device .glass::after { background-position: -60% 0; }
   .device img, .device video { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
   .theme-cycle { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1b1b1d; }
-  .theme-cycle img { position: absolute; inset: 0; opacity: 0; object-position: 25% center; transition: opacity 850ms ease; }
+  .theme-cycle img { position: absolute; inset: 0; opacity: 0; object-position: top center; transition: opacity 850ms ease; }
   .theme-cycle img.visible { opacity: 1; }
   .device.screen { width: 84%; aspect-ratio: 16 / 10; --r: 12px; }
   .device.wide { width: 90%; aspect-ratio: 3 / 1; --r: 10px; }
@@ -668,9 +668,9 @@ const ANIMS = [
 // a drawn sketch of the feature where there aren't (ui), or a figure.
 const M = 'media/';
 const LEAFTEXT_COMMIT_COUNT = 2525;
-const LEAFTEXT_THEMES = ['amaranth', 'arabica', 'birch', 'bloodleaf', 'camellia', 'eucalyptus', 'fern',
-  'foxglove', 'ginger', 'github', 'goldenrod', 'halcyon', 'ivy', 'laurel', 'lavender', 'nightshade',
-  'pippin', 'saffron', 'sage', 'sumac', 'woad'];
+const LEAFTEXT_THEMES = ['ginger', 'amaranth', 'arabica', 'bloodleaf', 'camellia', 'eucalyptus',
+  'fern', 'foxglove', 'github', 'goldenrod', 'halcyon', 'ivy', 'nightshade', 'pippin', 'sage'];
+const leaftextThemeImage = theme => theme === 'ginger' ? `${M}leaftext/site-mobile-web.webp` : `${M}leaftext/front-themes/${theme}.webp`;
 const ROLES = [
   { name: 'GoDaddy', logo: ['0 0 24 24', '<path d="M17.8 5.528c-1.662-1.04-3.851-.792-5.8.436-1.95-1.228-4.138-1.475-5.8-.436-2.627 1.641-2.947 5.87-.713 9.444 1.647 2.635 4.221 4.18 6.513 4.15 2.292.03 4.867-1.514 6.513-4.15 2.234-3.574 1.914-7.803-.713-9.444m-11.106 8.69a8.6 8.6 0 0 1-1.03-2.361 6.8 6.8 0 0 1-.224-2.225c.1-1.32.638-2.349 1.514-2.897s2.037-.58 3.267-.09q.277.11.55.253a10 10 0 0 0-1.772 2.129c-1.357 2.172-1.77 4.584-1.297 6.512a9 9 0 0 1-1.008-1.322m11.642-2.361a8.6 8.6 0 0 1-1.03 2.36q-.453.722-1.01 1.323c.424-1.726.137-3.84-.901-5.822a.26.26 0 0 0-.375-.103l-3.235 2.021a.264.264 0 0 0-.084.365l.474.758c.077.124.24.162.364.085l2.097-1.31q.105.301.187.608c.201.767.277 1.515.223 2.225-.1 1.32-.637 2.348-1.513 2.896a2.960 2.960 0 0 1-1.5.434h-.066a2.960 2.960 0 0 1-1.5-.434c-.877-.548-1.414-1.576-1.514-2.897a6.8 6.8 0 0 1 .223-2.224 8.6 8.6 0 0 1 1.031-2.36 8.6 8.6 0 0 1 1.67-1.962c.6-.517 1.24-.913 1.902-1.176 1.23-.49 2.39-.457 3.267.091s1.413 1.577 1.513 2.897a6.7 6.7 0 0 1-.223 2.225"/>'], sub: 'Domain search & AI', line: 'I led design on the domain buy flow, the front door most people walk through to get to GoDaddy, and worked with teams across the site. AI naming started as a hackathon prototype a few volunteer devs and I built.',
     facts: [['Role', 'Lead UX Designer'], ['Areas', 'Search · AI · Buy Flow · Homepage · Navigation & IA · Design System · Research']],
@@ -944,7 +944,7 @@ const UI = {
 
 const work = document.getElementById('work');
 function device(v) {
-  const media = v.themes ? `<div class="theme-cycle" data-themes="${v.themes.join(',')}"><img class="visible" src="${M}leaftext/themes/${v.themes[0]}.png" alt="" loading="lazy" decoding="async"><img alt="" decoding="async"></div>`
+  const media = v.themes ? `<div class="theme-cycle" data-themes="${v.themes.join(',')}"><img class="visible" src="${leaftextThemeImage(v.themes[0])}" alt="" loading="lazy" decoding="async"><img alt="" decoding="async"></div>`
     : v.img ? `<img src="${v.img}" alt="" loading="lazy" decoding="async">`
     : v.video ? `<video data-src="${v.video}" data-poster="${v.poster || ''}" muted loop playsinline preload="none"></video>`
     : `<div class="ui">${UI[v.ui] || ''}</div>`;
@@ -1117,7 +1117,7 @@ const onScreen = new IntersectionObserver(entries => { for (const e of entries) 
   { rootMargin: '200px 0px' });
 document.querySelectorAll('.tile, .hero-stage, .lane').forEach(el => onScreen.observe(el));
 
-// Leaftext's phone shows the actual theme gallery with only two decoded frames.
+// Leaftext's phone shows its front page in each theme with only two decoded frames.
 {
   const cycle = document.querySelector('.theme-cycle');
   const themes = cycle.dataset.themes.split(',');
@@ -1128,7 +1128,7 @@ document.querySelectorAll('.tile, .hero-stage, .lane').forEach(el => onScreen.ob
     if (busy || !visible || document.hidden || reducedMotion.matches) return;
     busy = true;
     const next = (index + 1) % themes.length, incoming = frames[1 - shown];
-    incoming.src = `${M}leaftext/themes/${themes[next]}.png`;
+    incoming.src = leaftextThemeImage(themes[next]);
     try {
       await incoming.decode();
       if (visible && !document.hidden && !reducedMotion.matches) {
@@ -1137,7 +1137,7 @@ document.querySelectorAll('.tile, .hero-stage, .lane').forEach(el => onScreen.ob
         shown = 1 - shown;
         index = next;
       }
-    } catch { /* Keep the last frame if a theme image cannot load. */ }
+    } catch { /* Keep the last frame if a front-page image cannot load. */ }
     busy = false;
   };
   const sync = () => {

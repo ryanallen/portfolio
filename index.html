@@ -344,6 +344,10 @@
   .contact .links a:hover, .contact a.mail:hover { color: #fff; }
   .contact .bar { margin: 34px auto 0; }
   .contact.in .bar { transform: scaleX(1); opacity: 1; }
+  @media (max-width: 700px) {
+    .contact .links { row-gap: 0; }
+    .contact .links a { min-height: 44px; }
+  }
 
   @media (max-width: 860px) {
     .role-head { grid-template-columns: 1fr; }

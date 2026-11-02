@@ -372,8 +372,11 @@
   .lite .aip-spark { text-shadow: none; }
   .lite .aip-cart.first { animation-name: aip-add-flat; }
   @keyframes aip-add-flat { 0%, 54% { background: #2a2a2c; } 57%, 88% { background: #e9e8e2; } 100% { background: #2a2a2c; } }
-  .still :is(.stage, .tile) :is(*, *::before, *::after) { animation-play-state: paused !important; }
-  .still .nagare { animation-play-state: paused !important; }
+  .still :is(.stage, .tile) :is(*, *::before, *::after) { animation: none !important; }
+  .still .nagare { animation: none !important; }
+  .still .aip-type { width: 62%; }
+  .still .aip-card { opacity: 1; transform: none; }
+  .still .aip-cart.first { background: #e9e8e2; }
   .still .words .lane { width: min(1100px, 100%); margin-inline: auto; padding: 0 var(--gutter);
     display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     animation: none !important; transform: none; will-change: auto; }

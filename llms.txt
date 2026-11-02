@@ -1,0 +1,38 @@
+# Ryan Allen
+
+> Ryan Allen is a designer who has worked with GoDaddy on domain search and AI, Blackboard on Scholar, Lexus, Spectrum, Transamerica, Microsoft, BMW, Disney and Google Ventures, made Leaftext, and is a repeat guest on The Howard Stern Show.
+
+Ryan designs products from the first idea to production code: research, UX, AI products, design systems, hardware-connected apps, and the teams that build them.
+
+## Work
+
+- [GoDaddy](https://ryanallen.com/#work): Led design on the domain buy flow, the main way people get to GoDaddy, and worked with teams across the site. AI naming started as a hackathon prototype Ryan built with a few volunteer devs. Work includes AI domain search, GoDaddy in ChatGPT with OpenAI, a Google UX initiative, voice search and the add-to-cart confetti.
+- [Scholar](https://ryanallen.com/#work): An AI study platform for college students, from Blackboard. Ryan led design and product from 0 to 1 and beyond, including the logo, research, the roadmap, hiring and code shipped to production.
+- [Leaftext](https://leaftext.com/): A free, open-source desktop app for reading and writing your own files, Office and Google Workspace files included, with AI agents working inside it and agent harnesses holding them to your checks.
+- [Transamerica](https://ryanallen.com/#work): The system financial advisors use to send regulatory mailings, built on the design system with outside mailing houses.
+- [Charter / Spectrum](https://ryanallen.com/#work): A zero-to-one app, with hardware and backend services, for older adults and the people who look after them.
+- [Lexus](https://ryanallen.com/#work): The Lexus IS iPad app, built by the studio team on a custom 3D engine and released on the App Store. Gold ADDY.
+- [Monsters Invade Oz](https://ryanallen.com/#work): A mobile game. Ryan built and led the team and illustrated and animated its 15,000-plus assets. GDC Best in Play, top 10 in the App Store at launch.
+- [Dapper Gentlemen](https://ryanallen.com/#work): A studio Ryan co-founded and ran. Its own apps were downloaded more than 30 million times in 94 countries; clients included Microsoft, BMW, Disney and Google Ventures. Acquired by HIPO.
+
+## Fun stuff
+
+- [Spacewar Live](https://spacewarlive.com/): A remake of the 1985 DOS Spacewar, online in the browser.
+- [Wallet Wars](https://ryanallen.com/walletwars/): A terminal-style crypto trading game.
+- [The Impossible Button](https://ryanallen.com/bad-button/): How not to design a button.
+- [System Designer](https://ryanallen.com/system-designer/): A whole design system from one color.
+
+## Honors
+
+- GDC Best in Play
+- Gold ADDY, American Advertising Federation
+- SEMA Most Innovative New Product
+- Most Innovative Organization, Trade Show Executive
+- Repeat guest on The Howard Stern Show
+
+## Contact
+
+- [Email](mailto:hi@ryanallen.com)
+- [LinkedIn](https://www.linkedin.com/in/ryanallencom/)
+- [Bluesky](https://bsky.app/profile/ryanallen.com)
+- [Medium](https://medium.com/@ryanallen_com)

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -40 260 300">
+  <defs>
+    <linearGradient id="face" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5fd0ff"/>
+      <stop offset=".45" stop-color="#0a8fe0"/>
+      <stop offset="1" stop-color="#0052a3"/>
+    </linearGradient>
+    <linearGradient id="side" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#003a73"/>
+      <stop offset="1" stop-color="#001a38"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2=".6" y2=".9">
+      <stop offset="0" stop-color="#fff" stop-opacity=".75"/>
+      <stop offset=".35" stop-color="#fff" stop-opacity=".12"/>
+      <stop offset=".6" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#9fe3ff" stop-opacity=".2"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="22"/></filter>
+    <clipPath id="tri"><polygon points="0,0 0,204 134,102" stroke-linejoin="round"/></clipPath>
+  </defs>
+  <polygon points="0,0 0,204 134,102" fill="#0a8fe0" opacity=".55" filter="url(#glow)"/>
+  <g stroke-linejoin="round" stroke-width="16">
+    <polygon points="0,0 0,204 134,102" transform="translate(18 22)" fill="url(#side)" stroke="url(#side)"/>
+    <polygon points="0,0 0,204 134,102" transform="translate(15 18)" fill="url(#side)" stroke="url(#side)"/>
+    <polygon points="0,0 0,204 134,102" transform="translate(12 14.5)" fill="url(#side)" stroke="url(#side)"/>
+    <polygon points="0,0 0,204 134,102" transform="translate(9 11)" fill="#00305e" stroke="#00305e"/>
+    <polygon points="0,0 0,204 134,102" transform="translate(6 7.3)" fill="#003f7a" stroke="#003f7a"/>
+    <polygon points="0,0 0,204 134,102" transform="translate(3 3.6)" fill="#004c91" stroke="#004c91"/>
+    <polygon points="0,0 0,204 134,102" fill="url(#face)" stroke="url(#face)"/>
+  </g>
+  <polygon points="0,0 0,204 134,102" fill="url(#shine)" stroke="url(#shine)" stroke-width="16" stroke-linejoin="round"/>
+  <polyline points="0,204 0,0 134,102" fill="none" stroke="url(#rim)" stroke-width="1.6" stroke-linejoin="round" transform="translate(-7.4 -5.6) scale(1.02)" opacity=".8"/>
+</svg>

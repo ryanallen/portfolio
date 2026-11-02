@@ -1,2 +1,2 @@
 # portfolio
-Ryan Allen - Leader &amp; Product Designer
+Ryan Allen, designer. The site behind ryanallen.com.

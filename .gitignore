@@ -105,3 +105,6 @@ typings/
 # .DS_Store
 .DS_Store
 .DS_Store
+
+# The ryan skill, copied from Studio/work/writing/.agents/skills/ryan (private; never commit)
+.agents/

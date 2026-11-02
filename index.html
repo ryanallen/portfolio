@@ -250,14 +250,12 @@
   a.tile-link:hover .tile, a.tile-link:focus-visible .tile { transform: translateY(-4px); }
   a.tile-link .go { position: absolute; right: 22px; top: 20px; z-index: 2; font-size: 11px; color: var(--quiet); transition: color 300ms ease, transform 300ms ease; }
   a.tile-link:hover .go { color: var(--ink); transform: translate(2px, -2px); }
-  @media (max-width: 700px) {
-    .fun .tile-link { display: flex; }
-    .fun .tile-link .tile { display: grid; grid-template-rows: auto auto 1fr; min-height: 290px; width: 100%; }
-    .fun .tile h3 { position: relative; left: auto; right: auto; top: auto; grid-row: 1; padding: 22px 50px 0 22px; }
-    .fun .tile .stage { grid-row: 2; aspect-ratio: 16 / 9; }
-    .fun .tile .stat { position: static; grid-row: 3; padding: 0 22px 20px; align-self: end; }
-    .fun .tile .device.screen { width: 76%; margin-top: 0; }
-  }
+  .fun .tile-link { display: flex; }
+  .fun .tile-link .tile { display: grid; grid-template-rows: auto auto 1fr; min-height: 290px; width: 100%; }
+  .fun .tile h3 { position: relative; left: auto; right: auto; top: auto; grid-row: 1; padding: 22px 50px 0 22px; }
+  .fun .tile .stage { grid-row: 2; aspect-ratio: 16 / 9; }
+  .fun .tile .stat { position: static; grid-row: 3; padding: 0 22px 20px; align-self: end; }
+  .fun .tile .device.screen { width: 76%; margin-top: 0; }
   .aip { position: absolute; inset: 0; display: grid; gap: 10px; align-content: start; padding: 18% 9% 0; }
   .aip-prompt { position: relative; display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 10px; border-radius: 999px; background: #1a1a1c;
     box-shadow: inset 0 0 0 1px rgba(159,232,232,.35), 0 0 18px rgba(159,232,232,.12); }

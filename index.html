@@ -275,9 +275,15 @@
   .words-head { padding: 0 var(--gutter); }
   .words-head h2 { margin: 0; font: 300 clamp(36px, 6vw, 88px)/1 var(--sans); }
   .words-head p { margin: 14px 0 0; font-size: 11px; color: var(--quiet); }
+  .words .words-head { position: relative; }
+  .motion-toggle { position: absolute; top: 0; right: var(--gutter); min-width: 72px; min-height: 44px;
+    padding: 10px 4px; border: 0; border-bottom: 1px solid var(--quiet); background: transparent; color: var(--quiet);
+    font: 300 11px/1 var(--sans); letter-spacing: .28em; text-transform: uppercase; cursor: pointer; }
+  .motion-toggle:hover, .motion-toggle:focus-visible { color: var(--ink); border-color: var(--ink); }
+  .motion-toggle:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
   .lane { display: flex; gap: 18px; width: max-content; margin-top: 22px; animation: drift var(--t, 120s) linear infinite; will-change: transform; }
   .lane.back { animation-direction: reverse; }
-  .words:hover .lane { animation-play-state: paused; }
+  .words.paused .lane, .words .lane:hover { animation-play-state: paused; }
   @keyframes drift { to { transform: translateX(-50%); } }
   .quote { width: min(78vw, 440px); flex: none; padding: 30px 30px 26px; border-radius: 22px;
     background: linear-gradient(160deg, #121213, #0a0a0a); box-shadow: inset 0 0 0 1px rgba(255,255,255,.05); }
@@ -362,6 +368,7 @@
       display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
     .words .quote { width: auto; margin: 0; }
     .words .quote[aria-hidden="true"] { display: none; }
+    .motion-toggle { display: none; }
   }
 </style>
 </head>
@@ -386,7 +393,7 @@
   <div class="tiles" id="funTiles"></div>
 </section>
 <section class="words" id="words" aria-label="Recommendations">
-  <div class="words-head"><h2>Kind words</h2><p class="caps">From the people I've worked with</p></div>
+  <div class="words-head"><h2>Kind words</h2><p class="caps">From the people I've worked with</p><button class="motion-toggle" type="button" aria-label="Pause recommendations">Pause</button></div>
   <div class="lane" id="laneA" style="--t: 150s"></div>
   <div class="lane back" id="laneB" style="--t: 170s"></div>
 </section>
@@ -810,6 +817,12 @@ for (const [id, list] of [['laneA', WORDS.slice(0, half)], ['laneB', WORDS.slice
   const html = list.map(card).join('');
   document.getElementById(id).innerHTML = html + html.replace(/<figure class="quote">/g, '<figure class="quote" aria-hidden="true">');
 }
+const words = document.getElementById('words'), motionToggle = words.querySelector('.motion-toggle');
+motionToggle.addEventListener('click', () => {
+  const paused = words.classList.toggle('paused');
+  motionToggle.textContent = paused ? 'Play' : 'Pause';
+  motionToggle.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} recommendations`);
+});
 
 // ---- Frame guard -------------------------------------------------------
 // Two seconds in a row under 55 frames a second steps the page down: first to

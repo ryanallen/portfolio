@@ -406,7 +406,7 @@
   <div class="lane back" id="laneB" style="--t: 170s"></div>
 </section>
 <section class="honors" id="honors"><canvas aria-hidden="true"></canvas><h2>Honors</h2>
-<div class="billion"><b>$1B+</b><span>Earned by teams I've been part of</span></div><ul aria-label="Honors, scroll horizontally to see all eight">
+<div class="billion"><b>$1B+</b><span>Earned by teams I've been part of</span></div><ul aria-label="Honors">
   <li style="--k:0"><img class="h-logo" src="media/logos/gdc.svg" alt="" loading="lazy"><b>Best in Play</b><i></i><span>Game Developers Conference<br>Monsters Invade Oz</span></li>
   <li style="--k:1"><img class="h-logo" src="media/logos/appstore.svg" alt="" loading="lazy"><b>Top 10 App Store</b><i></i><span>Most downloaded at launch<br>Monsters Invade Oz</span></li>
   <li style="--k:2"><img class="h-logo" src="media/logos/aaf.svg" alt="" loading="lazy"><b>Gold ADDY</b><i></i><span>American Advertising Federation<br>Lexus</span></li>
@@ -845,7 +845,10 @@ motionToggle.addEventListener('click', () => {
     frames++;
     if (now - t0 >= 1000) {
       bad = frames * 1000 / (now - t0) < 55 ? bad + 1 : 0;
-      if (bad >= 2) { html.classList.add(levels[level++]); bad = 0; }
+      if (bad >= 2) {
+        const next = levels[level++]; html.classList.add(next); bad = 0;
+        if (next === 'still') document.dispatchEvent(new Event('portfolio-still'));
+      }
       t0 = now; frames = 0;
     }
     if (level < levels.length) requestAnimationFrame(step);
@@ -912,11 +915,17 @@ const svg = document.getElementById('logo'), lockup = document.getElementById('l
 // The light bar and title arrive as the ink lands, this far before the end.
 const TITLE_LEAD = 0.9;
 let raf = 0;
-// The name never sits still for long: it draws, holds, then the next
-// animation in the order plays backwards to undraw it, and the one after
-// draws it again, round and round.
+// With motion enabled, the name draws, holds, undraws, and draws again.
 const HOLD = 4.5;
 function land() { lockup.classList.add('on'); nav.classList.add('on'); }
+function settleLogo() {
+  cancelAnimationFrame(raf);
+  clearTimeout(timer);
+  if (stopLight) { stopLight(); stopLight = null; }
+  const anim = ANIMS[nextAnimation()].make(svg);
+  anim.render(anim.end);
+  land();
+}
 function play(forward, done) {
   cancelAnimationFrame(raf);
   const anim = ANIMS[nextAnimation()].make(svg);
@@ -1021,6 +1030,7 @@ function cycle() {
 // ?a=<animation 0-7>&t=<seconds at site speed> holds one frame of the name;
 // ?all shows every section at rest. Both are for checking.
 const q = new URLSearchParams(location.search);
+if (q.get('t') === null) document.addEventListener('portfolio-still', settleLogo);
 if (q.has('all')) {
   document.querySelectorAll('.role, .tile, .contact').forEach(el => el.classList.add('in'));
   document.querySelectorAll('.hero, .contact').forEach(el => el.style.minHeight = '900px');
@@ -1029,12 +1039,16 @@ if (q.get('t') !== null) {
   const anim = ANIMS[+(q.get('a') || 0)].make(svg), t = +q.get('t') * SPEED;
   anim.render(t);
   if (t >= anim.end - TITLE_LEAD) { document.querySelectorAll('.bar, .title, .nav').forEach(e => e.style.transition = 'none'); land(); }
-} else cycle();
+} else if (reducedMotion.matches) settleLogo();
+else cycle();
 
 (() => {
   const sec = document.getElementById('honors'), cv = sec.querySelector('canvas'), cx = cv.getContext('2d');
   const honorsList = sec.querySelector('ul'), phoneHonors = matchMedia('(max-width: 700px)');
-  const setHonorsFocus = () => { if (phoneHonors.matches) honorsList.tabIndex = 0; else honorsList.removeAttribute('tabindex'); };
+  const setHonorsFocus = () => {
+    if (phoneHonors.matches) honorsList.tabIndex = 0; else honorsList.removeAttribute('tabindex');
+    honorsList.setAttribute('aria-label', phoneHonors.matches ? 'Honors, scroll horizontally to see all eight' : 'Honors');
+  };
   phoneHonors.addEventListener('change', setHonorsFocus); setHonorsFocus();
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let w = 0, h = 0, dpr = 1, on = false, raf = 0, last = 0, next = 0, sparks = [], rockets = [];

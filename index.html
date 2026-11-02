@@ -301,6 +301,7 @@
   .honors h2 { position: relative; margin: 0; font: 300 11px/1 var(--sans); letter-spacing: .4em; text-transform: uppercase; color: var(--quiet); }
   .honors ul { position: relative; list-style: none; margin: 0 auto; padding: 0; width: min(1100px, 100%);
     display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+  .honors ul:focus-visible { outline: 1px solid var(--quiet); outline-offset: -1px; }
   .honors li { position: relative; padding: clamp(28px, 4vw, 48px) clamp(14px, 2vw, 26px); display: grid; gap: 14px; justify-items: center;
     opacity: 0; transform: translateY(24px); transition: opacity 1200ms ease, transform 1400ms var(--ease); }
   .honors li + li::before { content: ''; position: absolute; left: 0; top: 22%; bottom: 22%; width: 1px;
@@ -403,7 +404,7 @@
   <div class="lane back" id="laneB" style="--t: 170s"></div>
 </section>
 <section class="honors" id="honors"><canvas aria-hidden="true"></canvas><h2>Honors</h2>
-<div class="billion"><b>$1B+</b><span>Earned by teams I've been part of</span></div><ul>
+<div class="billion"><b>$1B+</b><span>Earned by teams I've been part of</span></div><ul aria-label="Honors, scroll horizontally to see all eight">
   <li style="--k:0"><img class="h-logo" src="media/logos/gdc.svg" alt="" loading="lazy"><b>Best in Play</b><i></i><span>Game Developers Conference<br>Monsters Invade Oz</span></li>
   <li style="--k:1"><img class="h-logo" src="media/logos/appstore.svg" alt="" loading="lazy"><b>Top 10 App Store</b><i></i><span>Most downloaded at launch<br>Monsters Invade Oz</span></li>
   <li style="--k:2"><img class="h-logo" src="media/logos/aaf.svg" alt="" loading="lazy"><b>Gold ADDY</b><i></i><span>American Advertising Federation<br>Lexus</span></li>
@@ -1023,6 +1024,9 @@ if (q.get('t') !== null) {
 
 (() => {
   const sec = document.getElementById('honors'), cv = sec.querySelector('canvas'), cx = cv.getContext('2d');
+  const honorsList = sec.querySelector('ul'), phoneHonors = matchMedia('(max-width: 700px)');
+  const setHonorsFocus = () => { if (phoneHonors.matches) honorsList.tabIndex = 0; else honorsList.removeAttribute('tabindex'); };
+  phoneHonors.addEventListener('change', setHonorsFocus); setHonorsFocus();
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let w = 0, h = 0, dpr = 1, on = false, raf = 0, last = 0, next = 0, sparks = [], rockets = [];
   const size = () => { dpr = Math.min(devicePixelRatio || 1, 2); w = sec.clientWidth; h = sec.clientHeight;

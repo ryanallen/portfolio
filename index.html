@@ -858,6 +858,7 @@ motionToggle.addEventListener('click', () => {
 // ---- Arrival -----------------------------------------------------------
 // Things glide into place as they come into view; videos play only then.
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+document.addEventListener('portfolio-still', () => document.querySelectorAll('video').forEach(v => v.pause()));
 const seen = new IntersectionObserver(entries => {
   for (const e of entries) {
     if (!e.isIntersecting) {
@@ -874,7 +875,7 @@ const seen = new IntersectionObserver(entries => {
         }
         v.src = v.dataset.src;
       }
-      if (!reducedMotion.matches) v.play().catch(() => {});
+      if (!reducedMotion.matches && !document.documentElement.classList.contains('still')) v.play().catch(() => {});
     });
   }
 }, { threshold: 0.18 });

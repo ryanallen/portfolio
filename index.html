@@ -53,6 +53,9 @@
     drop-shadow(0 -1px 0 var(--ground)) drop-shadow(1px 0 0 var(--ground)) drop-shadow(-1px 0 0 var(--ground))
     drop-shadow(0 1px 0 var(--ground)) drop-shadow(0 -1px 0 var(--ground)) drop-shadow(0 0 4px var(--ground)); }
   .nav a:hover { color: var(--ink); }
+  @media (max-width: 700px) {
+    .nav a { padding-block: 13px; margin-block: -13px; }
+  }
 
   /* Opening: the drawn name, the light bar, the title. */
   .hero { min-height: 100svh; display: grid; place-items: center; padding: 80px var(--gutter); }

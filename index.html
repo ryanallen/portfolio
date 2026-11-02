@@ -365,6 +365,8 @@
   .lite .aip-cart.first { animation-name: aip-add-flat; }
   @keyframes aip-add-flat { 0%, 54% { background: #2a2a2c; } 57%, 88% { background: #e9e8e2; } 100% { background: #2a2a2c; } }
   .still :is(.stage, .tile) :is(*, *::before, *::after) { animation-play-state: paused !important; }
+  .still .nagare, .still .lane { animation-play-state: paused !important; }
+  .still .motion-toggle { display: none; }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
     .device { opacity: 1; transform: var(--pose, rotateX(14deg) rotateY(-24deg) rotateZ(3deg)); }
@@ -1073,6 +1075,7 @@ if (q.get('t') !== null) {
     cx.globalAlpha = 1; };
   const frame = now => {
     const dt = Math.min((now - (last || now)) / 1000, .05); last = now;
+    if (document.documentElement.classList.contains('still')) on = false;
     cx.clearRect(0, 0, w, h); cx.globalCompositeOperation = 'lighter'; cx.lineCap = 'round';
     if (flash) { const g = cx.createRadialGradient(flash.x, flash.y, 0, flash.x, flash.y, 220);
       g.addColorStop(0, `rgba(255,230,200,${flash.a * .35})`); g.addColorStop(1, 'rgba(255,230,200,0)');
@@ -1095,7 +1098,7 @@ if (q.get('t') !== null) {
   new ResizeObserver(size).observe(sec); size();
   new IntersectionObserver(([e]) => {
     if (e.isIntersecting) sec.classList.add('in');
-    on = e.isIntersecting && !still;
+    on = e.isIntersecting && !still && !document.documentElement.classList.contains('still');
     if (on && !raf) { last = 0; next = 0; raf = requestAnimationFrame(frame); }
   }, { threshold: .2 }).observe(sec);
   if (location.search.includes('all')) sec.classList.add('in');

@@ -62,16 +62,8 @@
   .hero { min-height: 100svh; display: grid; place-items: center; padding: 80px var(--gutter); }
   .lockup { display: grid; justify-items: center; position: relative; z-index: 1;
     transition: transform 900ms var(--ease); transform: perspective(1400px) rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg)); }
-  /* Fine lines flowing slowly behind the name, like wind across sand. */
-  .nagare { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0; transition: opacity 2400ms ease; }
-  .nagare.on { opacity: 1; animation: map-drift 96s ease-in-out infinite; }
-  .nagare.off { animation-play-state: paused; }
-  @keyframes map-drift {
-    0%, 100% { transform: translate3d(-1%, 1%, 0) scale(1.04); }
-    25% { transform: translate3d(1%, -.7%, 0) scale(1.12); }
-    50% { transform: translate3d(.4%, 1%, 0) scale(1.07); }
-    75% { transform: translate3d(-1%, -.8%, 0) scale(1.10); }
-  }
+  /* Static contour lines behind the name. */
+  .nagare { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
   /* The pointer is a studio key light: the ink is brightest where it points. */
   #logo path[fill="var(--ink)"] { fill: url(#keylight); }
   /* The studio floor: the name stands on a dark, glossy ground with a faint reflection,
@@ -384,26 +376,17 @@
   .lite .aip-cart.first { animation-name: aip-add-flat; }
   @keyframes aip-add-flat { 0%, 54% { background: #2a2a2c; } 57%, 88% { background: #e9e8e2; } 100% { background: #2a2a2c; } }
   .still :is(.stage, .tile) :is(*, *::before, *::after) { animation: none !important; }
-  .still .nagare { animation: none !important; }
   .still .aip-type { width: 62%; }
   .still .aip-card { opacity: 1; transform: none; }
   .still .aip-cart.first { background: #e9e8e2; }
-  .still .words .lane { width: min(1100px, 100%); margin-inline: auto; padding: 0 var(--gutter);
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-    animation: none !important; transform: none; will-change: auto; }
-  .still .words .quote { width: auto; margin: 0; }
-  .still .words .quote[aria-hidden="true"] { display: none; }
-  .still .motion-toggle { display: none; }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
     .device { opacity: 1; transform: var(--pose, rotateX(14deg) rotateY(-24deg) rotateZ(3deg)); }
-    .nagare { opacity: 1; }
     .aip-type { width: 62%; }
     .aip-card { opacity: 1; transform: none; }
     .aip-cart.first { background: #e9e8e2; }
-    .words .lane { width: min(1100px, 100%); margin-inline: auto; padding: 0 var(--gutter);
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); will-change: auto; }
-    .words .quote { width: auto; margin: 0; }
+    .words .lane { width: 100%; overflow-x: auto; padding: 0 var(--gutter); scroll-snap-type: x proximity; transform: none; will-change: auto; }
+    .words .quote { scroll-snap-align: start; }
     .words .quote[aria-hidden="true"] { display: none; }
     .motion-toggle { display: none; }
   }
@@ -1135,7 +1118,6 @@ function swashLight() {
     // A script path works for the live site and for a page opened straight from disk.
     const sc = document.createElement('script'); sc.src = 'media/phx-topo.js'; sc.async = true;
     sc.onload = () => { topo = window.PHX_TOPO; draw(); }; document.head.appendChild(sc);
-    setTimeout(() => cv.classList.add('on'), 600);
   }, { rootMargin: '200px 0px' }).observe(hero);
   if (location.hash && location.hash !== '#top' && document.readyState !== 'complete')
     addEventListener('load', watchMap, { once: true });
@@ -1146,7 +1128,6 @@ let timer = 0, stopLight = null;
 let heroSeen = true, onSeen = null;
 const syncHero = () => {
   const active = heroSeen && !document.hidden;
-  document.querySelector('.nagare').classList.toggle('off', !active);
   if (!active && pauseLogo) pauseLogo();
   if (!active && stopLight) { stopLight(); stopLight = null; }
   if (active && onSeen) { const f = onSeen; onSeen = null; f(); }

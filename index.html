@@ -855,6 +855,7 @@ motionToggle.addEventListener('click', () => {
 
 // ---- Arrival -----------------------------------------------------------
 // Things glide into place as they come into view; videos play only then.
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const seen = new IntersectionObserver(entries => {
   for (const e of entries) {
     if (!e.isIntersecting) {
@@ -864,8 +865,14 @@ const seen = new IntersectionObserver(entries => {
     e.target.classList.add('in');
     if (!e.target.querySelector('video')) seen.unobserve(e.target);
     e.target.querySelectorAll('video').forEach(v => {
-      if (!v.src) v.src = v.dataset.src;
-      v.play().catch(() => {});
+      if (!v.src) {
+        if (reducedMotion.matches) {
+          v.preload = 'metadata';
+          v.addEventListener('loadedmetadata', () => { v.currentTime = .01; }, { once: true });
+        }
+        v.src = v.dataset.src;
+      }
+      if (!reducedMotion.matches) v.play().catch(() => {});
     });
   }
 }, { threshold: 0.18 });

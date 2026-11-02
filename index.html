@@ -977,12 +977,13 @@ function nextAnimation() {
 const svg = document.getElementById('logo'), lockup = document.getElementById('lockup'), nav = document.getElementById('nav');
 // The light bar and title arrive as the ink lands, this far before the end.
 const TITLE_LEAD = 0.9;
-let raf = 0;
+let raf = 0, pauseLogo = null;
 // With motion enabled, the name draws, holds, undraws, and draws again.
 const HOLD = 4.5;
 function land() { lockup.classList.add('on'); nav.classList.add('on'); }
 function settleLogo() {
   cancelAnimationFrame(raf);
+  pauseLogo = null;
   clearTimeout(timer);
   onSeen = null;
   if (stopLight) { stopLight(); stopLight = null; }
@@ -996,24 +997,28 @@ function play(forward, done) {
   anim.render(forward ? 0 : anim.end);
   let t0 = null;
   const frame = now => {
-    if (!heroSeen) {
-      onSeen = () => { if (t0 !== null) t0 += performance.now() - now; raf = requestAnimationFrame(frame); };
-      return;
-    }
     if (t0 === null) t0 = now;
     const t = (now - t0) / 1000 * SPEED;
     anim.render(forward ? t : Math.max(0, anim.end - t));
     if (forward && t >= anim.end - TITLE_LEAD) land();
     if (t < anim.end) raf = requestAnimationFrame(frame);
-    else done();
+    else { pauseLogo = null; done(); }
   };
-  raf = requestAnimationFrame(frame);
+  const pause = () => {
+    cancelAnimationFrame(raf);
+    pauseLogo = null;
+    const at = performance.now();
+    onSeen = () => { if (t0 !== null) t0 += performance.now() - at; pauseLogo = pause; raf = requestAnimationFrame(frame); };
+  };
+  pauseLogo = pause;
+  if (heroSeen && !document.hidden) raf = requestAnimationFrame(frame);
+  else pause();
 }
 // Once the name has landed, a point of light runs the length of the y and its
 // swash, the way a light strip comes on along a body line, then goes out.
 function swashLight() {
   const fill = [...svg.querySelectorAll('path')].find(p => p.getAttribute('d') === FILLS.y);
-  if (!fill || matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
+  if (!fill || !heroSeen || document.hidden || reducedMotion.matches) return null;
   const NS = 'http://www.w3.org/2000/svg', g = document.createElementNS(NS, 'g');
   if (!svg.querySelector('#swash-glow')) {
     const defs = svg.querySelector('defs') || svg.insertBefore(document.createElementNS(NS, 'defs'), svg.firstChild);
@@ -1105,14 +1110,19 @@ function swashLight() {
   else watchMap();
 }
 let timer = 0, stopLight = null;
-// Outside the viewport, the name's drawing and light wait for its return.
+// Outside the viewport or in a hidden tab, the name's drawing and light wait.
 let heroSeen = true, onSeen = null;
-new IntersectionObserver(([e]) => { heroSeen = e.isIntersecting && e.intersectionRatio > 0;
-  document.querySelector('.nagare').classList.toggle('off', !heroSeen);
-  if (!heroSeen && stopLight) { stopLight(); stopLight = null; }
-  if (heroSeen && onSeen) { const f = onSeen; onSeen = null; f(); } }, { threshold: .001 })
+const syncHero = () => {
+  const active = heroSeen && !document.hidden;
+  document.querySelector('.nagare').classList.toggle('off', !active);
+  if (!active && pauseLogo) pauseLogo();
+  if (!active && stopLight) { stopLight(); stopLight = null; }
+  if (active && onSeen) { const f = onSeen; onSeen = null; f(); }
+};
+new IntersectionObserver(([e]) => { heroSeen = e.isIntersecting && e.intersectionRatio > 0; syncHero(); }, { threshold: .001 })
   .observe(document.getElementById('top'));
-const whenSeen = f => { if (heroSeen) f(); else onSeen = f; };
+document.addEventListener('visibilitychange', syncHero);
+const whenSeen = f => { if (heroSeen && !document.hidden) f(); else onSeen = f; };
 function cycle() {
   play(true, () => {
     stopLight = swashLight();

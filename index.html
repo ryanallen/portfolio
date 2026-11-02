@@ -297,7 +297,6 @@
 
   .honors { position: relative; overflow: hidden; min-height: 100svh; display: grid; align-content: center; gap: clamp(40px, 7vh, 80px);
     padding: clamp(80px, 14vh, 160px) var(--gutter); text-align: center; }
-  .honors canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
   .honors h2 { position: relative; margin: 0; font: 300 11px/1 var(--sans); letter-spacing: .4em; text-transform: uppercase; color: var(--quiet); }
   .honors ul { position: relative; list-style: none; margin: 0 auto; padding: 0; width: min(1100px, 100%);
     display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
@@ -313,10 +312,13 @@
     transition: transform 1400ms var(--ease); }
   .billion { position: relative; display: grid; gap: 16px; justify-items: center; opacity: 0; transform: scale(.94);
     transition: opacity 1400ms ease, transform 1800ms var(--ease); }
-  .billion b { font: 200 clamp(84px, 15vw, 220px)/.9 var(--sans); letter-spacing: .02em; color: var(--ink);
-    text-shadow: 0 0 40px rgba(242,241,237,.35), 0 0 120px rgba(242,241,237,.15); }
-  .billion span { font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--quiet); }
+  .billion b { font: 200 clamp(84px, 15vw, 220px)/.9 var(--sans); letter-spacing: .02em; color: var(--ink); }
+  .billion::before { content: ''; grid-row: 2; width: min(34vw, 320px); height: 1px; transform: scaleX(0);
+    background: linear-gradient(90deg, transparent, var(--ink) 30%, var(--ink) 70%, transparent);
+    box-shadow: 0 0 10px rgba(242,241,237,.3); transition: transform 1400ms var(--ease) 300ms; }
+  .billion span { grid-row: 3; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--quiet); }
   .honors.in .billion { opacity: 1; transform: none; }
+  .honors.in .billion::before { transform: scaleX(1); }
   .honors ul { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .honors li { align-content: start; }
   .honors li:nth-child(4n+1)::before { display: none; }
@@ -328,9 +330,8 @@
   @media (max-width: 560px) { .honors ul { grid-template-columns: 1fr; } .honors li:nth-child(n)::before { display: block; } .honors li:first-child::before { display: none; }
     .honors li + li::before { left: 22%; right: 22%; top: 0; bottom: auto; width: auto; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(242,241,237,.28), transparent); } }
-  /* The hero's studio light, carried through the page: a soft pool of light under each big moment,
-     and a point of light that runs once along the top edge of each role's stage as it arrives. */
-  .billion::before, .contact > div::before { content: ''; position: absolute; left: -40%; right: -40%; top: 55%; height: 90%;
+  /* The hero's studio light continues under contact and along each role's stage as it arrives. */
+  .contact > div::before { content: ''; position: absolute; left: -40%; right: -40%; top: 55%; height: 90%;
     pointer-events: none; background: radial-gradient(closest-side, rgba(242,241,237,.06), transparent); z-index: -1; }
   .contact > div, .billion { position: relative; isolation: isolate; }
   .hero-stage::before { content: ''; position: absolute; top: 0; left: 8%; width: 22%; height: 1px; z-index: 3; pointer-events: none; opacity: 0;
@@ -405,7 +406,7 @@
   <div class="lane" id="laneA" style="--t: 150s"></div>
   <div class="lane back" id="laneB" style="--t: 170s"></div>
 </section>
-<section class="honors" id="honors"><canvas aria-hidden="true"></canvas><h2>Honors</h2>
+<section class="honors" id="honors"><h2>Honors</h2>
 <div class="billion"><b>$1B+</b><span>Earned by teams I've been part of</span></div><ul aria-label="Honors">
   <li style="--k:0"><img class="h-logo" src="media/logos/gdc.svg" alt="" loading="lazy"><b>Best in Play</b><i></i><span>Game Developers Conference<br>Monsters Invade Oz</span></li>
   <li style="--k:1"><img class="h-logo" src="media/logos/appstore.svg" alt="" loading="lazy"><b>Top 10 App Store</b><i></i><span>Most downloaded at launch<br>Monsters Invade Oz</span></li>
@@ -1043,85 +1044,17 @@ if (q.get('t') !== null) {
 else cycle();
 
 (() => {
-  const sec = document.getElementById('honors'), cv = sec.querySelector('canvas'), cx = cv.getContext('2d');
-  const honorsList = sec.querySelector('ul'), phoneHonors = matchMedia('(max-width: 700px)');
+  const sec = document.getElementById('honors'), honorsList = sec.querySelector('ul');
+  const phoneHonors = matchMedia('(max-width: 700px)');
   const setHonorsFocus = () => {
     if (phoneHonors.matches) honorsList.tabIndex = 0; else honorsList.removeAttribute('tabindex');
     honorsList.setAttribute('aria-label', phoneHonors.matches ? 'Honors, scroll horizontally to see all eight' : 'Honors');
   };
   phoneHonors.addEventListener('change', setHonorsFocus); setHonorsFocus();
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let w = 0, h = 0, dpr = 1, on = false, raf = 0, last = 0, next = 0, sparks = [], rockets = [];
-  const size = () => { dpr = Math.min(devicePixelRatio || 1, 2); w = sec.clientWidth; h = sec.clientHeight;
-    cv.width = w * dpr; cv.height = h * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0); };
-  // Each shell rises on an eased arc to a set height, so it always arrives and bursts; every trail is
-  // redrawn from its own recent points on a cleared canvas, so nothing is left behind on the page.
-  const TINTS = ['242,241,237', '255,214,170', '255,236,200'];
-  const launch = () => { const x = w * (.1 + Math.random() * .8);
-    rockets.push({ x0: x, x1: x + (Math.random() - .5) * w * .08, y0: h + 10, y1: h * (.1 + Math.random() * .32), t: 0, dur: .9 + Math.random() * .5, trail: [] }); };
-  // Shaped shells: points on an outline in unit space; each spark flies at its point times the speed,
-  // so the whole shape opens out from the burst and holds its form while it fades.
-  const along = (pts, n, closed = true) => {
-    const segs = []; let total = 0;
-    for (let i = 0; i < pts.length - (closed ? 0 : 1); i++) { const a = pts[i], b = pts[(i + 1) % pts.length], l = Math.hypot(b[0] - a[0], b[1] - a[1]); segs.push([a, b, l]); total += l; }
-    const out = [];
-    for (let k = 0; k < n; k++) { let d = k / n * total;
-      for (const [a, b, l] of segs) { if (d <= l) { out.push([a[0] + (b[0] - a[0]) * d / l, a[1] + (b[1] - a[1]) * d / l]); break; } d -= l; } }
-    return out;
-  };
-  const arc = (cx0, cy0, r, a0, a1, n, ry = r, tilt = 0) => Array.from({ length: n }, (_, i) => {
-    const a = a0 + (a1 - a0) * i / (n - (a1 - a0 >= Math.PI * 2 ? 0 : 1)), x = Math.cos(a) * r, y = Math.sin(a) * ry;
-    return [cx0 + x * Math.cos(tilt) - y * Math.sin(tilt), cy0 + x * Math.sin(tilt) + y * Math.cos(tilt)]; });
-  const SHAPES = {
-    star: () => along(Array.from({ length: 10 }, (_, i) => { const a = -Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? .42 : 1; return [Math.cos(a) * r, Math.sin(a) * r]; }), 80),
-    smile: () => [...arc(0, 0, 1, 0, Math.PI * 2, 54), ...arc(-.36, -.3, .09, 0, Math.PI * 2, 7), ...arc(.36, -.3, .09, 0, Math.PI * 2, 7), ...arc(0, .05, .55, .2 * Math.PI, .8 * Math.PI, 18)],
-    orbit: () => [...arc(0, 0, .42, 0, Math.PI * 2, 30), ...arc(0, 0, 1.15, 0, Math.PI * 2, 56, .32, -.32)],
-  };
-  const burst = (x, y) => {
-    const tint0 = TINTS[Math.random() * TINTS.length | 0];
-    if (Math.random() < .45) {
-      const names = Object.keys(SHAPES), pts = SHAPES[names[Math.random() * names.length | 0]](), sp = 120 + Math.random() * 50;
-      for (const [px, py] of pts) sparks.push({ x, y, vx: px * sp, vy: py * sp, life: 1, fade: .42 + Math.random() * .12, tint: tint0, trail: [], tw: Math.random() * 6, shape: true });
-      flash = { x, y, a: .5 }; return;
-    }
-    const n = 60 + (Math.random() * 40 | 0), sp = 150 + Math.random() * 140, tint = tint0, ring = Math.random() < .4;
-    for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2 + Math.random() * .06, v = sp * (ring ? .92 + Math.random() * .08 : .35 + Math.random() * .65);
-      sparks.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 1, fade: .5 + Math.random() * .4, tint, trail: [], tw: Math.random() * 6 }); }
-    flash = { x, y, a: .5 };
-  };
-  let flash = null;
-  const line = (pts, rgb, a, width) => { cx.strokeStyle = `rgb(${rgb})`; const n = pts.length;
-    for (let i = 1; i < n; i++) { cx.globalAlpha = a * i / n; cx.lineWidth = width * i / n;
-      cx.beginPath(); cx.moveTo(pts[i - 1][0], pts[i - 1][1]); cx.lineTo(pts[i][0], pts[i][1]); cx.stroke(); }
-    cx.globalAlpha = 1; };
-  const frame = now => {
-    const dt = Math.min((now - (last || now)) / 1000, .05); last = now;
-    if (document.documentElement.classList.contains('still')) on = false;
-    cx.clearRect(0, 0, w, h); cx.globalCompositeOperation = 'lighter'; cx.lineCap = 'round';
-    if (flash) { const g = cx.createRadialGradient(flash.x, flash.y, 0, flash.x, flash.y, 220);
-      g.addColorStop(0, `rgba(255,230,200,${flash.a * .35})`); g.addColorStop(1, 'rgba(255,230,200,0)');
-      cx.fillStyle = g; cx.fillRect(flash.x - 220, flash.y - 220, 440, 440); flash.a -= dt * 1.6; if (flash.a <= 0) flash = null; }
-    if (now > next) { launch(); if (Math.random() < .3) launch(); next = now + 900 + Math.random() * 1400; }
-    rockets = rockets.filter(r => { r.t = Math.min(r.t + dt / r.dur, 1); const e = 1 - Math.pow(1 - r.t, 3);
-      const x = r.x0 + (r.x1 - r.x0) * e, y = r.y0 + (r.y1 - r.y0) * e;
-      r.trail.push([x, y]); if (r.trail.length > 14) r.trail.shift();
-      line(r.trail, '242,241,237', .8, 2);
-      if (r.t >= 1) { burst(x, y); return false; } return true; });
-    sparks = sparks.filter(s => { s.vx *= .97; s.vy = s.vy * .97 + (s.shape ? 16 : 70) * dt;
-      s.x += s.vx * dt; s.y += s.vy * dt; s.life -= s.fade * dt;
-      if (s.life <= 0) return false;
-      s.trail.push([s.x, s.y]); if (s.trail.length > 9) s.trail.shift();
-      const twinkle = s.life < .45 ? .5 + .5 * Math.sin(now / 40 + s.tw) : 1;
-      line(s.trail, s.tint, s.life * twinkle, 2.2 * s.life + .4); return true; });
-    if (!on) { cx.clearRect(0, 0, w, h); rockets = []; sparks = []; flash = null; }
-    raf = on ? requestAnimationFrame(frame) : 0;
-  };
-  new ResizeObserver(size).observe(sec); size();
-  new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) sec.classList.add('in');
-    on = e.isIntersecting && !still && !document.documentElement.classList.contains('still');
-    if (on && !raf) { last = 0; next = 0; raf = requestAnimationFrame(frame); }
-  }, { threshold: .2 }).observe(sec);
+  const reveal = new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) { sec.classList.add('in'); reveal.unobserve(sec); }
+  }, { threshold: .2 });
+  reveal.observe(sec);
   if (location.search.includes('all')) sec.classList.add('in');
 })();
 </script>

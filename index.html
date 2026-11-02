@@ -331,10 +331,7 @@
   @media (max-width: 560px) { .honors ul { grid-template-columns: 1fr; } .honors li:nth-child(n)::before { display: block; } .honors li:first-child::before { display: none; }
     .honors li + li::before { left: 22%; right: 22%; top: 0; bottom: auto; width: auto; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(242,241,237,.28), transparent); } }
-  /* The hero's studio light continues under contact and along each role's stage as it arrives. */
-  .contact > div::before { content: ''; position: absolute; left: -40%; right: -40%; top: 55%; height: 90%;
-    pointer-events: none; background: radial-gradient(closest-side, rgba(242,241,237,.06), transparent); z-index: -1; }
-  .contact > div, .billion { position: relative; isolation: isolate; }
+  /* The hero's studio light continues along each role's stage as it arrives. */
   .hero-stage::before { content: ''; position: absolute; top: 0; left: 8%; width: 22%; height: 1px; z-index: 3; pointer-events: none; opacity: 0;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent); box-shadow: 0 0 12px rgba(255,255,255,.5); }
   .in .hero-stage::before { animation: edgelight 2.4s var(--ease) .6s 1 both; }

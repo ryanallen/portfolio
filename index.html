@@ -233,6 +233,12 @@
   .ui .row { display: flex; gap: 6%; align-items: center; }
   .ui .dot { width: 16px; height: 16px; border-radius: 50%; background: #2a2a2c; flex: none; }
   .ui .dot.w { background: var(--ink); }
+  .audio-wave { position: relative; height: 28px; }
+  .audio-bars { position: absolute; inset: 0; display: flex; gap: 3px; align-items: center; }
+  .audio-bars span { flex: 1; height: var(--h); border-radius: 2px; background: #343437; }
+  .audio-bars.played { clip-path: inset(0 100% 0 0); animation: audio-progress 5.2s linear infinite; }
+  .audio-bars.played span { background: #e9e8e2; }
+  @keyframes audio-progress { 0%, 6% { clip-path: inset(0 100% 0 0); } 82%, 94% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 100% 0 0); } }
   .shimmer { position: relative; overflow: hidden; }
   .shimmer::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
     transform: translateX(-100%); animation: sweep 2.4s var(--ease) infinite; }
@@ -897,12 +903,13 @@ const TIPS = {
 
 // Drawn interfaces: the shape of a feature, in a few bars and blocks.
 const bars = (n, w = [70, 92, 55, 84, 63]) => Array.from({ length: n }, (_, i) => `<i style="width:${w[i % w.length]}%"></i>`).join('');
+const audioBars = () => Array.from({ length: 22 }, (_, i) => `<span style="--h:${20 + ((i * 37) % 80)}%"></span>`).join('');
 const UI = {
   search: `<i class="w" style="width:60%;height:9px"></i><div class="card" style="height:34px"></div>${Array.from({ length: 4 }, () => `<div class="row"><div class="dot"></div><i style="width:60%"></i></div>`).join('')}`,
   checks: `<i class="w" style="width:34%;height:8px"></i>${Array.from({ length: 5 }, (_, i) => `<div class="row"><div style="width:14px;height:14px;border-radius:4px;flex:none;${i < 4 ? 'background:#e9e8e2' : 'box-shadow:inset 0 0 0 1px rgba(242,241,237,.5)'}" class="${i < 4 ? '' : 'shimmer'}"></div><i style="width:${[62, 48, 70, 55, 40][i]}%"></i></div>`).join('')}`,
   week: `<i class="w" style="width:30%;height:8px"></i><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">${Array.from({ length: 7 }, (_, i) => `<div style="display:grid;gap:5px"><i style="width:60%;height:4px"></i>${Array.from({ length: [2, 3, 1, 2, 4, 1, 0][i] }, (_, j) => `<div class="card" style="height:14px;border-radius:4px;${i === 2 && j === 0 ? 'background:#e9e8e2' : ''}"></div>`).join('')}</div>`).join('')}</div>`,
   flashcards: `<div style="position:absolute;inset:20% 12% 14%">${[3, 2, 1, 0].map(k => `<div class="card" style="position:absolute;inset:${k * 4}% ${8 - k * 2}% ${12 - k * 4}% ${8 - k * 2}%;transform:rotate(${(k - 1.5) * 3}deg);${k === 0 ? 'background:#e9e8e2' : ''}"></div>`).join('')}</div>`,
-  audio: `<div style="height:18%"></div><div class="card" style="aspect-ratio:1;width:62%;justify-self:center"></div><div class="row" style="gap:3px;height:28px;align-items:center">${Array.from({ length: 22 }, (_, i) => `<div style="flex:1;height:${20 + ((i * 37) % 80)}%;border-radius:2px;background:${i < 9 ? '#e9e8e2' : '#2a2a2c'}"></div>`).join('')}</div>`,
+  audio: `<div style="height:18%"></div><div class="card" style="aspect-ratio:1;width:62%;justify-self:center"></div><div class="audio-wave"><div class="audio-bars">${audioBars()}</div><div class="audio-bars played">${audioBars()}</div></div>`,
   path: `<div class="row" style="margin-top:16%;justify-content:space-between;position:relative"><div style="position:absolute;left:4%;right:4%;top:50%;height:2px;background:#2a2a2c"></div>${Array.from({ length: 6 }, (_, i) => `<div class="dot ${i < 3 ? 'w' : ''}" style="position:relative;width:${i === 5 ? 22 : 14}px;height:${i === 5 ? 22 : 14}px"></div>`).join('')}</div>${bars(2, [50, 34])}`,
   rail: `<div style="display:grid;grid-template-columns:22px 1fr;gap:10px;height:100%"><div style="display:grid;gap:8px;align-content:start">${Array.from({ length: 6 }, (_, i) => `<div class="card" style="aspect-ratio:1;border-radius:7px;${i === 1 ? 'background:#e9e8e2' : ''}"></div>`).join('')}</div><div style="display:grid;gap:8px;align-content:start">${bars(6)}</div></div>`,
   avatars: `<div style="height:22%"></div><div class="row" style="justify-content:center">${Array.from({ length: 4 }, (_, i) => `<div class="dot ${i === 0 ? 'w' : ''}" style="width:28px;height:28px;margin-left:${i ? -8 : 0}px;box-shadow:0 0 0 3px #0e0e0f"></div>`).join('')}</div>${bars(2, [70, 46])}<div class="card" style="height:26px;border-radius:999px;background:#e9e8e2;width:60%;justify-self:center"></div>`,
@@ -928,7 +935,7 @@ const UI = {
   console: `<div class="row"><div class="dot w" style="width:8px;height:8px"></div><div class="dot" style="width:8px;height:8px"></div><div class="dot" style="width:8px;height:8px"></div></div>${bars(7, [40, 72, 58, 88, 34, 66, 50])}<i class="w shimmer" style="width:22%"></i>`,
   release: `<i class="w" style="width:42%;height:8px"></i><div class="row" style="justify-content:space-between;gap:6px;margin-top:8%">${Array.from({ length: 4 }, (_, i) => `<div class="card" style="width:19%;aspect-ratio:1;display:grid;place-items:center;${i === 3 ? 'background:#e9e8e2' : ''}"><div class="dot" style="width:10px;height:10px;${i === 3 ? 'background:#1a1a1c' : ''}"></div></div>`).join('')}</div><div class="card" style="height:2px;margin-top:-4%"></div>${bars(3, [76, 58, 86])}`,
   devtools: `<div class="row" style="gap:5px"><div class="dot w" style="width:7px;height:7px"></div><div class="dot" style="width:7px;height:7px"></div><div class="dot" style="width:7px;height:7px"></div></div><div class="card" style="padding:10px;display:grid;gap:8px"><i class="w" style="width:34%"></i>${bars(4, [82, 60, 74, 48])}<div class="row" style="gap:8px"><div class="dot w" style="width:9px;height:9px"></div><i class="w" style="width:42%"></i></div></div>`,
-  planner: `<i class="w" style="width:38%;height:8px"></i><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">${Array.from({ length: 21 }, (_, i) => `<div class="card" style="aspect-ratio:1;${[3, 9, 10, 16].includes(i) ? 'background:#e9e8e2' : ''}"></div>`).join('')}</div>`,
+  planner: `<i class="w" style="width:38%;height:8px"></i><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">${Array.from({ length: 21 }, (_, i) => `<div class="card ${[3, 9, 10, 16].includes(i) ? 'event' : ''}" style="aspect-ratio:1;${[3, 9, 10, 16].includes(i) ? 'background:#e9e8e2' : ''}"></div>`).join('')}</div>`,
   cards: `<i class="w" style="width:44%;height:8px"></i><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${Array.from({ length: 6 }, (_, i) => `<div class="card" style="aspect-ratio:3/4;${i === 1 ? 'box-shadow:inset 0 0 0 1px rgba(242,241,237,.6)' : ''}"></div>`).join('')}</div>`,
   doc: `<i class="w" style="width:52%;height:10px"></i>${bars(9, [96, 88, 92, 60, 94, 84, 90, 72, 40])}`,
   editor: `<i class="w" style="width:40%;height:10px"></i>${bars(5)}<div class="row"><i style="width:30%"></i><i class="w" style="width:2px;height:14px;border-radius:1px;animation:sweep 1s steps(2) infinite"></i></div>`,
@@ -939,7 +946,7 @@ const UI = {
   care: `<i class="w" style="width:50%;height:9px"></i>${Array.from({ length: 4 }, (_, i) => `<div class="card" style="height:46px;${i === 0 ? 'background:#e9e8e2' : ''}"></div>`).join('')}`,
   puck: `<div style="position:absolute;inset:22%;border-radius:50%;background:radial-gradient(circle at 40% 35%, #3a3a3d, #121213);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)"><div style="position:absolute;left:50%;top:50%;width:26%;height:2px;margin-left:-13%;background:var(--ink);box-shadow:0 0 12px rgba(242,241,237,.8)"></div></div>`,
   notes: `<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">${Array.from({ length: 8 }, (_, i) => `<div class="card" style="aspect-ratio:1;transform:rotate(${[-3, 2, -1, 3, 1, -2, 2, -3][i]}deg);${i === 2 || i === 5 ? 'background:#e9e8e2' : ''}"></div>`).join('')}</div>`,
-  quiz: `<i class="w" style="width:66%;height:9px"></i>${Array.from({ length: 4 }, (_, i) => `<div class="card row" style="height:30px;padding:0 10px;${i === 1 ? 'box-shadow:inset 0 0 0 1px rgba(242,241,237,.7)' : ''}"><div class="dot ${i === 1 ? 'w' : ''}" style="width:10px;height:10px"></div><i style="width:50%"></i></div>`).join('')}`,
+  quiz: `<i class="w" style="width:66%;height:9px"></i>${Array.from({ length: 4 }, (_, i) => `<div class="card row ${i === 1 ? 'answer' : ''}" style="height:30px;padding:0 10px;${i === 1 ? 'box-shadow:inset 0 0 0 1px rgba(242,241,237,.7)' : ''}"><div class="dot ${i === 1 ? 'w' : ''}" style="width:10px;height:10px"></div><i style="width:50%"></i></div>`).join('')}`,
   steps: `<div style="height:42%"></div><i class="w" style="width:64%;height:9px;justify-self:center"></i>${bars(2, [80, 56])}<div class="row" style="justify-content:center;gap:8px;margin-top:10%">${[1, 0, 0, 0].map(w => `<div class="dot ${w ? 'w' : ''}" style="width:7px;height:7px"></div>`).join('')}</div>`,
   kit: `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">${['height:22px;border-radius:999px;background:#e9e8e2', 'height:22px;border-radius:999px', 'height:22px;border-radius:6px', 'aspect-ratio:1', 'aspect-ratio:1;border-radius:50%', 'aspect-ratio:1', 'height:10px', 'height:10px;background:#e9e8e2', 'height:10px'].map(s => `<div class="card" style="${s}"></div>`).join('')}</div>`,
 };
@@ -1159,73 +1166,42 @@ document.querySelectorAll('.tile, .hero-stage, .lane').forEach(el => onScreen.ob
 {
   const touch = matchMedia('(max-width: 700px)');
   const visible = new Set();
-  const groups = {
-    camera: new Set(['image', 'video']),
-    cascade: new Set(['gpt', 'gsearch', 'cards', 'rail', 'sidebar', 'steps', 'onboard', 'research', 'planner', 'kit', 'table', 'columns', 'flashcards', 'quiz', 'release', 'doc', 'checks', 'roadmap']),
-    compose: new Set(['browser', 'chat', 'console', 'devtools', 'editor']),
-    orbit: new Set(['graph', 'path', 'puck', 'meter']),
-    burst: new Set(['audio', 'brand', 'avatars', 'confetti', 'hack', 'appcycle']),
+  // Each interface moves the part that explains its purpose. Only the active box runs.
+  const effects = {
+    rise: [{ transform: 'translateY(8px)', opacity: .55 }, { transform: 'translateY(0)', opacity: 1, offset: .32 }, { transform: 'translateY(0)', opacity: 1, offset: .78 }, { transform: 'translateY(8px)', opacity: .55 }],
+    slide: [{ transform: 'translateX(-7px)', opacity: .6 }, { transform: 'translateX(3px)', opacity: 1, offset: .4 }, { transform: 'translateX(-7px)', opacity: .6 }],
+    fill: [{ transform: 'scaleX(.18)', opacity: .55 }, { transform: 'scaleX(1)', opacity: 1, offset: .72 }, { transform: 'scaleX(.18)', opacity: .55 }],
+    pop: [{ transform: 'scale(.82)', opacity: .45 }, { transform: 'scale(1.08)', opacity: 1, offset: .36 }, { transform: 'scale(1)', opacity: 1, offset: .76 }, { transform: 'scale(.82)', opacity: .45 }],
+    flip: [{ transform: 'perspective(360px) rotateY(0)' }, { transform: 'perspective(360px) rotateY(-24deg) translateY(-7px)', offset: .3 }, { transform: 'perspective(360px) rotateY(0)', offset: .65 }, { transform: 'perspective(360px) rotateY(0)' }],
+    float: [{ transform: 'translateY(0) rotate(0)' }, { transform: 'translateY(-7px) rotate(3deg)', offset: .48 }, { transform: 'translateY(0) rotate(0)' }],
+    camera: [{ transform: 'scale(1.02) translate(-.5%, .5%)' }, { transform: 'scale(1.075) translate(1%, -1%)', offset: .5 }, { transform: 'scale(1.02) translate(-.5%, .5%)' }],
+    pulse: [{ opacity: .45 }, { opacity: 1, offset: .4 }, { opacity: .45 }],
+    select: [{ transform: 'scale(.96)', opacity: .55 }, { transform: 'scale(1.04)', opacity: 1, offset: .28 }, { transform: 'scale(1)', opacity: 1, offset: .76 }, { transform: 'scale(.96)', opacity: .55 }],
+    type: [{ transform: 'scaleX(.05)', opacity: .5 }, { transform: 'scaleX(1)', opacity: 1, offset: .5 }, { transform: 'scaleX(1)', opacity: 1, offset: .84 }, { transform: 'scaleX(.05)', opacity: .5 }],
+    turn: [{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }],
   };
-  const frames = {
-    camera: [
-      { transform: 'translate3d(-1%, 1%, 0) scale(1.035)', offset: 0 },
-      { transform: 'translate3d(2%, -2%, 0) scale(1.12)', offset: .38 },
-      { transform: 'translate3d(-2%, -1%, 0) scale(1.08)', offset: .72 },
-      { transform: 'translate3d(-1%, 1%, 0) scale(1.035)', offset: 1 },
-    ],
-    cascade: [
-      { transform: 'none', opacity: 1, offset: 0 },
-      { transform: 'translate3d(-8px, 9px, 0) scale(.94)', opacity: .65, offset: .18 },
-      { transform: 'translate3d(5px, -10px, 0) scale(1.07)', opacity: 1, offset: .42 },
-      { transform: 'translate3d(2px, 2px, 0) scale(.99)', opacity: .9, offset: .68 },
-      { transform: 'none', opacity: 1, offset: 1 },
-    ],
-    compose: [
-      { transform: 'none', opacity: 1, offset: 0 },
-      { transform: 'translate3d(-10px, 0, 0) scaleX(.88)', opacity: .55, offset: .16 },
-      { transform: 'translate3d(5px, -4px, 0) scaleX(1.08)', opacity: 1, offset: .38 },
-      { transform: 'translate3d(0, 3px, 0)', opacity: .8, offset: .7 },
-      { transform: 'none', opacity: 1, offset: 1 },
-    ],
-    orbit: [
-      { transform: 'none', offset: 0 },
-      { transform: 'translate3d(8px, -7px, 0) rotate(5deg) scale(1.06)', offset: .3 },
-      { transform: 'translate3d(-7px, 5px, 0) rotate(-4deg) scale(.96)', offset: .65 },
-      { transform: 'none', offset: 1 },
-    ],
-    burst: [
-      { transform: 'none', offset: 0 },
-      { transform: 'translate3d(0, -8px, 0) rotate(-4deg) scale(1.16)', offset: .25 },
-      { transform: 'translate3d(5px, 3px, 0) rotate(4deg) scale(.94)', offset: .55 },
-      { transform: 'translate3d(-2px, -3px, 0) scale(1.06)', offset: .78 },
-      { transform: 'none', offset: 1 },
-    ],
-    art: [
-      { transform: 'translateY(-7px) scale(1.035) rotate(2deg)', offset: 0 },
-      { transform: 'translate3d(8px, -16px, 0) scale(1.1) rotate(6deg)', offset: .36 },
-      { transform: 'translate3d(-6px, 2px, 0) scale(1.01) rotate(-3deg)', offset: .7 },
-      { transform: 'translateY(-7px) scale(1.035) rotate(2deg)', offset: 1 },
-    ],
-    mark: [
-      { transform: 'none', offset: 0 },
-      { transform: 'rotate(14deg) scale(1.12)', offset: .35 },
-      { transform: 'rotate(-10deg) scale(.97)', offset: .7 },
-      { transform: 'none', offset: 1 },
-    ],
-    figure: [
-      { transform: 'translateZ(40px) scale(1)', offset: 0 },
-      { transform: 'translate3d(0, -8px, 40px) scale(1.14)', offset: .4 },
-      { transform: 'translate3d(0, 3px, 40px) scale(.98)', offset: .7 },
-      { transform: 'translateZ(40px) scale(1)', offset: 1 },
-    ],
-  };
-  const selectors = {
-    brand: '.ui > div:first-child > div',
-    graph: '.ui svg',
-    puck: '.ui > div > div',
-    flashcards: '.ui .card',
-    confetti: '.ui .added',
-    appcycle: '.ui .app .card',
+  const plans = {
+    image: ['.glass > img', 'camera'], video: ['.glass > video', 'camera'],
+    art: ['.art img', 'float'], mark: ['.mark', 'float'], figure: ['.number', 'pop'],
+    search: ['.ui > .card', 'type'], checks: ['.ui .row > div:first-child', 'select'],
+    week: ['.ui .card', 'pop'], flashcards: ['.ui .card', 'flip'],
+    audio: ['.ui > .card', 'pulse'], path: ['.ui .dot.w', 'select'],
+    rail: ['.ui .card', 'slide'], avatars: ['.ui .row .dot', 'pop'],
+    sidebar: ['.ui > div > .card', 'slide'], browser: ['.ui > .card', 'rise'],
+    brand: ['.ui > div:first-child > div', 'pop'], research: ['.ui .card', 'flip'],
+    roadmap: ['.ui .row .card', 'fill'], appcycle: ['.ui .app .card', 'pop'],
+    gpt: ['.ui > .card', 'rise'], gsearch: ['.ui > .card', 'type'],
+    skeleton: ['.ui .shimmer', 'pulse'], console: ['.ui > i', 'fill'],
+    release: ['.ui .row .card', 'pop'], devtools: ['.ui > .card', 'rise'],
+    planner: ['.ui .event', 'select'], cards: ['.ui .card', 'flip'],
+    doc: ['.ui > i', 'type'], editor: ['.ui > i', 'type'],
+    table: ['.ui .card:nth-child(n+5):nth-child(-n+7)', 'select'], meter: ['.ui > div > div', 'turn'],
+    chat: ['.ui > .card', 'rise'], puck: ['.ui > div > div', 'pulse'],
+    notes: ['.ui .card', 'flip'], quiz: ['.ui .answer', 'select'],
+    steps: ['.ui .dot', 'pop'], kit: ['.ui .card', 'pop'],
+    graph: ['.ui svg circle', 'pop'], columns: ['.ui .card', 'slide'],
+    hack: ['.ui .card', 'pop'], onboard: ['.ui > div:nth-child(3)', 'rise'],
+    confetti: ['.ui .added', 'pop'],
   };
   let active = null, running = [], queued = false;
   const setActive = tile => {
@@ -1239,15 +1215,15 @@ document.querySelectorAll('.tile, .hero-stage, .lane').forEach(el => onScreen.ob
     active = tile;
     if (!tile || reducedMotion.matches) return;
     tile.classList.add('motion-on');
-    const kind = tile.dataset.motion;
-    const preset = Object.keys(groups).find(key => groups[key].has(kind)) || (frames[kind] ? kind : 'cascade');
-    const selector = selectors[kind] || (kind === 'image' || kind === 'video' ? '.glass > img, .glass > video'
-      : kind === 'art' ? '.art img' : kind === 'figure' ? '.number' : kind === 'mark' ? '.mark'
-      : '.ui .card, .ui > i, .ui svg');
+    const [selector, effect] = plans[tile.dataset.motion] || ['.ui > .card', 'rise'];
     const targets = [...tile.querySelectorAll(selector)].slice(0, document.documentElement.classList.contains('lite') ? 1 : 3);
-    running = targets.map((el, i) => el.animate(frames[preset], {
-      duration: (preset === 'camera' ? 5200 : 3600) + i * 180, delay: i * 130, iterations: Infinity, easing: 'ease-in-out',
-    }));
+    running = targets.map((el, i) => {
+      if (effect === 'fill' || effect === 'type') el.style.transformOrigin = 'left center';
+      return el.animate(effects[effect], {
+        duration: (effect === 'camera' || effect === 'turn' ? 6000 : 3200) + i * 240,
+        delay: i * 180, iterations: Infinity, easing: effect === 'turn' ? 'linear' : 'ease-in-out',
+      });
+    });
     tile.querySelectorAll('video').forEach(v => { loadVideo(v); if (v.hasAttribute('src')) v.play().catch(() => {}); });
   };
   const chooseTouchTile = () => {

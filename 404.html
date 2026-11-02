@@ -35,6 +35,12 @@
   .on .code { opacity: 1; letter-spacing: .55em; padding-left: .55em; filter: blur(0); }
   .on .note { opacity: 1; transform: none; }
   .on .home { opacity: 1; }
+  @media (max-height: 500px) {
+    body { padding-block: 16px; }
+    #logo { width: min(80vw, 900px, 85svh); }
+    .note { margin-top: 20px; }
+    .home { margin-top: 22px; }
+  }
 </style>
 </head>
 <body>

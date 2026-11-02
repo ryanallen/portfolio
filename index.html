@@ -861,25 +861,32 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 document.addEventListener('portfolio-still', () => document.querySelectorAll('video').forEach(v => v.pause()));
 const seen = new IntersectionObserver(entries => {
   for (const e of entries) {
-    if (!e.isIntersecting) {
-      e.target.querySelectorAll('video').forEach(v => v.pause());
-      continue;
-    }
+    if (!e.isIntersecting) continue;
     e.target.classList.add('in');
-    if (!e.target.querySelector('video')) seen.unobserve(e.target);
-    e.target.querySelectorAll('video').forEach(v => {
-      if (!v.src) {
-        if (reducedMotion.matches) {
-          v.preload = 'metadata';
-          v.addEventListener('loadedmetadata', () => { v.currentTime = .01; }, { once: true });
-        }
-        v.src = v.dataset.src;
-      }
-      if (!reducedMotion.matches && !document.documentElement.classList.contains('still')) v.play().catch(() => {});
-    });
+    seen.unobserve(e.target);
   }
 }, { threshold: 0.18 });
 document.querySelectorAll('.role, .tile, .contact, .fun').forEach(el => seen.observe(el));
+const loadVideo = v => {
+  if (v.hasAttribute('src')) return;
+  if (reducedMotion.matches) {
+    v.preload = 'metadata';
+    v.addEventListener('loadedmetadata', () => { v.currentTime = .01; }, { once: true });
+  }
+  v.src = v.dataset.src;
+};
+const videoNear = new IntersectionObserver(entries => {
+  for (const e of entries) if (e.isIntersecting) { loadVideo(e.target); videoNear.unobserve(e.target); }
+}, { rootMargin: '300px 0px' });
+const videoOnScreen = new IntersectionObserver(entries => {
+  for (const e of entries) {
+    const v = e.target;
+    if (!e.isIntersecting) { v.pause(); continue; }
+    loadVideo(v);
+    if (!reducedMotion.matches && !document.documentElement.classList.contains('still')) v.play().catch(() => {});
+  }
+}, { threshold: 0.01 });
+document.querySelectorAll('video').forEach(v => { videoNear.observe(v); videoOnScreen.observe(v); });
 const onScreen = new IntersectionObserver(entries => { for (const e of entries) e.target.classList.toggle('off', !e.isIntersecting); },
   { rootMargin: '200px 0px' });
 document.querySelectorAll('.tile, .hero-stage, .lane').forEach(el => onScreen.observe(el));

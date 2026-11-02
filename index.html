@@ -408,6 +408,28 @@
 </style>
 </head>
 <body>
+<noscript>
+  <style>
+    body > .nav, body > main:not(.nojs) { display: none; }
+    .nojs { min-height: 100svh; padding: clamp(32px, 6vw, 80px); display: grid; align-content: center;
+      max-width: 1100px; margin: auto; }
+    .nojs h1 { margin: 0; font: 300 clamp(72px, 15vw, 176px)/.9 var(--sans); letter-spacing: -.05em; }
+    .nojs h1 span { display: block; }
+    .nojs .caps { color: var(--quiet); font-size: 11px; }
+    .nojs .intro { margin: 28px 0 0; max-width: 52ch; color: #cfcec8; font-size: clamp(16px, 2vw, 20px); }
+    .nojs .links { display: flex; flex-wrap: wrap; gap: 18px 32px; margin-top: 36px; }
+    .nojs .links a { border-bottom: 1px solid var(--quiet); padding-bottom: 4px; }
+    .nojs .links a:hover, .nojs .links a:focus-visible { color: var(--ink); border-color: var(--ink); }
+    .nojs .note { margin: 36px 0 0; }
+  </style>
+  <main class="nojs">
+    <p class="caps">Designer</p>
+    <h1><span>Ryan</span><span>Allen</span></h1>
+    <p class="intro">I’ve worked with GoDaddy on domain search and AI, Blackboard on Scholar, and teams at Lexus, Transamerica, Microsoft, BMW, Disney, and Google Ventures. I made Leaftext.</p>
+    <div class="links caps"><a href="mailto:hi@ryanallen.com">Email</a><a href="https://www.linkedin.com/in/ryanallencom/">LinkedIn</a></div>
+    <p class="note caps">Enable JavaScript to view the work here.</p>
+  </main>
+</noscript>
 <header class="nav caps" id="nav">
   <a href="#top">Ryan Allen</a>
   <nav><a href="#work">Work</a><a href="#words">Words</a><a href="#contact">Contact</a></nav>

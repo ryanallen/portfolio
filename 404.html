@@ -14,9 +14,9 @@
     --sans: Jost, "Helvetica Neue", Arial, sans-serif; }
   * { box-sizing: border-box; }
   body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: var(--ground); color: var(--ink);
-    font-family: var(--sans); padding: 40px 16px; overflow: hidden; }
+    font-family: var(--sans); padding: 40px 16px; }
   .lockup { position: relative; display: grid; justify-items: center; text-align: center; }
-  .lockup::before { content: ""; position: absolute; left: -30%; right: -30%; top: 50%; height: 90%; pointer-events: none;
+  .lockup::before { content: ""; position: absolute; inset: 50% 0 auto; height: 90%; pointer-events: none;
     background: radial-gradient(closest-side, rgba(242,241,237,.06), transparent); }
   #logo { width: min(80vw, 900px); height: auto; aspect-ratio: 560 / 260; display: block; }
   .bar { width: min(34vw, 380px); height: 1px; margin-top: 10px; transform: scaleX(0); opacity: 0;
@@ -26,9 +26,11 @@
     opacity: 0; filter: blur(4px); transition: opacity 900ms ease 200ms, letter-spacing 1200ms var(--ease) 200ms, filter 900ms ease 200ms; }
   .note { margin: 28px 0 0; max-width: 34ch; font: 300 clamp(18px, 2.2vw, 24px)/1.45 var(--sans); opacity: 0; transform: translateY(10px);
     transition: opacity 900ms ease 600ms, transform 1200ms var(--ease) 600ms; }
-  .home { display: inline-block; margin-top: 30px; font: 400 11px/1 var(--sans); letter-spacing: .32em; text-transform: uppercase;
+  .home { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 8px;
+    margin-top: 30px; font: 400 11px/1 var(--sans); letter-spacing: .32em; text-transform: uppercase;
     color: var(--quiet); text-decoration: none; opacity: 0; transition: opacity 900ms ease 1000ms, color 300ms ease; }
   .home:hover { color: var(--ink); }
+  .home:focus-visible { color: var(--ink); outline: 1px solid var(--ink); outline-offset: 4px; }
   .on .bar { transform: scaleX(1); opacity: 1; }
   .on .code { opacity: 1; letter-spacing: .55em; padding-left: .55em; filter: blur(0); }
   .on .note { opacity: 1; transform: none; }

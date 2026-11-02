@@ -1036,13 +1036,18 @@ function swashLight() {
   // Key light and tilt follow the pointer, one update per frame at most.
   if (fine) {
     let px = 0, py = 0, queued = false;
-    hero.addEventListener('pointermove', e => { px = e.clientX; py = e.clientY; if (queued) return; queued = true;
+    const active = () => !reducedMotion.matches && !document.documentElement.classList.contains('still');
+    const reset = () => { lockup.style.removeProperty('--tx'); lockup.style.removeProperty('--ty');
+      grad.setAttribute('cx', 280); grad.setAttribute('cy', 40); };
+    hero.addEventListener('pointermove', e => { if (!active()) return; px = e.clientX; py = e.clientY; if (queued) return; queued = true;
       requestAnimationFrame(() => { queued = false;
+        if (!active()) return;
         const m = svg.getScreenCTM(); if (m) { const p = new DOMPoint(px, py).matrixTransform(m.inverse()); grad.setAttribute('cx', p.x.toFixed(1)); grad.setAttribute('cy', p.y.toFixed(1)); }
-        if (!reducedMotion.matches) { const r = hero.getBoundingClientRect(), nx = (px - r.left) / r.width - .5, ny = (py - r.top) / r.height - .5;
-          lockup.style.setProperty('--ty', (nx * 6).toFixed(2) + 'deg'); lockup.style.setProperty('--tx', (-ny * 4).toFixed(2) + 'deg'); } }); });
-    hero.addEventListener('pointerleave', () => { lockup.style.setProperty('--tx', '0deg'); lockup.style.setProperty('--ty', '0deg');
-      grad.setAttribute('cx', 280); grad.setAttribute('cy', 40); });
+        const r = hero.getBoundingClientRect(), nx = (px - r.left) / r.width - .5, ny = (py - r.top) / r.height - .5;
+        lockup.style.setProperty('--ty', (nx * 6).toFixed(2) + 'deg'); lockup.style.setProperty('--tx', (-ny * 4).toFixed(2) + 'deg'); }); });
+    hero.addEventListener('pointerleave', reset);
+    reducedMotion.addEventListener('change', () => { if (reducedMotion.matches) reset(); });
+    document.addEventListener('portfolio-still', reset);
   }
   // Draw the contours once per size change. The canvas moves as one layer.
   const cv = hero.querySelector('.nagare'), cx = cv.getContext('2d');
@@ -1115,7 +1120,6 @@ function cycle() {
 const q = new URLSearchParams(location.search);
 if (q.get('t') === null) document.addEventListener('portfolio-still', settleLogo);
 reducedMotion.addEventListener('change', () => {
-  if (reducedMotion.matches) { lockup.style.removeProperty('--tx'); lockup.style.removeProperty('--ty'); }
   if (q.get('t') !== null) return;
   if (reducedMotion.matches) settleLogo();
   else if (!document.documentElement.classList.contains('still') && (!location.hash || location.hash === '#top')) whenSeen(cycle);

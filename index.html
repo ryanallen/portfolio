@@ -56,6 +56,11 @@
   @media (max-width: 700px) {
     .nav a { padding-block: 13px; margin-block: -13px; }
   }
+  @media (max-width: 360px) {
+    .nav { font-size: 10px; letter-spacing: .24em; }
+    .nav nav { gap: 10px; }
+    .nav a { white-space: nowrap; padding-block: 14px; margin-block: -14px; }
+  }
 
   /* Opening: the drawn name, the light bar, the title. */
   .hero { min-height: 100svh; display: grid; place-items: center; padding: 80px var(--gutter); }

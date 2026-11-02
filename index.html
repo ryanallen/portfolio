@@ -300,7 +300,7 @@
   .words.paused .lane, .words .lane:hover { animation-play-state: paused; }
   .tab-hidden .lane { will-change: auto; }
   @keyframes drift { to { transform: translateX(-50%); } }
-  .quote { width: min(78vw, 440px); flex: none; padding: 30px 30px 26px; border-radius: 22px;
+  .quote { width: min(78vw, 440px); flex: none; margin: 0; padding: 30px 30px 26px; border-radius: 22px;
     background: linear-gradient(160deg, #121213, #0a0a0a); box-shadow: inset 0 0 0 1px rgba(255,255,255,.05); }
   .quote p { margin: 0; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.45; color: #e2e1db; }
   .who { display: flex; gap: 12px; align-items: center; margin-top: 22px; }
@@ -387,8 +387,7 @@
     .aip-type { width: 62%; }
     .aip-card { opacity: 1; transform: none; }
     .aip-cart.first { background: #e9e8e2; }
-    .words .lane { width: 100%; overflow-x: auto; padding: 0 var(--gutter); scroll-snap-type: x proximity; transform: none; will-change: auto; }
-    .words .quote { scroll-snap-align: start; }
+    .words .lane { width: 100%; overflow-x: auto; padding: 0 var(--gutter); transform: none; will-change: auto; }
     .words .quote[aria-hidden="true"] { display: none; }
     .motion-toggle { display: none; }
   }

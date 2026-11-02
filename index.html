@@ -191,6 +191,15 @@
     .honors li::before { display: none !important; }
   }
   .tile .stat { position: absolute; left: 22px; bottom: 18px; z-index: 2; font-size: 12px; color: #c9c8c2; }
+  @media (max-width: 700px) {
+    .role .tiles > .tile { min-height: 290px; }
+    .role .tile:not(.has-stat) .stage { position: absolute; inset: 0; aspect-ratio: auto; }
+    .role .tile.has-stat { display: grid; grid-template-rows: auto auto 1fr; }
+    .role .tile.has-stat h3 { position: relative; left: auto; right: auto; top: auto; grid-row: 1; padding: 22px 22px 0; }
+    .role .tile.has-stat.has-logo h3 { padding-right: 126px; }
+    .role .tile.has-stat .stage { grid-row: 2; aspect-ratio: 16 / 9; }
+    .role .tile.has-stat .stat { position: static; grid-row: 3; padding: 0 22px 20px; align-self: end; }
+  }
 
   /* Drawn interfaces, for work with no screens to show: the shape of the
      feature, never its detail. */

@@ -983,8 +983,10 @@ function swashLight() {
   // Draw the contours once per size change. The canvas moves as one layer.
   const cv = hero.querySelector('.nagare'), cx = cv.getContext('2d');
   let w = 0, h = 0;
-  const size = () => { const d = Math.min(devicePixelRatio || 1, 2); w = hero.clientWidth; h = hero.clientHeight;
-    cv.width = w * d; cv.height = h * d; cx.setTransform(d, 0, 0, d, 0, 0); draw(); };
+  const size = () => { w = hero.clientWidth; h = hero.clientHeight;
+    const d = Math.min(devicePixelRatio || 1, 2, Math.sqrt(8e6 / (w * h)));
+    cv.width = Math.floor(w * d); cv.height = Math.floor(h * d);
+    cx.setTransform(cv.width / w, 0, 0, cv.height / h, 0, 0); draw(); };
   // Phoenix's contour lines (20 m apart, from elevation tiles: Camelback, Paradise Valley, the Phoenix Mountains, South Mountain).
   let topo = null;
   // Loaded as a script, not fetched, so it also draws when the page is opened straight from disk.

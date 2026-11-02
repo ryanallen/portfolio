@@ -992,6 +992,10 @@ function play(forward, done) {
   anim.render(forward ? 0 : anim.end);
   let t0 = null;
   const frame = now => {
+    if (!heroSeen) {
+      onSeen = () => { if (t0 !== null) t0 += performance.now() - now; raf = requestAnimationFrame(frame); };
+      return;
+    }
     if (t0 === null) t0 = now;
     const t = (now - t0) / 1000 * SPEED;
     anim.render(forward ? t : Math.max(0, anim.end - t));
@@ -1092,12 +1096,12 @@ function swashLight() {
   else watchMap();
 }
 let timer = 0, stopLight = null;
-// While the opening is scrolled out of view the name waits, drawn, instead of
-// cycling for no one; it picks up again the moment it comes back.
+// Outside the viewport, the name's drawing and light wait for its return.
 let heroSeen = true, onSeen = null;
-new IntersectionObserver(([e]) => { heroSeen = e.isIntersecting;
+new IntersectionObserver(([e]) => { heroSeen = e.isIntersecting && e.intersectionRatio > 0;
   document.querySelector('.nagare').classList.toggle('off', !heroSeen);
-  if (heroSeen && onSeen) { const f = onSeen; onSeen = null; f(); } })
+  if (!heroSeen && stopLight) { stopLight(); stopLight = null; }
+  if (heroSeen && onSeen) { const f = onSeen; onSeen = null; f(); } }, { threshold: .001 })
   .observe(document.getElementById('top'));
 const whenSeen = f => { if (heroSeen) f(); else onSeen = f; };
 function cycle() {

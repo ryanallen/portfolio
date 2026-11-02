@@ -153,8 +153,9 @@
   .in .device .glass::after { background-position: -60% 0; }
   .device img, .device video { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
   .theme-cycle { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1b1b1d; }
-  .theme-cycle img { position: absolute; inset: 0; opacity: 0; object-position: top center; transition: opacity 850ms ease; }
-  .theme-cycle img.visible { opacity: 1; }
+  .theme-cycle img { position: absolute; inset: 0; visibility: hidden; transform: translateX(100%); object-position: top center; transition: transform 700ms cubic-bezier(.22, 1, .36, 1); }
+  .theme-cycle img.visible { visibility: visible; transform: translateX(0); }
+  .theme-cycle img.leaving { visibility: visible; transform: translateX(-100%); }
   .device.screen { width: 84%; aspect-ratio: 16 / 10; --r: 12px; }
   .device.wide { width: 90%; aspect-ratio: 3 / 1; --r: 10px; }
   .device.tablet { width: 72%; aspect-ratio: 4 / 3; --r: 22px; }
@@ -1134,6 +1135,9 @@ document.querySelectorAll('.tile, .hero-stage, .lane').forEach(el => onScreen.ob
       if (visible && !document.hidden && !reducedMotion.matches) {
         incoming.classList.add('visible');
         frames[shown].classList.remove('visible');
+        frames[shown].classList.add('leaving');
+        await new Promise(resolve => setTimeout(resolve, 700));
+        frames[shown].classList.remove('leaving');
         shown = 1 - shown;
         index = next;
       }

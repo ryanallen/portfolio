@@ -246,6 +246,7 @@
   @keyframes apps { 0%, 20% { transform: translateY(0); } 25%, 45% { transform: translateY(-100%); } 50%, 70% { transform: translateY(-200%); }
     75%, 95% { transform: translateY(-300%); } 100% { transform: translateY(-400%); } }
   .off, .off *, .off *::before, .off *::after { animation-play-state: paused !important; }
+  .tab-hidden *, .tab-hidden *::before, .tab-hidden *::after { animation-play-state: paused !important; }
   .fun { padding: clamp(80px, 14vh, 160px) var(--gutter) clamp(20px, 6vh, 60px); }
   .fun .words-head { padding: 0 0 clamp(28px, 4vw, 48px); }
   a.tile-link { display: block; color: inherit; text-decoration: none; }
@@ -297,8 +298,8 @@
   .lane { display: flex; gap: 18px; width: max-content; margin-top: 22px; animation: drift var(--t, 120s) linear infinite; }
   .lane:not(.off) { will-change: transform; }
   .lane.back { animation-direction: reverse; }
-  .words.paused .lane, .words.tab-hidden .lane, .words .lane:hover { animation-play-state: paused; }
-  .words.tab-hidden .lane { will-change: auto; }
+  .words.paused .lane, .words .lane:hover { animation-play-state: paused; }
+  .tab-hidden .lane { will-change: auto; }
   @keyframes drift { to { transform: translateX(-50%); } }
   .quote { width: min(78vw, 440px); flex: none; padding: 30px 30px 26px; border-radius: 22px;
     background: linear-gradient(160deg, #121213, #0a0a0a); box-shadow: inset 0 0 0 1px rgba(255,255,255,.05); }
@@ -856,9 +857,9 @@ motionToggle.addEventListener('click', () => {
   motionToggle.textContent = paused ? 'Play' : 'Pause';
   motionToggle.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} recommendations`);
 });
-const syncWordsTab = () => words.classList.toggle('tab-hidden', document.hidden);
-document.addEventListener('visibilitychange', syncWordsTab);
-syncWordsTab();
+const syncTab = () => document.documentElement.classList.toggle('tab-hidden', document.hidden);
+document.addEventListener('visibilitychange', syncTab);
+syncTab();
 
 // ---- Frame guard -------------------------------------------------------
 // Two seconds in a row under 55 frames a second steps the page down: first to

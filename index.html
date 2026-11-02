@@ -174,7 +174,7 @@
     .tiles { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 0 calc(-1 * var(--gutter));
       padding: 0 var(--gutter) 6px; scroll-padding: 0 var(--gutter); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
     .tiles::-webkit-scrollbar { display: none; }
-    .tiles .tile { flex: 0 0 84%; scroll-snap-align: start; }
+    .tiles > .tile, .tiles > .tile-link { flex: 0 0 84%; scroll-snap-align: start; }
     .honors ul { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
       margin: 0 calc(-1 * var(--gutter)); padding: 0 var(--gutter); width: auto; }
     .honors ul::-webkit-scrollbar { display: none; }
@@ -322,7 +322,7 @@
     background: linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent); box-shadow: 0 0 12px rgba(255,255,255,.5); }
   .in .hero-stage::before { animation: edgelight 2.4s var(--ease) .6s 1 both; }
   @keyframes edgelight { 0% { opacity: 0; transform: translateX(0); } 15% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; transform: translateX(310%); } }
-  .contact { min-height: 70svh; display: grid; place-items: center; text-align: center; padding: 80px var(--gutter) 120px; }
+  .contact { min-height: 70svh; display: grid; place-items: center; text-align: center; padding: 80px var(--gutter) 120px; overflow-x: clip; }
   .contact a.mail { font: 300 clamp(28px, 5vw, 72px)/1 var(--sans); letter-spacing: .02em; }
   .contact .links a { display: inline-flex; align-items: center; gap: 10px; }
   .contact .links svg { width: 16px; height: 16px; fill: currentColor; }
@@ -335,6 +335,17 @@
     .role-head { grid-template-columns: 1fr; }
     .hero-stage { order: -1; }
   }
+  /* A browser drawing without the graphics card repaints every blurred shadow and filter near anything
+     that moves, every frame. When frames run slow the page swaps them for flat ones (lite), and if they
+     still run slow it holds the looping motion still (still). */
+  .lite .device .glass { box-shadow: inset 0 0 0 1px rgba(255,255,255,.07), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
+  .lite .device.phone .glass { box-shadow: inset 0 0 0 5px #161617, inset 0 0 0 6px rgba(255,255,255,.08), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
+  .lite .art img, .lite .mark { filter: none; }
+  .lite .aip-prompt, .lite .aip-card { box-shadow: none; }
+  .lite .aip-spark { text-shadow: none; }
+  .lite .aip-cart.first { animation-name: aip-add-flat; }
+  @keyframes aip-add-flat { 0%, 54% { background: #2a2a2c; } 57%, 88% { background: #e9e8e2; } 100% { background: #2a2a2c; } }
+  .still :is(.stage, .tile) :is(*, *::before, *::after) { animation-play-state: paused !important; }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
     .device { opacity: 1; transform: var(--pose, rotateX(14deg) rotateY(-24deg) rotateZ(3deg)); }
@@ -785,6 +796,26 @@ const half = Math.ceil(WORDS.length / 2);
 for (const [id, list] of [['laneA', WORDS.slice(0, half)], ['laneB', WORDS.slice(half)]]) {
   const html = list.map(card).join('');
   document.getElementById(id).innerHTML = html + html.replace(/<figure class="quote">/g, '<figure class="quote" aria-hidden="true">');
+}
+
+// ---- Frame guard -------------------------------------------------------
+// Two seconds in a row under 24 frames a second steps the page down: first to
+// flat shadows (lite), then to still loops (still). A tab coming back from the
+// background counts one slow second at most, so it never steps down alone.
+{
+  const html = document.documentElement, levels = ['lite', 'still'];
+  let level = 0, t0 = 0, frames = 0, bad = 0;
+  const step = now => {
+    if (!t0) t0 = now;
+    frames++;
+    if (now - t0 >= 1000) {
+      bad = frames * 1000 / (now - t0) < 24 ? bad + 1 : 0;
+      if (bad >= 2) { html.classList.add(levels[level++]); bad = 0; }
+      t0 = now; frames = 0;
+    }
+    if (level < levels.length) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
 }
 
 // ---- Arrival -----------------------------------------------------------

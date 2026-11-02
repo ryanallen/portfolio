@@ -43,15 +43,10 @@
 
   /* Top line: the name and three links, nothing else. */
   .nav { position: fixed; inset: 0 0 auto; z-index: 10; display: flex; justify-content: space-between; align-items: center;
-    padding: 22px var(--gutter); font-size: 11px; color: var(--quiet);
+    padding: 22px var(--gutter); font-size: 11px; color: var(--quiet); background: linear-gradient(var(--ground) 65%, transparent);
     opacity: 0; transition: opacity 900ms ease; }
   .nav.on { opacity: 1; }
   .nav nav { display: flex; gap: clamp(16px, 3vw, 36px); }
-  /* Each letter sits in its own pool of the ground colour, so the words keep
-     at least 6:1 contrast whatever passes under them. */
-  .nav a { filter: drop-shadow(1px 0 0 var(--ground)) drop-shadow(-1px 0 0 var(--ground)) drop-shadow(0 1px 0 var(--ground))
-    drop-shadow(0 -1px 0 var(--ground)) drop-shadow(1px 0 0 var(--ground)) drop-shadow(-1px 0 0 var(--ground))
-    drop-shadow(0 1px 0 var(--ground)) drop-shadow(0 -1px 0 var(--ground)) drop-shadow(0 0 4px var(--ground)); }
   .nav a:hover { color: var(--ink); }
   @media (max-width: 700px) {
     .nav a { padding-block: 13px; margin-block: -13px; }
@@ -111,7 +106,7 @@
   .role.in .role-copy > :nth-child(2) { transition-delay: 90ms; }
   .role.in .role-copy > :nth-child(3) { transition-delay: 180ms; }
   .role.in .role-copy > :nth-child(4) { transition-delay: 270ms; }
-  .highlights-label { margin: clamp(60px, 9vh, 110px) 0 22px; font-size: 10px; color: var(--dim); }
+  .highlights-label { margin: clamp(60px, 9vh, 110px) 0 22px; font-size: 10px; color: var(--quiet); }
   .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: clamp(12px, 1.4vw, 20px); }
 
   /* The stage every device sits on: dark, with one long light along the floor. */
@@ -817,7 +812,7 @@ for (const [id, list] of [['laneA', WORDS.slice(0, half)], ['laneB', WORDS.slice
 }
 
 // ---- Frame guard -------------------------------------------------------
-// Two seconds in a row under 24 frames a second steps the page down: first to
+// Two seconds in a row under 55 frames a second steps the page down: first to
 // flat shadows (lite), then to still loops (still). A tab coming back from the
 // background counts one slow second at most, so it never steps down alone.
 {
@@ -827,7 +822,7 @@ for (const [id, list] of [['laneA', WORDS.slice(0, half)], ['laneB', WORDS.slice
     if (!t0) t0 = now;
     frames++;
     if (now - t0 >= 1000) {
-      bad = frames * 1000 / (now - t0) < 24 ? bad + 1 : 0;
+      bad = frames * 1000 / (now - t0) < 55 ? bad + 1 : 0;
       if (bad >= 2) { html.classList.add(levels[level++]); bad = 0; }
       t0 = now; frames = 0;
     }

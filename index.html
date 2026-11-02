@@ -892,16 +892,24 @@ const loadVideo = v => {
   v.src = v.dataset.src;
 };
 const videoNear = new IntersectionObserver(entries => {
-  for (const e of entries) if (e.isIntersecting) { loadVideo(e.target); videoNear.unobserve(e.target); }
-}, { rootMargin: '300px 0px' });
+  for (const e of entries) {
+    if (!e.isIntersecting) continue;
+    const v = e.target;
+    if (e.intersectionRatio < .5) {
+      if (v.dataset.poster && !v.poster) v.poster = v.dataset.poster;
+      continue;
+    }
+    loadVideo(v); videoNear.unobserve(v);
+  }
+}, { rootMargin: '300px 0px', threshold: [0, .5] });
 const videoOnScreen = new IntersectionObserver(entries => {
   for (const e of entries) {
     const v = e.target;
-    if (!e.isIntersecting) { v.pause(); continue; }
+    if (!e.isIntersecting || e.intersectionRatio < .5) { v.pause(); continue; }
     loadVideo(v);
     if (!reducedMotion.matches && !document.documentElement.classList.contains('still')) v.play().catch(() => {});
   }
-}, { threshold: 0.01 });
+}, { threshold: .5 });
 document.querySelectorAll('video').forEach(v => { videoNear.observe(v); videoOnScreen.observe(v); });
 reducedMotion.addEventListener('change', () => {
   document.querySelectorAll('video').forEach(v => {

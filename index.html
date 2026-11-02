@@ -665,10 +665,10 @@ const ROLES = [
     ] },
   { name: 'Transamerica', sub: 'Retirement', line: 'The system financial advisors use to send regulatory mailings. I worked it out with the outside mailing houses, built it on the design system and helped the contractor devs adopt that system.',
     facts: [['Role', 'Lead UX Designer'], ['Areas', 'Mailings · Reports · Design System']],
-    hero: [{ video: M + 'transamerica-hero.mp4', d: 'screen' }],
+    hero: [{ video: M + 'transamerica-hero.mp4', poster: M + 'transamerica-hero-poster.webp', d: 'screen' }],
     tiles: [
-      { name: 'Regulatory Mailings', video: M + 'transamerica-nav-send.mp4', d: 'screen' },
-      { name: 'Sent History', video: M + 'transamerica-sent-history.mp4', d: 'screen' },
+      { name: 'Regulatory Mailings', video: M + 'transamerica-nav-send.mp4', poster: M + 'transamerica-nav-send-poster.webp', d: 'screen' },
+      { name: 'Sent History', video: M + 'transamerica-sent-history.mp4', poster: M + 'transamerica-sent-history-poster.webp', d: 'screen' },
       { name: 'Data Tables', img: M + 'transamerica-table-new-web.webp', d: 'tablet' },
       { name: 'Act on Behalf', img: M + 'transamerica-act-on-behalf-web.webp', d: 'tall' },
       { name: 'Reports', img: M + 'transamerica-reports-web.webp', d: 'screen' },
@@ -771,7 +771,7 @@ const UI = {
 const work = document.getElementById('work');
 function device(v) {
   const media = v.img ? `<img src="${v.img}" alt="" loading="lazy" decoding="async">`
-    : v.video ? `<video data-src="${v.video}" muted loop playsinline preload="none"></video>`
+    : v.video ? `<video data-src="${v.video}" data-poster="${v.poster || ''}" muted loop playsinline preload="none"></video>`
     : `<div class="ui">${UI[v.ui] || ''}</div>`;
   return `<div class="device ${v.d}"><div class="glass">${media}</div></div>`;
 }
@@ -884,11 +884,11 @@ const seen = new IntersectionObserver(entries => {
 }, { threshold: 0.18 });
 document.querySelectorAll('.role, .tile, .contact, .fun').forEach(el => seen.observe(el));
 const loadVideo = v => {
-  if (v.hasAttribute('src')) return;
   if (reducedMotion.matches) {
-    v.preload = 'metadata';
-    v.addEventListener('loadedmetadata', () => { v.currentTime = .01; }, { once: true });
+    if (v.dataset.poster && !v.poster) v.poster = v.dataset.poster;
+    return;
   }
+  if (v.hasAttribute('src')) return;
   v.src = v.dataset.src;
 };
 const videoNear = new IntersectionObserver(entries => {
@@ -903,6 +903,13 @@ const videoOnScreen = new IntersectionObserver(entries => {
   }
 }, { threshold: 0.01 });
 document.querySelectorAll('video').forEach(v => { videoNear.observe(v); videoOnScreen.observe(v); });
+reducedMotion.addEventListener('change', () => {
+  document.querySelectorAll('video').forEach(v => {
+    if (reducedMotion.matches) v.pause();
+    else if (!v.hasAttribute('src')) videoNear.observe(v);
+    videoOnScreen.unobserve(v); videoOnScreen.observe(v);
+  });
+});
 const onScreen = new IntersectionObserver(entries => { for (const e of entries) e.target.classList.toggle('off', !e.isIntersecting); },
   { rootMargin: '200px 0px' });
 document.querySelectorAll('.tile, .hero-stage, .lane').forEach(el => onScreen.observe(el));

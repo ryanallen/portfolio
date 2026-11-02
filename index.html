@@ -294,7 +294,8 @@
     font: 300 11px/1 var(--sans); letter-spacing: .28em; text-transform: uppercase; cursor: pointer; }
   .motion-toggle:hover, .motion-toggle:focus-visible { color: var(--ink); border-color: var(--ink); }
   .motion-toggle:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
-  .lane { display: flex; gap: 18px; width: max-content; margin-top: 22px; animation: drift var(--t, 120s) linear infinite; will-change: transform; }
+  .lane { display: flex; gap: 18px; width: max-content; margin-top: 22px; animation: drift var(--t, 120s) linear infinite; }
+  .lane:not(.off) { will-change: transform; }
   .lane.back { animation-direction: reverse; }
   .words.paused .lane, .words .lane:hover { animation-play-state: paused; }
   @keyframes drift { to { transform: translateX(-50%); } }

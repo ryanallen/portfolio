@@ -780,7 +780,7 @@ const FUN = [
 ];
 document.getElementById('funTiles').innerHTML = FUN.map(f => `<a class="tile-link" href="${f.href}"${f.href.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${tile(f).replace('</h3>', '</h3><span class="go" aria-hidden="true">↗</span>')}</a>`).join('');
 document.getElementById('work').innerHTML = ROLES.map(r => `
-  <section class="role" aria-label="${r.name}">
+  <section class="role" id="${r.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}" aria-label="${r.name}">
     <div class="role-head">
       <div class="role-copy">
         ${r.logoImg ? `<img class="role-logo" src="${r.logoImg}" alt="${r.name} logo">` : ''}${r.logo ? `<svg class="role-logo${r.logoWide ? ' wide' : ''}" viewBox="${r.logo[0]}" fill="currentColor" role="img" aria-label="${r.name} logo">${r.logo[1]}</svg>` : ''}

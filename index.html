@@ -389,9 +389,7 @@
   .hires .tile:hover .device, .hires .hero-stage:hover .device { transform: rotate(0deg) translateY(-4px); }
   .hires :is(.device, .art img, .mark, .backdrop, .number-wrap),
   .hires .device .glass::after { transition-duration: 150ms; transition-delay: 0ms; }
-  /* A browser drawing without the graphics card repaints every blurred shadow and filter near anything
-     that moves, every frame. When frames run slow the page swaps them for flat ones (lite), and if they
-     still run slow it holds the looping motion still (still). */
+  /* Flat lighting keeps the moving work legible when software rendering is slow. */
   .lite .device .glass { box-shadow: inset 0 0 0 1px rgba(255,255,255,.07), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
   .lite .device.phone .glass { box-shadow: inset 0 0 0 5px #161617, inset 0 0 0 6px rgba(255,255,255,.08), 4px 4px 0 #1c1c1e, 8px 8px 0 #161618; }
   .lite .art img, .lite .mark { filter: none; }
@@ -399,10 +397,6 @@
   .lite .aip-spark { text-shadow: none; }
   .lite .aip-cart.first { animation-name: aip-add-flat; }
   @keyframes aip-add-flat { 0%, 54% { background: #2a2a2c; } 57%, 88% { background: #e9e8e2; } 100% { background: #2a2a2c; } }
-  .still :is(.stage, .tile) :is(*, *::before, *::after) { animation: none !important; }
-  .still .aip-type { width: 62%; }
-  .still .aip-card { opacity: 1; transform: none; }
-  .still .aip-cart.first { background: #e9e8e2; }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
     .device { opacity: 1; transform: var(--pose, rotateX(14deg) rotateY(-24deg) rotateZ(3deg)); }
@@ -896,18 +890,17 @@ document.addEventListener('visibilitychange', syncTab);
 syncTab();
 
 // ---- Frame guard -------------------------------------------------------
-// Two seconds in a row under 55 frames a second steps the page down: first to
-// flat shadows (lite), then to still loops (still). Eight smooth seconds
-// restore the shadows. Hidden time is excluded from the measurement.
+// Two slow seconds use flat lighting; eight smooth seconds restore the depth.
+// Hidden time is excluded from the measurement, and motion keeps running.
 {
-  const html = document.documentElement, levels = ['lite', 'still'];
-  let level = 0, t0 = 0, frames = 0, bad = 0, good = 0;
+  const html = document.documentElement;
+  let t0 = 0, frames = 0, bad = 0, good = 0;
   const reset = () => { t0 = 0; frames = 0; bad = 0; good = 0; };
   document.addEventListener('visibilitychange', reset);
   const step = now => {
     if (document.hidden) {
       reset();
-      if (level < levels.length) requestAnimationFrame(step);
+      requestAnimationFrame(step);
       return;
     }
     if (!t0) t0 = now;
@@ -917,14 +910,13 @@ syncTab();
       bad = slow ? bad + 1 : 0;
       good = slow ? 0 : good + 1;
       if (bad >= 2) {
-        const next = levels[level++]; html.classList.add(next); bad = 0; good = 0;
-        if (next === 'still') document.dispatchEvent(new Event('portfolio-still'));
-      } else if (level === 1 && good >= 8) {
-        html.classList.remove('lite'); level = 0; good = 0;
+        html.classList.add('lite'); bad = 0; good = 0;
+      } else if (html.classList.contains('lite') && good >= 8) {
+        html.classList.remove('lite'); good = 0;
       }
       t0 = now; frames = 0;
     }
-    if (level < levels.length) requestAnimationFrame(step);
+    requestAnimationFrame(step);
   };
   requestAnimationFrame(step);
 }
@@ -932,7 +924,6 @@ syncTab();
 // ---- Arrival -----------------------------------------------------------
 // Things glide into place as they come into view; videos play only then.
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-document.addEventListener('portfolio-still', () => document.querySelectorAll('video').forEach(v => v.pause()));
 const seen = new IntersectionObserver(entries => {
   for (const e of entries) {
     if (!e.isIntersecting) continue;
@@ -942,7 +933,7 @@ const seen = new IntersectionObserver(entries => {
 }, { threshold: 0.18 });
 document.querySelectorAll('.role-head, .tile, .contact, .fun').forEach(el => seen.observe(el));
 const loadVideo = v => {
-  if (document.hidden || reducedMotion.matches || document.documentElement.classList.contains('still')) {
+  if (document.hidden || reducedMotion.matches) {
     if (v.dataset.poster && !v.poster) v.poster = v.dataset.poster;
     return;
   }
@@ -965,7 +956,7 @@ const videoOnScreen = new IntersectionObserver(entries => {
     const v = e.target;
     if (document.hidden || !e.isIntersecting || e.intersectionRatio < .5) { v.pause(); continue; }
     loadVideo(v);
-    if (!reducedMotion.matches && !document.documentElement.classList.contains('still')) v.play().catch(() => {});
+    if (!reducedMotion.matches) v.play().catch(() => {});
   }
 }, { threshold: .5 });
 document.querySelectorAll('video').forEach(v => { videoNear.observe(v); videoOnScreen.observe(v); });
@@ -1084,7 +1075,7 @@ function swashLight() {
   // Key light and tilt follow the pointer, one update per frame at most.
   if (fine) {
     let px = 0, py = 0, queued = false;
-    const active = () => !reducedMotion.matches && !document.documentElement.classList.contains('still');
+    const active = () => !reducedMotion.matches;
     const reset = () => { lockup.style.removeProperty('--tx'); lockup.style.removeProperty('--ty');
       grad.setAttribute('cx', 280); grad.setAttribute('cy', 40); };
     hero.addEventListener('pointermove', e => { if (!active()) return; px = e.clientX; py = e.clientY; if (queued) return; queued = true;
@@ -1095,7 +1086,6 @@ function swashLight() {
         lockup.style.setProperty('--ty', (nx * 6).toFixed(2) + 'deg'); lockup.style.setProperty('--tx', (-ny * 4).toFixed(2) + 'deg'); }); });
     hero.addEventListener('pointerleave', reset);
     reducedMotion.addEventListener('change', () => { if (reducedMotion.matches) reset(); });
-    document.addEventListener('portfolio-still', reset);
   }
   // Draw the contours once per size change. The canvas moves as one layer.
   const cv = hero.querySelector('.nagare'), cx = cv.getContext('2d');
@@ -1169,11 +1159,10 @@ function cycle() {
 // ?a=<animation 0-7>&t=<seconds at site speed> holds one frame of the name;
 // ?all shows every section at rest. Both are for checking.
 const q = new URLSearchParams(location.search);
-if (q.get('t') === null) document.addEventListener('portfolio-still', settleLogo);
 reducedMotion.addEventListener('change', () => {
   if (q.get('t') !== null) return;
   if (reducedMotion.matches) settleLogo();
-  else if (!document.documentElement.classList.contains('still') && (!location.hash || location.hash === '#top')) whenSeen(cycle);
+  else if (!location.hash || location.hash === '#top') whenSeen(cycle);
 });
 if (q.has('all')) {
   document.querySelectorAll('.role, .tile, .contact').forEach(el => el.classList.add('in'));

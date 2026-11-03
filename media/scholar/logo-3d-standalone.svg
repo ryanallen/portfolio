@@ -1,64 +1,70 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
-  <title id="title">Scholar</title>
-  <desc id="desc">A softly rounded lavender tile with four raised pearlescent points.</desc>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Scholar logo</title>
   <defs>
-    <linearGradient id="body" x1=".08" y1=".02" x2=".9" y2=".98" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#d5caff"/>
-      <stop offset=".17" stop-color="#c2affc"/>
-      <stop offset=".48" stop-color="#a17bf3"/>
-      <stop offset=".76" stop-color="#9269e9"/>
-      <stop offset="1" stop-color="#7650d5"/>
+    <linearGradient id="tile" x1="0%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#ddd3ff"/>
+      <stop offset="23%" stop-color="#c0a8fb"/>
+      <stop offset="58%" stop-color="#a07cf0"/>
+      <stop offset="100%" stop-color="#7852d7"/>
     </linearGradient>
-    <radialGradient id="light" cx=".13" cy=".07" r=".95" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#fff" stop-opacity=".4"/>
-      <stop offset=".21" stop-color="#f7efff" stop-opacity=".17"/>
-      <stop offset=".66" stop-color="#fff" stop-opacity="0"/>
+    <radialGradient id="tileLight" cx="9%" cy="4%" r="95%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.47"/>
+      <stop offset="42%" stop-color="#f9f5ff" stop-opacity="0.09"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="depth" cx=".86" cy=".92" r=".82" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#522ab5" stop-opacity=".35"/>
-      <stop offset=".6" stop-color="#7149d3" stop-opacity=".09"/>
-      <stop offset="1" stop-color="#7149d3" stop-opacity="0"/>
+    <radialGradient id="tileShade" cx="87%" cy="89%" r="85%">
+      <stop offset="0%" stop-color="#5b32bd" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#5b32bd" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="rim" x1=".05" y1=".03" x2=".95" y2=".96" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#fff" stop-opacity=".8"/>
-      <stop offset=".35" stop-color="#fff" stop-opacity=".1"/>
-      <stop offset=".8" stop-color="#5326ac" stop-opacity=".1"/>
-      <stop offset="1" stop-color="#48249f" stop-opacity=".58"/>
+    <linearGradient id="rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.86"/>
+      <stop offset="38%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#4b269f" stop-opacity="0.52"/>
     </linearGradient>
-    <linearGradient id="pearl" x1=".16" y1=".08" x2=".86" y2=".94" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#fff"/>
-      <stop offset=".3" stop-color="#fcfaff"/>
-      <stop offset=".7" stop-color="#e7ddff"/>
-      <stop offset="1" stop-color="#c9b9fa"/>
+    <radialGradient id="shadow">
+      <stop offset="0%" stop-color="#35117f" stop-opacity="0.68"/>
+      <stop offset="45%" stop-color="#4b269e" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#4b269e" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pearl" x1="18%" y1="7%" x2="83%" y2="97%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="38%" stop-color="#faf8ff"/>
+      <stop offset="78%" stop-color="#e8dfff"/>
+      <stop offset="100%" stop-color="#c8b8f5"/>
     </linearGradient>
-    <linearGradient id="rayEdge" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#fff" stop-opacity=".75"/>
-      <stop offset=".48" stop-color="#fff" stop-opacity=".08"/>
-      <stop offset="1" stop-color="#a890e8" stop-opacity=".45"/>
+    <linearGradient id="bevel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.84"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.09"/>
+      <stop offset="100%" stop-color="#b39ae9" stop-opacity="0.54"/>
     </linearGradient>
-    <filter id="tileShadow" x="-15%" y="-15%" width="130%" height="140%">
-      <feDropShadow dx="0" dy="20" stdDeviation="22" flood-color="#100626" flood-opacity=".25"/>
-    </filter>
-    <filter id="rayShadow" x="-35%" y="-35%" width="170%" height="190%">
-      <feDropShadow dx="8" dy="17" stdDeviation="12" flood-color="#4b2c9c" flood-opacity=".49"/>
-      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#7f5ddd" flood-opacity=".22"/>
-    </filter>
-    <clipPath id="tileClip"><rect x="32" y="32" width="960" height="960" rx="232"/></clipPath>
-    <path id="ray" d="M512 183c-10 0-16 10-19 21l-61 177c-3 13 1 22 11 29l54 38c9 7 21 7 30 0l54-38c10-7 14-16 11-29l-61-177c-3-11-9-21-19-21Z"/>
   </defs>
-  <g filter="url(#tileShadow)">
-    <rect x="32" y="38" width="960" height="954" rx="232" fill="#6846c6"/>
-    <rect x="32" y="32" width="960" height="960" rx="232" fill="url(#body)"/>
-    <g clip-path="url(#tileClip)">
-      <rect x="32" y="32" width="960" height="960" fill="url(#light)"/>
-      <rect x="32" y="32" width="960" height="960" fill="url(#depth)"/>
-    </g>
-    <rect x="35" y="35" width="954" height="954" rx="229" fill="none" stroke="url(#rim)" stroke-width="7"/>
+  <rect x="32" y="45" width="960" height="947" rx="230" fill="#5430af" opacity="0.24"/>
+  <rect x="32" y="37" width="960" height="955" rx="230" fill="#6f49ce"/>
+  <rect x="32" y="32" width="960" height="960" rx="230" fill="url(#tile)"/>
+  <rect x="32" y="32" width="960" height="960" rx="230" fill="url(#tileLight)"/>
+  <rect x="32" y="32" width="960" height="960" rx="230" fill="url(#tileShade)"/>
+  <rect x="35" y="35" width="954" height="954" rx="227" fill="none" stroke="url(#rim)" stroke-width="6"/>
+  <ellipse cx="532" cy="425" rx="135" ry="106" fill="url(#shadow)"/>
+  <ellipse cx="434" cy="535" rx="148" ry="112" fill="url(#shadow)"/>
+  <ellipse cx="628" cy="535" rx="148" ry="112" fill="url(#shadow)"/>
+  <ellipse cx="532" cy="635" rx="135" ry="106" fill="url(#shadow)"/>
+  <g fill="#3c1a92" opacity="0.24" transform="translate(8 13)">
+    <path d="M512 183 C505 183 500 190 497 200 L448 405 C446 415 449 422 456 428 L500 461 C507 466 517 466 524 461 L568 428 C575 422 578 415 576 405 L527 200 C524 190 519 183 512 183 Z"/>
+    <path d="M512 183 C505 183 500 190 497 200 L448 405 C446 415 449 422 456 428 L500 461 C507 466 517 466 524 461 L568 428 C575 422 578 415 576 405 L527 200 C524 190 519 183 512 183 Z" transform="rotate(90 512 512)"/>
+    <path d="M512 183 C505 183 500 190 497 200 L448 405 C446 415 449 422 456 428 L500 461 C507 466 517 466 524 461 L568 428 C575 422 578 415 576 405 L527 200 C524 190 519 183 512 183 Z" transform="rotate(180 512 512)"/>
+    <path d="M512 183 C505 183 500 190 497 200 L448 405 C446 415 449 422 456 428 L500 461 C507 466 517 466 524 461 L568 428 C575 422 578 415 576 405 L527 200 C524 190 519 183 512 183 Z" transform="rotate(270 512 512)"/>
   </g>
-  <g fill="url(#pearl)" stroke="url(#rayEdge)" stroke-width="3" filter="url(#rayShadow)">
-    <use href="#ray"/>
-    <use href="#ray" transform="rotate(90 512 512)"/>
-    <use href="#ray" transform="rotate(180 512 512)"/>
-    <use href="#ray" transform="rotate(270 512 512)"/>
+  <g fill="#b9a5ec" transform="translate(0 6)">
+    <path d="M512 183 C505 183 500 190 497 200 L448 405 C446 415 449 422 456 428 L500 461 C507 466 517 466 524 461 L568 428 C575 422 578 415 576 405 L527 200 C524 190 519 183 512 183 Z"/>
+    <path d="M512 183 C505 183 500 190 497 200 L448 405 C446 415 449 422 456 428 L500 461 C507 466 517 466 524 461 L568 428 C575 422 578 415 576 405 L527 200 C524 190 519 183 512 183 Z" transform="rotate(90 512 512)"/>
+    <path d="M512 183 C505 183 500 190 497 200 L448 405 C446 415 449 422 456 428 L500 461 C507 466 517 466 524 461 L568 428 C575 422 578 415 576 405 L527 200 C524 190 519 183 512 183 Z" transform="rotate(180 512 512)"/>
+    <path d="M512 183 C505 183 500 190 497 200 L448 405 C446 415 449 422 456 428 L500 461 C507 466 517 466 524 461 L568 428 C575 422 578 415 576 405 L527 200 C524 190 519 183 512 183 Z" transform="rotate(270 512 512)"/>
+  </g>
+  <g fill="url(#pearl)" stroke="url(#bevel)" stroke-width="3" stroke-linejoin="round">
+    <path d="M512 183 C505 183 500 190 497 200 L448 405 C446 415 449 422 456 428 L500 461 C507 466 517 466 524 461 L568 428 C575 422 578 415 576 405 L527 200 C524 190 519 183 512 183 Z"/>
+    <path d="M512 183 C505 183 500 190 497 200 L448 405 C446 415 449 422 456 428 L500 461 C507 466 517 466 524 461 L568 428 C575 422 578 415 576 405 L527 200 C524 190 519 183 512 183 Z" transform="rotate(90 512 512)"/>
+    <path d="M512 183 C505 183 500 190 497 200 L448 405 C446 415 449 422 456 428 L500 461 C507 466 517 466 524 461 L568 428 C575 422 578 415 576 405 L527 200 C524 190 519 183 512 183 Z" transform="rotate(180 512 512)"/>
+    <path d="M512 183 C505 183 500 190 497 200 L448 405 C446 415 449 422 456 428 L500 461 C507 466 517 466 524 461 L568 428 C575 422 578 415 576 405 L527 200 C524 190 519 183 512 183 Z" transform="rotate(270 512 512)"/>
   </g>
 </svg>

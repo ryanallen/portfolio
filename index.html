@@ -306,6 +306,7 @@
     transition: opacity 1200ms ease, transform 1800ms var(--ease); filter: drop-shadow(0 28px 36px rgba(0,0,0,.6)); }
   .scholar-logo-art { display: grid; place-items: center; }
   .scholar-logo-art img { position: relative; }
+  .art img[src$="scholar/logo-3d.png"] { clip-path: inset(7% round 25%); }
   .in .art img { opacity: 1; transform: none; }
   .in .art img:nth-of-type(2) { transition-delay: 150ms; } .in .art img:nth-of-type(3) { transition-delay: 300ms; }
   .in .art img:nth-of-type(4) { transition-delay: 450ms; } .in .art img:nth-of-type(5) { transition-delay: 600ms; }
@@ -742,9 +743,9 @@ const ROLES = [
     ] },
   { name: 'Scholar', logo: ['0 0 64 64', '<polygon points="32.98 15.75 32 6 31.02 15.75 27.7 24.62 32 26.05 36.3 24.62 32.98 15.75"/><polygon points="26.05 32 24.62 27.7 15.75 31.02 6 32 15.75 32.98 24.62 36.3 26.05 32"/><polygon points="32.98 48.25 36.3 39.38 32 37.95 27.7 39.38 31.02 48.25 32 58 32.98 48.25"/><polygon points="58 32 49.26 31.03 40.38 27.7 38.95 32 40.38 36.3 49.26 32.97 58 32"/>'], sub: 'Blackboard', line: 'An AI study platform for college students. I led design and product from 0 to 1 and beyond.',
     facts: [['Role', 'Product Design Lead'], ['Areas', 'Research · UX · Dev · Product · Hiring']],
-    heroArt: '<div class="art"><img src="media/scholar/logo-3d.svg" alt="" loading="lazy" style="width:34%;left:33%;top:22%"><img src="media/scholar/study-flashcards-web.webp" alt="" loading="lazy" style="width:21%;left:7%;top:8%"><img src="media/scholar/study-quiz-web.webp" alt="" loading="lazy" style="width:20%;right:7%;top:6%"><img src="media/scholar/study-chat-web.webp" alt="" loading="lazy" style="width:19%;left:10%;bottom:10%"><img src="media/scholar/study-podcast-web.webp" alt="" loading="lazy" style="width:20%;right:9%;bottom:8%"></div>', hero: [],
+    heroArt: '<div class="art"><img src="media/scholar/logo-3d.png" alt="" loading="lazy" style="width:35%;left:32.5%;top:22%"><img src="media/scholar/study-flashcards-web.webp" alt="" loading="lazy" style="width:21%;left:7%;top:8%"><img src="media/scholar/study-quiz-web.webp" alt="" loading="lazy" style="width:20%;right:7%;top:6%"><img src="media/scholar/study-chat-web.webp" alt="" loading="lazy" style="width:19%;left:10%;bottom:10%"><img src="media/scholar/study-podcast-web.webp" alt="" loading="lazy" style="width:20%;right:9%;bottom:8%"></div>', hero: [],
     tiles: [
-      { name: 'Logo Design', art: '<div class="art scholar-logo-art"><img src="media/scholar/logo-3d.svg" alt="" loading="lazy" style="width:40%"></div>' },
+      { name: 'Logo Design', art: '<div class="art scholar-logo-art"><img src="media/scholar/logo-3d.png" alt="" loading="lazy" style="width:42%"></div>' },
       { name: 'Early Brand Direction', ui: 'brand', d: 'screen' },
       { name: 'Shipped to Production', ui: 'console', d: 'screen' },
       { name: 'Tutoring', ui: 'chat', d: 'phone' },

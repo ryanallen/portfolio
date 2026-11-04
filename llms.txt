@@ -13,7 +13,7 @@ Ryan designs products from the first idea to production code: research, UX, AI p
 - [Charter / Spectrum](https://ryanallen.com/#charter): A zero-to-one app, with hardware and backend services, for older adults and the people who look after them.
 - [Lexus](https://ryanallen.com/#lexus): The Lexus IS iPad app, built by the studio team on a custom 3D engine and released on the App Store. Gold ADDY.
 - [Monsters Invade Oz](https://ryanallen.com/#monsters-invade-oz): A mobile game. Ryan built and led the team and illustrated and animated its 15,000-plus assets. GDC Best in Play, top 10 in the App Store at launch.
-- [Dapper Gentlemen](https://ryanallen.com/#dapper-gentlemen): A studio Ryan co-founded and ran. Its own apps were downloaded more than 30 million times in 94 countries; clients included Microsoft, BMW, Disney and Google Ventures. Acquired by HIPO.
+- [Dapper Gentlemen](https://ryanallen.com/#dapper-gentlemen): A studio Ryan co-founded and ran. Ugly Meter reached #1 on the paid and free App Store charts in every country where it was available, and the Securely password manager made the top 100. Its own apps were downloaded more than 30 million times in 94 countries; clients included Microsoft, BMW, Disney and Google Ventures. Acquired by HIPO.
 
 ## Fun stuff
 
@@ -29,6 +29,7 @@ Ryan designs products from the first idea to production code: research, UX, AI p
 - SEMA Most Innovative New Product
 - Most Innovative Organization, Trade Show Executive
 - Repeat guest on The Howard Stern Show
+- Co-inventor, [U.S. patent 9,353,551 B2](https://patents.google.com/patent/US9353551B2/en), wireless door locking system
 
 ## Contact
 

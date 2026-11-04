@@ -394,6 +394,8 @@
   .honors li b { font: 300 clamp(20px, 1.9vw, 28px)/1.15 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--ink);
     text-shadow: 0 0 28px rgba(242,241,237,.28); }
   .honors li span { font-size: 10px; letter-spacing: .28em; text-transform: uppercase; color: var(--quiet); line-height: 1.7; }
+  .honors li span a { color: inherit; text-decoration-color: currentColor; text-underline-offset: .25em; }
+  .honors li span a:hover, .honors li span a:focus-visible { color: var(--ink); }
   .honors li i { width: 40px; height: 1px; background: var(--ink); box-shadow: 0 0 12px rgba(242,241,237,.8); transform: scaleX(0);
     transition: transform 1400ms var(--ease); }
   .billion { position: relative; display: grid; gap: 16px; justify-items: center; opacity: 0; transform: scale(.94);
@@ -538,6 +540,9 @@
   <li style="--k:5"><b>Successful Exit</b><i></i><span>Acquired by HIPO<br>Swing Dev</span></li>
   <li style="--k:6"><b>Most Innovative Organization</b><i></i><span>Trade Show Executive · Cosmoprof North America<br>Online education, live streaming, membership &amp; payments</span></li>
   <li style="--k:7"><b>Most Innovative New Product</b><i></i><span>SEMA Show<br>Plasmaglow</span></li>
+  <li style="--k:8"><img class="h-logo" src="media/logos/appstore.svg" alt="" loading="lazy"><b>#1 Paid &amp; Free</b><i></i><span>Every App Store country<br>Ugly Meter</span></li>
+  <li style="--k:9"><img class="h-logo" src="media/logos/appstore.svg" alt="" loading="lazy"><b>Top 100 App Store</b><i></i><span>Securely password manager<br>Dapper Gentlemen</span></li>
+  <li style="--k:10"><b>U.S. Patent</b><i></i><span>Wireless door locking system<br><a href="https://patents.google.com/patent/US9353551B2/en" target="_blank" rel="noopener">US 9,353,551 B2 ↗</a></span></li>
 </ul></section>
 <section class="contact" id="contact"><div>
   <a class="mail" href="mailto:hi@ryanallen.com">hi@ryanallen.com</a>
@@ -824,7 +829,7 @@ const ROLES = [
       { name: 'App Store', logo: 'appstore', figure: 'Top 10', stat: 'Most downloaded at launch' },
       { name: 'Assets Drawn', figure: '15,000+', stat: 'Illustrated and animated' },
     ] },
-  { name: 'Dapper Gentlemen', sub: 'Studio', line: 'A studio I co-founded and ran. Our own apps were downloaded more than 30 million times in 94 countries, and I became a repeat guest on The Howard Stern Show. Clients hired us too, Microsoft, BMW, Disney and Google Ventures among them, and I worked on all of it, from the first sales call to launch.',
+  { name: 'Dapper Gentlemen', sub: 'Studio', line: 'A studio I co-founded and ran. Ugly Meter reached #1 on both the paid and free App Store charts in every country where it was available, and our password manager Securely made the top 100. Our own apps were downloaded more than 30 million times in 94 countries, and I became a repeat guest on The Howard Stern Show. I am also a co-inventor on a granted U.S. patent for a wireless door lock. Clients hired us too, Microsoft, BMW, Disney and Google Ventures among them, and I worked on all of it, from the first sales call to launch.',
     facts: [['Role', 'Co-Founder · Head of Product'], ['Areas', 'Product · Design · Sales · Hiring · Client Work'], ['Clients', 'Microsoft · BMW · Disney · Google Ventures']],
     hero: [{ img: 'images/howard-stern-web.webp', d: 'screen' }, { ui: 'cards', d: 'phone' }],
     tiles: [
@@ -835,6 +840,9 @@ const ROLES = [
       { name: 'BMW', art: '<div class="art"><img src="media/clients/bmw.svg" alt="" loading="lazy" style="width:24%;left:38%;top:30%"></div>', stat: 'Client work' },
       { name: 'Google Ventures', art: '<div class="art"><img src="media/clients/google-ventures.svg" alt="" loading="lazy" style="width:30%;left:35%;top:30%"></div>', stat: 'Client work' },
       { name: 'Own Apps', art: '<div class="art"><img src="media/stores/apple.svg" alt="" loading="lazy" style="width:11%;left:14%;top:30%"><img src="media/stores/googleplay.svg" alt="" loading="lazy" style="width:11%;right:14%;top:44%"></div>', ui: 'appcycle', d: 'phone', stat: 'Multiple #1 most downloaded apps in the world' },
+      { name: 'Ugly Meter', logo: 'appstore', figure: '#1', stat: 'Paid and free charts in every country' },
+      { name: 'Securely', logo: 'appstore', figure: 'Top 100', stat: 'Password manager' },
+      { name: 'Wireless Door Lock', figure: 'Patent', stat: 'US 9,353,551 B2' },
       { name: 'Sales', ui: 'roadmap', d: 'screen' },
       { name: 'Hiring', ui: 'avatars', d: 'phone' },
     ] },
@@ -930,6 +938,9 @@ const TIPS = {
     BMW: `I worked with BMW through the studio I co-founded.`,
     'Google Ventures': `I worked with Google Ventures through the studio I co-founded.`,
     'Own Apps': `We made our own apps and put them in millions of hands.`,
+    'Ugly Meter': `Ugly Meter reached #1 on both the paid and free App Store charts in every country where it was available.`,
+    Securely: `Our password manager reached the App Store top 100.`,
+    'Wireless Door Lock': `I am a co-inventor on U.S. patent 9,353,551 B2 for a wireless door locking system.`,
     Sales: `I took client work from the first sales call through launch.`,
     Hiring: `I helped build the team that made the work.`,
   },
@@ -1051,7 +1062,7 @@ const WORDS = [
   ['Brett Rogers', 'Managed Ryan · Charter', 'For fun, we always made bets on design concepts, and Ryan always won.', M + 'reviewer-img__brett-web.webp'],
   ['Kaman Cheung', 'Senior Product Manager · GoDaddy', 'Ryan’s insights, experimentation mindset, and cross-disciplinary talent raise the quality of our work, help identify opportunities we might otherwise miss, and ultimately lead to better products.'],
   ['Bailey Priest Perez', 'Managed Ryan · Transamerica', 'We had complete confidence in the quality of his work, knowing that he would go above and beyond to meet and exceed expectations.', M + 'reviewer-img__bailey-web.webp'],
-  ['Omeed Chandra', 'Product Design · GoDaddy', 'His thoughtful contributions to discussions about design process and interaction and visual design led to impactful solutions and helped up-level my work.'],
+  ['Omeed Chandra', 'Product Design · Microsoft', 'His thoughtful contributions to discussions about design process and interaction and visual design led to impactful solutions and helped up-level my work.'],
   ['Summer Tong Sun', 'Reported to Ryan · GoDaddy', 'More than two years ago, Ryan took a chance and hired me at GoDaddy.', M + 'reviewer-img__summer-web.webp'],
   ['Steven Phillips', 'Conversion Optimization · GoDaddy', 'When we found gaps in our capabilities, Ryan was the driver in finding smart solutions.', 'images/reviewer-img__steven-web.webp'],
   ['Scott Coyle', 'Managed Ryan · ClickIPO', 'Ryan was excellent at solving complex problems and creating innovative solutions within our highly complicated and regulated product development efforts.'],

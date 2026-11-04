@@ -410,11 +410,21 @@
   .honors ul { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .honors li { align-content: start; }
   .honors li:nth-child(4n+1)::before { display: none; }
+  @media (min-width: 901px) {
+    .honors ul { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .honors li { grid-column: span 3; }
+    .honors li:nth-child(n+5):nth-child(-n+7) { grid-column: span 4; }
+    .honors li:nth-child(8)::before { display: none; }
+    .honors li:nth-child(9)::before { display: block; }
+  }
   .honors.in li { opacity: 1; transform: none; }
   .honors.in li i { transform: none; }
   .honors.in li, .honors.in li i { transition-delay: calc(var(--k, 0) * 120ms + 400ms); }
   @media (max-width: 900px) { .honors ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } .honors li:nth-child(4n+1)::before { display: block; }
     .honors li:nth-child(2n+1)::before { display: none; } }
+  @media (min-width: 701px) and (max-width: 900px) {
+    .honors li:last-child:nth-child(odd) { grid-column: 1 / -1; width: 50%; justify-self: center; }
+  }
   @media (max-width: 560px) { .honors ul { grid-template-columns: 1fr; } .honors li:nth-child(n)::before { display: block; } .honors li:first-child::before { display: none; }
     .honors li + li::before { left: 22%; right: 22%; top: 0; bottom: auto; width: auto; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(242,241,237,.28), transparent); } }
